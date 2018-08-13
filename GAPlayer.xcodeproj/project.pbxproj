@@ -1,0 +1,988 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EC6124AF212174E500D40C96 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6124AE212174E500D40C96 /* AppDelegate.m */; };
+		EC6124B2212174E500D40C96 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6124B1212174E500D40C96 /* ViewController.m */; };
+		EC6124B5212174E500D40C96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC6124B3212174E500D40C96 /* Main.storyboard */; };
+		EC6124B7212174E600D40C96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC6124B6212174E600D40C96 /* Assets.xcassets */; };
+		EC6124BA212174E600D40C96 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC6124B8212174E600D40C96 /* LaunchScreen.storyboard */; };
+		EC6124BD212174E600D40C96 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6124BC212174E600D40C96 /* main.m */; };
+		EC6124C7212174E600D40C96 /* GAPlayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6124C6212174E600D40C96 /* GAPlayerTests.m */; };
+		EC6124D2212174E600D40C96 /* GAPlayerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6124D1212174E600D40C96 /* GAPlayerUITests.m */; };
+		EC6124E12121750900D40C96 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC6124E02121750900D40C96 /* VideoToolbox.framework */; };
+		EC6124E32121751000D40C96 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC6124E22121751000D40C96 /* QuartzCore.framework */; };
+		EC6124E52121751F00D40C96 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC6124E42121751F00D40C96 /* OpenGLES.framework */; };
+		EC6124E72121752A00D40C96 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC6124E62121752A00D40C96 /* MobileCoreServices.framework */; };
+		EC6124E92121754B00D40C96 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC6124E82121754B00D40C96 /* CoreVideo.framework */; };
+		EC6124EB2121759A00D40C96 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC6124EA2121759A00D40C96 /* CoreGraphics.framework */; };
+		EC6124ED212175A700D40C96 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC6124EC212175A700D40C96 /* MediaPlayer.framework */; };
+		EC6124EF212175D900D40C96 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC6124EE212175D900D40C96 /* AudioToolbox.framework */; };
+		EC6124F1212175E500D40C96 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EC6124F0212175E500D40C96 /* libbz2.tbd */; };
+		EC6124F3212175EC00D40C96 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EC6124F2212175EC00D40C96 /* libz.tbd */; };
+		EC6124F5212175F600D40C96 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EC6124F4212175F600D40C96 /* libc++.tbd */; };
+		EC6124F72121760700D40C96 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC6124F62121760700D40C96 /* UIKit.framework */; };
+		EC6124F92121762200D40C96 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC6124F82121762100D40C96 /* AVFoundation.framework */; };
+		EC6124FB2121764700D40C96 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC6124FA2121764700D40C96 /* CoreMedia.framework */; };
+		EC612505212176B500D40C96 /* NSObject+FBKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC612501212176B500D40C96 /* NSObject+FBKVOController.m */; };
+		EC612506212176B500D40C96 /* FBKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC612502212176B500D40C96 /* FBKVOController.m */; };
+		EC612507212176B500D40C96 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC612503212176B500D40C96 /* Info.plist */; };
+		EC612509212176C000D40C96 /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC612508212176C000D40C96 /* IJKMediaFramework.framework */; };
+		EC61254D212176D700D40C96 /* CMPlayerBrightnessView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC61250E212176D700D40C96 /* CMPlayerBrightnessView.m */; };
+		EC61254E212176D700D40C96 /* GAPlayerAdAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC61250F212176D700D40C96 /* GAPlayerAdAlertView.m */; };
+		EC61254F212176D700D40C96 /* CMPlayerTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC612513212176D700D40C96 /* CMPlayerTimeView.m */; };
+		EC612550212176D700D40C96 /* GAPlayerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC612514212176D700D40C96 /* GAPlayerViewModel.m */; };
+		EC612551212176D700D40C96 /* GAPlayerView+GestureAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EC612517212176D700D40C96 /* GAPlayerView+GestureAction.m */; };
+		EC612552212176D700D40C96 /* GAPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC612519212176D700D40C96 /* GAPlayerView.m */; };
+		EC612553212176D700D40C96 /* GAPlayerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EC61251B212176D700D40C96 /* GAPlayerTool.m */; };
+		EC612554212176D700D40C96 /* UIView+SomehowTheScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = EC61251E212176D700D40C96 /* UIView+SomehowTheScreen.m */; };
+		EC612555212176D700D40C96 /* GAPlayerItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC612520212176D700D40C96 /* GAPlayerItemModel.m */; };
+		EC612557212176D700D40C96 /* GAPlayContolBarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC612527212176D700D40C96 /* GAPlayContolBarManager.m */; };
+		EC612558212176D700D40C96 /* GAPlayerSelectVIewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC61252B212176D700D40C96 /* GAPlayerSelectVIewModel.m */; };
+		EC612559212176D700D40C96 /* GAPlayerSelectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC61252D212176D700D40C96 /* GAPlayerSelectTableViewCell.m */; };
+		EC61255A212176D700D40C96 /* GAPlayerSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC61252E212176D700D40C96 /* GAPlayerSelectView.m */; };
+		EC61255B212176D700D40C96 /* CBAutoScrollLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC612532212176D700D40C96 /* CBAutoScrollLabel.m */; };
+		EC61255C212176D700D40C96 /* ASOBounceButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC612535212176D700D40C96 /* ASOBounceButtonView.m */; };
+		EC61255D212176D700D40C96 /* ASOTwoStateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EC612539212176D700D40C96 /* ASOTwoStateButton.m */; };
+		EC61255E212176D700D40C96 /* GAPlayControlBar_BoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC61253D212176D700D40C96 /* GAPlayControlBar_BoomView.m */; };
+		EC61255F212176D700D40C96 /* GAPlayControlBar_TopView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC61253F212176D700D40C96 /* GAPlayControlBar_TopView.m */; };
+		EC612560212176D700D40C96 /* GAIJKPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EC612546212176D700D40C96 /* GAIJKPlayer.m */; };
+		EC612561212176D700D40C96 /* GAAVPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EC612549212176D700D40C96 /* GAAVPlayer.m */; };
+		EC612562212176D700D40C96 /* GAPlayerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC61254C212176D700D40C96 /* GAPlayerModel.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EC6124C3212174E600D40C96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC6124A2212174E500D40C96 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EC6124A9212174E500D40C96;
+			remoteInfo = GAPlayer;
+		};
+		EC6124CE212174E600D40C96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC6124A2212174E500D40C96 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EC6124A9212174E500D40C96;
+			remoteInfo = GAPlayer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EC6124AA212174E500D40C96 /* GAPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GAPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC6124AD212174E500D40C96 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		EC6124AE212174E500D40C96 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EC6124B0212174E500D40C96 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		EC6124B1212174E500D40C96 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		EC6124B4212174E500D40C96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EC6124B6212174E600D40C96 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EC6124B9212174E600D40C96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EC6124BB212174E600D40C96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC6124BC212174E600D40C96 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EC6124C2212174E600D40C96 /* GAPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GAPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC6124C6212174E600D40C96 /* GAPlayerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAPlayerTests.m; sourceTree = "<group>"; };
+		EC6124C8212174E600D40C96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC6124CD212174E600D40C96 /* GAPlayerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GAPlayerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC6124D1212174E600D40C96 /* GAPlayerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAPlayerUITests.m; sourceTree = "<group>"; };
+		EC6124D3212174E600D40C96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC6124E02121750900D40C96 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		EC6124E22121751000D40C96 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		EC6124E42121751F00D40C96 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		EC6124E62121752A00D40C96 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		EC6124E82121754B00D40C96 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		EC6124EA2121759A00D40C96 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EC6124EC212175A700D40C96 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		EC6124EE212175D900D40C96 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		EC6124F0212175E500D40C96 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		EC6124F2212175EC00D40C96 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		EC6124F4212175F600D40C96 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		EC6124F62121760700D40C96 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		EC6124F82121762100D40C96 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		EC6124FA2121764700D40C96 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		EC6124FF212176B500D40C96 /* KVOController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVOController.h; sourceTree = "<group>"; };
+		EC612500212176B500D40C96 /* FBKVOController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBKVOController.h; sourceTree = "<group>"; };
+		EC612501212176B500D40C96 /* NSObject+FBKVOController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+FBKVOController.m"; sourceTree = "<group>"; };
+		EC612502212176B500D40C96 /* FBKVOController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBKVOController.m; sourceTree = "<group>"; };
+		EC612503212176B500D40C96 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC612504212176B500D40C96 /* NSObject+FBKVOController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FBKVOController.h"; sourceTree = "<group>"; };
+		EC612508212176C000D40C96 /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
+		EC61250C212176D700D40C96 /* GAPlayerView+GestureAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GAPlayerView+GestureAction.h"; sourceTree = "<group>"; };
+		EC61250E212176D700D40C96 /* CMPlayerBrightnessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMPlayerBrightnessView.m; sourceTree = "<group>"; };
+		EC61250F212176D700D40C96 /* GAPlayerAdAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAPlayerAdAlertView.m; sourceTree = "<group>"; };
+		EC612510212176D700D40C96 /* CMPlayerTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMPlayerTimeView.h; sourceTree = "<group>"; };
+		EC612511212176D700D40C96 /* GAPlayerAdAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAPlayerAdAlertView.h; sourceTree = "<group>"; };
+		EC612512212176D700D40C96 /* CMPlayerBrightnessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMPlayerBrightnessView.h; sourceTree = "<group>"; };
+		EC612513212176D700D40C96 /* CMPlayerTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMPlayerTimeView.m; sourceTree = "<group>"; };
+		EC612514212176D700D40C96 /* GAPlayerViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAPlayerViewModel.m; sourceTree = "<group>"; };
+		EC612515212176D700D40C96 /* GAPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAPlayerView.h; sourceTree = "<group>"; };
+		EC612516212176D700D40C96 /* GAPlayerItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAPlayerItemModel.h; sourceTree = "<group>"; };
+		EC612517212176D700D40C96 /* GAPlayerView+GestureAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GAPlayerView+GestureAction.m"; sourceTree = "<group>"; };
+		EC612518212176D700D40C96 /* GAPlayerViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAPlayerViewModel.h; sourceTree = "<group>"; };
+		EC612519212176D700D40C96 /* GAPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAPlayerView.m; sourceTree = "<group>"; };
+		EC61251B212176D700D40C96 /* GAPlayerTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAPlayerTool.m; sourceTree = "<group>"; };
+		EC61251C212176D700D40C96 /* GAPlayerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAPlayerTool.h; sourceTree = "<group>"; };
+		EC61251E212176D700D40C96 /* UIView+SomehowTheScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SomehowTheScreen.m"; sourceTree = "<group>"; };
+		EC61251F212176D700D40C96 /* UIView+SomehowTheScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SomehowTheScreen.h"; sourceTree = "<group>"; };
+		EC612520212176D700D40C96 /* GAPlayerItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAPlayerItemModel.m; sourceTree = "<group>"; };
+		EC612526212176D700D40C96 /* GAPlayContolBarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAPlayContolBarManager.h; sourceTree = "<group>"; };
+		EC612527212176D700D40C96 /* GAPlayContolBarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAPlayContolBarManager.m; sourceTree = "<group>"; };
+		EC61252A212176D700D40C96 /* GAPlayerSelectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAPlayerSelectTableViewCell.h; sourceTree = "<group>"; };
+		EC61252B212176D700D40C96 /* GAPlayerSelectVIewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAPlayerSelectVIewModel.m; sourceTree = "<group>"; };
+		EC61252C212176D700D40C96 /* GAPlayerSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAPlayerSelectView.h; sourceTree = "<group>"; };
+		EC61252D212176D700D40C96 /* GAPlayerSelectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAPlayerSelectTableViewCell.m; sourceTree = "<group>"; };
+		EC61252E212176D700D40C96 /* GAPlayerSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAPlayerSelectView.m; sourceTree = "<group>"; };
+		EC61252F212176D700D40C96 /* GAPlayerSelectVIewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAPlayerSelectVIewModel.h; sourceTree = "<group>"; };
+		EC612531212176D700D40C96 /* CBAutoScrollLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBAutoScrollLabel.h; sourceTree = "<group>"; };
+		EC612532212176D700D40C96 /* CBAutoScrollLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBAutoScrollLabel.m; sourceTree = "<group>"; };
+		EC612535212176D700D40C96 /* ASOBounceButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASOBounceButtonView.m; sourceTree = "<group>"; };
+		EC612536212176D700D40C96 /* ASOBounceButtonViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASOBounceButtonViewDelegate.h; sourceTree = "<group>"; };
+		EC612537212176D700D40C96 /* ASOBounceButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASOBounceButtonView.h; sourceTree = "<group>"; };
+		EC612539212176D700D40C96 /* ASOTwoStateButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASOTwoStateButton.m; sourceTree = "<group>"; };
+		EC61253A212176D700D40C96 /* ASOTwoStateButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASOTwoStateButton.h; sourceTree = "<group>"; };
+		EC61253C212176D700D40C96 /* GAPlayControlBar_BoomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAPlayControlBar_BoomView.h; sourceTree = "<group>"; };
+		EC61253D212176D700D40C96 /* GAPlayControlBar_BoomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAPlayControlBar_BoomView.m; sourceTree = "<group>"; };
+		EC61253F212176D700D40C96 /* GAPlayControlBar_TopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAPlayControlBar_TopView.m; sourceTree = "<group>"; };
+		EC612540212176D700D40C96 /* GAPlayControlBar_TopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAPlayControlBar_TopView.h; sourceTree = "<group>"; };
+		EC612543212176D700D40C96 /* PlayerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerProtocol.h; sourceTree = "<group>"; };
+		EC612545212176D700D40C96 /* GAIJKPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIJKPlayer.h; sourceTree = "<group>"; };
+		EC612546212176D700D40C96 /* GAIJKPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAIJKPlayer.m; sourceTree = "<group>"; };
+		EC612548212176D700D40C96 /* GAAVPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAAVPlayer.h; sourceTree = "<group>"; };
+		EC612549212176D700D40C96 /* GAAVPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAAVPlayer.m; sourceTree = "<group>"; };
+		EC61254B212176D700D40C96 /* GAPlayerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAPlayerModel.h; sourceTree = "<group>"; };
+		EC61254C212176D700D40C96 /* GAPlayerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAPlayerModel.m; sourceTree = "<group>"; };
+		EC6125632121771600D40C96 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EC6124A7212174E500D40C96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC6124FB2121764700D40C96 /* CoreMedia.framework in Frameworks */,
+				EC6124F92121762200D40C96 /* AVFoundation.framework in Frameworks */,
+				EC6124F72121760700D40C96 /* UIKit.framework in Frameworks */,
+				EC612509212176C000D40C96 /* IJKMediaFramework.framework in Frameworks */,
+				EC6124F5212175F600D40C96 /* libc++.tbd in Frameworks */,
+				EC6124F3212175EC00D40C96 /* libz.tbd in Frameworks */,
+				EC6124F1212175E500D40C96 /* libbz2.tbd in Frameworks */,
+				EC6124EF212175D900D40C96 /* AudioToolbox.framework in Frameworks */,
+				EC6124ED212175A700D40C96 /* MediaPlayer.framework in Frameworks */,
+				EC6124EB2121759A00D40C96 /* CoreGraphics.framework in Frameworks */,
+				EC6124E92121754B00D40C96 /* CoreVideo.framework in Frameworks */,
+				EC6124E72121752A00D40C96 /* MobileCoreServices.framework in Frameworks */,
+				EC6124E52121751F00D40C96 /* OpenGLES.framework in Frameworks */,
+				EC6124E32121751000D40C96 /* QuartzCore.framework in Frameworks */,
+				EC6124E12121750900D40C96 /* VideoToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC6124BF212174E600D40C96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC6124CA212174E600D40C96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EC6124A1212174E500D40C96 = {
+			isa = PBXGroup;
+			children = (
+				EC6124AC212174E500D40C96 /* GAPlayer */,
+				EC6124C5212174E600D40C96 /* GAPlayerTests */,
+				EC6124D0212174E600D40C96 /* GAPlayerUITests */,
+				EC6124AB212174E500D40C96 /* Products */,
+				EC6124DF2121750900D40C96 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EC6124AB212174E500D40C96 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EC6124AA212174E500D40C96 /* GAPlayer.app */,
+				EC6124C2212174E600D40C96 /* GAPlayerTests.xctest */,
+				EC6124CD212174E600D40C96 /* GAPlayerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EC6124AC212174E500D40C96 /* GAPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				EC6124FD2121769D00D40C96 /* Class */,
+				EC6124FC2121769100D40C96 /* Framework */,
+				EC6124AD212174E500D40C96 /* AppDelegate.h */,
+				EC6124AE212174E500D40C96 /* AppDelegate.m */,
+				EC6124B0212174E500D40C96 /* ViewController.h */,
+				EC6124B1212174E500D40C96 /* ViewController.m */,
+				EC6124B3212174E500D40C96 /* Main.storyboard */,
+				EC6124B6212174E600D40C96 /* Assets.xcassets */,
+				EC6124B8212174E600D40C96 /* LaunchScreen.storyboard */,
+				EC6124BB212174E600D40C96 /* Info.plist */,
+				EC6124BC212174E600D40C96 /* main.m */,
+				EC6125632121771600D40C96 /* PrefixHeader.pch */,
+			);
+			path = GAPlayer;
+			sourceTree = "<group>";
+		};
+		EC6124C5212174E600D40C96 /* GAPlayerTests */ = {
+			isa = PBXGroup;
+			children = (
+				EC6124C6212174E600D40C96 /* GAPlayerTests.m */,
+				EC6124C8212174E600D40C96 /* Info.plist */,
+			);
+			path = GAPlayerTests;
+			sourceTree = "<group>";
+		};
+		EC6124D0212174E600D40C96 /* GAPlayerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EC6124D1212174E600D40C96 /* GAPlayerUITests.m */,
+				EC6124D3212174E600D40C96 /* Info.plist */,
+			);
+			path = GAPlayerUITests;
+			sourceTree = "<group>";
+		};
+		EC6124DF2121750900D40C96 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EC6124FA2121764700D40C96 /* CoreMedia.framework */,
+				EC6124F82121762100D40C96 /* AVFoundation.framework */,
+				EC6124F62121760700D40C96 /* UIKit.framework */,
+				EC6124F4212175F600D40C96 /* libc++.tbd */,
+				EC6124F2212175EC00D40C96 /* libz.tbd */,
+				EC6124F0212175E500D40C96 /* libbz2.tbd */,
+				EC6124EE212175D900D40C96 /* AudioToolbox.framework */,
+				EC6124EC212175A700D40C96 /* MediaPlayer.framework */,
+				EC6124EA2121759A00D40C96 /* CoreGraphics.framework */,
+				EC6124E82121754B00D40C96 /* CoreVideo.framework */,
+				EC6124E62121752A00D40C96 /* MobileCoreServices.framework */,
+				EC6124E42121751F00D40C96 /* OpenGLES.framework */,
+				EC6124E22121751000D40C96 /* QuartzCore.framework */,
+				EC6124E02121750900D40C96 /* VideoToolbox.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EC6124FC2121769100D40C96 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				EC612508212176C000D40C96 /* IJKMediaFramework.framework */,
+				EC6124FE212176B500D40C96 /* FBKVOController */,
+			);
+			path = Framework;
+			sourceTree = "<group>";
+		};
+		EC6124FD2121769D00D40C96 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				EC61250A212176D700D40C96 /* PlayView */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		EC6124FE212176B500D40C96 /* FBKVOController */ = {
+			isa = PBXGroup;
+			children = (
+				EC6124FF212176B500D40C96 /* KVOController.h */,
+				EC612500212176B500D40C96 /* FBKVOController.h */,
+				EC612501212176B500D40C96 /* NSObject+FBKVOController.m */,
+				EC612502212176B500D40C96 /* FBKVOController.m */,
+				EC612503212176B500D40C96 /* Info.plist */,
+				EC612504212176B500D40C96 /* NSObject+FBKVOController.h */,
+			);
+			path = FBKVOController;
+			sourceTree = "<group>";
+		};
+		EC61250A212176D700D40C96 /* PlayView */ = {
+			isa = PBXGroup;
+			children = (
+				EC61250B212176D700D40C96 /* PlayerView */,
+				EC612524212176D700D40C96 /* PlayControlBar */,
+				EC612541212176D700D40C96 /* Player */,
+			);
+			path = PlayView;
+			sourceTree = "<group>";
+		};
+		EC61250B212176D700D40C96 /* PlayerView */ = {
+			isa = PBXGroup;
+			children = (
+				EC61250C212176D700D40C96 /* GAPlayerView+GestureAction.h */,
+				EC61250D212176D700D40C96 /* CommonView */,
+				EC612514212176D700D40C96 /* GAPlayerViewModel.m */,
+				EC612515212176D700D40C96 /* GAPlayerView.h */,
+				EC612516212176D700D40C96 /* GAPlayerItemModel.h */,
+				EC612517212176D700D40C96 /* GAPlayerView+GestureAction.m */,
+				EC612518212176D700D40C96 /* GAPlayerViewModel.h */,
+				EC612519212176D700D40C96 /* GAPlayerView.m */,
+				EC61251A212176D700D40C96 /* Tool */,
+				EC612520212176D700D40C96 /* GAPlayerItemModel.m */,
+			);
+			path = PlayerView;
+			sourceTree = "<group>";
+		};
+		EC61250D212176D700D40C96 /* CommonView */ = {
+			isa = PBXGroup;
+			children = (
+				EC61250E212176D700D40C96 /* CMPlayerBrightnessView.m */,
+				EC61250F212176D700D40C96 /* GAPlayerAdAlertView.m */,
+				EC612510212176D700D40C96 /* CMPlayerTimeView.h */,
+				EC612511212176D700D40C96 /* GAPlayerAdAlertView.h */,
+				EC612512212176D700D40C96 /* CMPlayerBrightnessView.h */,
+				EC612513212176D700D40C96 /* CMPlayerTimeView.m */,
+			);
+			path = CommonView;
+			sourceTree = "<group>";
+		};
+		EC61251A212176D700D40C96 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				EC61251B212176D700D40C96 /* GAPlayerTool.m */,
+				EC61251C212176D700D40C96 /* GAPlayerTool.h */,
+				EC61251D212176D700D40C96 /* SomehowTheScreen */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		EC61251D212176D700D40C96 /* SomehowTheScreen */ = {
+			isa = PBXGroup;
+			children = (
+				EC61251E212176D700D40C96 /* UIView+SomehowTheScreen.m */,
+				EC61251F212176D700D40C96 /* UIView+SomehowTheScreen.h */,
+			);
+			path = SomehowTheScreen;
+			sourceTree = "<group>";
+		};
+		EC612524212176D700D40C96 /* PlayControlBar */ = {
+			isa = PBXGroup;
+			children = (
+				EC612525212176D700D40C96 /* PlayContolBarManager */,
+				EC612528212176D700D40C96 /* CommonView */,
+				EC61253B212176D700D40C96 /* PlayControlBar_Boom */,
+				EC61253E212176D700D40C96 /* PlayControlBar_Top */,
+			);
+			path = PlayControlBar;
+			sourceTree = "<group>";
+		};
+		EC612525212176D700D40C96 /* PlayContolBarManager */ = {
+			isa = PBXGroup;
+			children = (
+				EC612526212176D700D40C96 /* GAPlayContolBarManager.h */,
+				EC612527212176D700D40C96 /* GAPlayContolBarManager.m */,
+			);
+			path = PlayContolBarManager;
+			sourceTree = "<group>";
+		};
+		EC612528212176D700D40C96 /* CommonView */ = {
+			isa = PBXGroup;
+			children = (
+				EC612529212176D700D40C96 /* SelectView */,
+				EC612530212176D700D40C96 /* CBAutoScrollLabel */,
+				EC612533212176D700D40C96 /* SpeedAnimation */,
+			);
+			path = CommonView;
+			sourceTree = "<group>";
+		};
+		EC612529212176D700D40C96 /* SelectView */ = {
+			isa = PBXGroup;
+			children = (
+				EC61252A212176D700D40C96 /* GAPlayerSelectTableViewCell.h */,
+				EC61252B212176D700D40C96 /* GAPlayerSelectVIewModel.m */,
+				EC61252C212176D700D40C96 /* GAPlayerSelectView.h */,
+				EC61252D212176D700D40C96 /* GAPlayerSelectTableViewCell.m */,
+				EC61252E212176D700D40C96 /* GAPlayerSelectView.m */,
+				EC61252F212176D700D40C96 /* GAPlayerSelectVIewModel.h */,
+			);
+			path = SelectView;
+			sourceTree = "<group>";
+		};
+		EC612530212176D700D40C96 /* CBAutoScrollLabel */ = {
+			isa = PBXGroup;
+			children = (
+				EC612531212176D700D40C96 /* CBAutoScrollLabel.h */,
+				EC612532212176D700D40C96 /* CBAutoScrollLabel.m */,
+			);
+			path = CBAutoScrollLabel;
+			sourceTree = "<group>";
+		};
+		EC612533212176D700D40C96 /* SpeedAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				EC612534212176D700D40C96 /* BounceButton */,
+				EC612538212176D700D40C96 /* TwoStateButton */,
+			);
+			path = SpeedAnimation;
+			sourceTree = "<group>";
+		};
+		EC612534212176D700D40C96 /* BounceButton */ = {
+			isa = PBXGroup;
+			children = (
+				EC612535212176D700D40C96 /* ASOBounceButtonView.m */,
+				EC612536212176D700D40C96 /* ASOBounceButtonViewDelegate.h */,
+				EC612537212176D700D40C96 /* ASOBounceButtonView.h */,
+			);
+			path = BounceButton;
+			sourceTree = "<group>";
+		};
+		EC612538212176D700D40C96 /* TwoStateButton */ = {
+			isa = PBXGroup;
+			children = (
+				EC612539212176D700D40C96 /* ASOTwoStateButton.m */,
+				EC61253A212176D700D40C96 /* ASOTwoStateButton.h */,
+			);
+			path = TwoStateButton;
+			sourceTree = "<group>";
+		};
+		EC61253B212176D700D40C96 /* PlayControlBar_Boom */ = {
+			isa = PBXGroup;
+			children = (
+				EC61253C212176D700D40C96 /* GAPlayControlBar_BoomView.h */,
+				EC61253D212176D700D40C96 /* GAPlayControlBar_BoomView.m */,
+			);
+			path = PlayControlBar_Boom;
+			sourceTree = "<group>";
+		};
+		EC61253E212176D700D40C96 /* PlayControlBar_Top */ = {
+			isa = PBXGroup;
+			children = (
+				EC61253F212176D700D40C96 /* GAPlayControlBar_TopView.m */,
+				EC612540212176D700D40C96 /* GAPlayControlBar_TopView.h */,
+			);
+			path = PlayControlBar_Top;
+			sourceTree = "<group>";
+		};
+		EC612541212176D700D40C96 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				EC612542212176D700D40C96 /* Handle */,
+				EC612544212176D700D40C96 /* IJKPlayer */,
+				EC612547212176D700D40C96 /* AVPlayer */,
+				EC61254A212176D700D40C96 /* Model */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		EC612542212176D700D40C96 /* Handle */ = {
+			isa = PBXGroup;
+			children = (
+				EC612543212176D700D40C96 /* PlayerProtocol.h */,
+			);
+			path = Handle;
+			sourceTree = "<group>";
+		};
+		EC612544212176D700D40C96 /* IJKPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				EC612545212176D700D40C96 /* GAIJKPlayer.h */,
+				EC612546212176D700D40C96 /* GAIJKPlayer.m */,
+			);
+			path = IJKPlayer;
+			sourceTree = "<group>";
+		};
+		EC612547212176D700D40C96 /* AVPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				EC612548212176D700D40C96 /* GAAVPlayer.h */,
+				EC612549212176D700D40C96 /* GAAVPlayer.m */,
+			);
+			path = AVPlayer;
+			sourceTree = "<group>";
+		};
+		EC61254A212176D700D40C96 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EC61254B212176D700D40C96 /* GAPlayerModel.h */,
+				EC61254C212176D700D40C96 /* GAPlayerModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EC6124A9212174E500D40C96 /* GAPlayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC6124D6212174E600D40C96 /* Build configuration list for PBXNativeTarget "GAPlayer" */;
+			buildPhases = (
+				EC6124A6212174E500D40C96 /* Sources */,
+				EC6124A7212174E500D40C96 /* Frameworks */,
+				EC6124A8212174E500D40C96 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GAPlayer;
+			productName = GAPlayer;
+			productReference = EC6124AA212174E500D40C96 /* GAPlayer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EC6124C1212174E600D40C96 /* GAPlayerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC6124D9212174E600D40C96 /* Build configuration list for PBXNativeTarget "GAPlayerTests" */;
+			buildPhases = (
+				EC6124BE212174E600D40C96 /* Sources */,
+				EC6124BF212174E600D40C96 /* Frameworks */,
+				EC6124C0212174E600D40C96 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EC6124C4212174E600D40C96 /* PBXTargetDependency */,
+			);
+			name = GAPlayerTests;
+			productName = GAPlayerTests;
+			productReference = EC6124C2212174E600D40C96 /* GAPlayerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EC6124CC212174E600D40C96 /* GAPlayerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC6124DC212174E600D40C96 /* Build configuration list for PBXNativeTarget "GAPlayerUITests" */;
+			buildPhases = (
+				EC6124C9212174E600D40C96 /* Sources */,
+				EC6124CA212174E600D40C96 /* Frameworks */,
+				EC6124CB212174E600D40C96 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EC6124CF212174E600D40C96 /* PBXTargetDependency */,
+			);
+			name = GAPlayerUITests;
+			productName = GAPlayerUITests;
+			productReference = EC6124CD212174E600D40C96 /* GAPlayerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EC6124A2212174E500D40C96 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "宫傲";
+				TargetAttributes = {
+					EC6124A9212174E500D40C96 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+					EC6124C1212174E600D40C96 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = EC6124A9212174E500D40C96;
+					};
+					EC6124CC212174E600D40C96 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = EC6124A9212174E500D40C96;
+					};
+				};
+			};
+			buildConfigurationList = EC6124A5212174E500D40C96 /* Build configuration list for PBXProject "GAPlayer" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EC6124A1212174E500D40C96;
+			productRefGroup = EC6124AB212174E500D40C96 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EC6124A9212174E500D40C96 /* GAPlayer */,
+				EC6124C1212174E600D40C96 /* GAPlayerTests */,
+				EC6124CC212174E600D40C96 /* GAPlayerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EC6124A8212174E500D40C96 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC612507212176B500D40C96 /* Info.plist in Resources */,
+				EC6124BA212174E600D40C96 /* LaunchScreen.storyboard in Resources */,
+				EC6124B7212174E600D40C96 /* Assets.xcassets in Resources */,
+				EC6124B5212174E500D40C96 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC6124C0212174E600D40C96 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC6124CB212174E600D40C96 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EC6124A6212174E500D40C96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC61255D212176D700D40C96 /* ASOTwoStateButton.m in Sources */,
+				EC61255E212176D700D40C96 /* GAPlayControlBar_BoomView.m in Sources */,
+				EC612557212176D700D40C96 /* GAPlayContolBarManager.m in Sources */,
+				EC612553212176D700D40C96 /* GAPlayerTool.m in Sources */,
+				EC612559212176D700D40C96 /* GAPlayerSelectTableViewCell.m in Sources */,
+				EC612562212176D700D40C96 /* GAPlayerModel.m in Sources */,
+				EC612505212176B500D40C96 /* NSObject+FBKVOController.m in Sources */,
+				EC61255C212176D700D40C96 /* ASOBounceButtonView.m in Sources */,
+				EC6124B2212174E500D40C96 /* ViewController.m in Sources */,
+				EC6124BD212174E600D40C96 /* main.m in Sources */,
+				EC612551212176D700D40C96 /* GAPlayerView+GestureAction.m in Sources */,
+				EC6124AF212174E500D40C96 /* AppDelegate.m in Sources */,
+				EC612558212176D700D40C96 /* GAPlayerSelectVIewModel.m in Sources */,
+				EC612550212176D700D40C96 /* GAPlayerViewModel.m in Sources */,
+				EC61255F212176D700D40C96 /* GAPlayControlBar_TopView.m in Sources */,
+				EC612561212176D700D40C96 /* GAAVPlayer.m in Sources */,
+				EC612552212176D700D40C96 /* GAPlayerView.m in Sources */,
+				EC61254F212176D700D40C96 /* CMPlayerTimeView.m in Sources */,
+				EC61254D212176D700D40C96 /* CMPlayerBrightnessView.m in Sources */,
+				EC61254E212176D700D40C96 /* GAPlayerAdAlertView.m in Sources */,
+				EC61255A212176D700D40C96 /* GAPlayerSelectView.m in Sources */,
+				EC612554212176D700D40C96 /* UIView+SomehowTheScreen.m in Sources */,
+				EC612506212176B500D40C96 /* FBKVOController.m in Sources */,
+				EC612555212176D700D40C96 /* GAPlayerItemModel.m in Sources */,
+				EC61255B212176D700D40C96 /* CBAutoScrollLabel.m in Sources */,
+				EC612560212176D700D40C96 /* GAIJKPlayer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC6124BE212174E600D40C96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC6124C7212174E600D40C96 /* GAPlayerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC6124C9212174E600D40C96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC6124D2212174E600D40C96 /* GAPlayerUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EC6124C4212174E600D40C96 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EC6124A9212174E500D40C96 /* GAPlayer */;
+			targetProxy = EC6124C3212174E600D40C96 /* PBXContainerItemProxy */;
+		};
+		EC6124CF212174E600D40C96 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EC6124A9212174E500D40C96 /* GAPlayer */;
+			targetProxy = EC6124CE212174E600D40C96 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EC6124B3212174E500D40C96 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC6124B4212174E500D40C96 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EC6124B8212174E600D40C96 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC6124B9212174E600D40C96 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EC6124D4212174E600D40C96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		EC6124D5212174E600D40C96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EC6124D7212174E600D40C96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GAPlayer/Framework",
+				);
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/GAPlayer/PrefixHeader.pch";
+				INFOPLIST_FILE = GAPlayer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dongao.GAPlayer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EC6124D8212174E600D40C96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GAPlayer/Framework",
+				);
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/GAPlayer/PrefixHeader.pch";
+				INFOPLIST_FILE = GAPlayer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dongao.GAPlayer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EC6124DA212174E600D40C96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = GAPlayerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dongao.GAPlayerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GAPlayer.app/GAPlayer";
+			};
+			name = Debug;
+		};
+		EC6124DB212174E600D40C96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = GAPlayerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dongao.GAPlayerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GAPlayer.app/GAPlayer";
+			};
+			name = Release;
+		};
+		EC6124DD212174E600D40C96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = GAPlayerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dongao.GAPlayerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GAPlayer;
+			};
+			name = Debug;
+		};
+		EC6124DE212174E600D40C96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = GAPlayerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dongao.GAPlayerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GAPlayer;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EC6124A5212174E500D40C96 /* Build configuration list for PBXProject "GAPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC6124D4212174E600D40C96 /* Debug */,
+				EC6124D5212174E600D40C96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC6124D6212174E600D40C96 /* Build configuration list for PBXNativeTarget "GAPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC6124D7212174E600D40C96 /* Debug */,
+				EC6124D8212174E600D40C96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC6124D9212174E600D40C96 /* Build configuration list for PBXNativeTarget "GAPlayerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC6124DA212174E600D40C96 /* Debug */,
+				EC6124DB212174E600D40C96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC6124DC212174E600D40C96 /* Build configuration list for PBXNativeTarget "GAPlayerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC6124DD212174E600D40C96 /* Debug */,
+				EC6124DE212174E600D40C96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EC6124A2212174E500D40C96 /* Project object */;
+}
