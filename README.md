@@ -2,6 +2,7 @@
 播放内核为IJKPlayer和AVPlayer
 
 因为 github允许上传的文件上限为100MB IJKMediaFramework 较大所以需要存放在 Git LFS上
+
 clone教程：
 
 1.安装 Homebrew （如果已安装可以跳过）
