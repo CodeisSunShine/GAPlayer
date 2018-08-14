@@ -24,8 +24,9 @@
 3. 用云盘下载下来的 IJKMediaFramework 替换 clone 工程中的 IJKMediaFramework.framewrok
 
 
+## 使用教程
 
-
+### 项目架构
 
 
 
