@@ -32,11 +32,17 @@
   <img src="https://github.com/CodeisSunShine/Image/raw/master/GAPlayer.png">
 </div>
 
+* GAPlayerView：最外层播放视图，里面包含播放器的业务逻辑和视图逻辑。
+* PlayerProtocol：包裹播放器内核的协议，GAPlayerView不直接与播放器交互，而是通过PlayerProtocol使用播放器。
+* AVPlayer: AVPlayer播放器内核，封装了用到AVPlayer的各种方法和属性
+* IJKPlayer: IJKPlayer播放器内核，封装了用到IJKPlayer的各种方法和属性
+
 播放器的内核为IJKPlayer和AVPlayer，外层是由PlayerProtocol包裹
 
-### 数据解析
+### 数据解释
 
-#### 数据格式
+根据业务的不同，播放器需要的数据结构也不同，所以此时使用json格式的数据与播放器进行交互。
+
 ```json
 {
     "hasVideoTitle": "前言", //视频名称
@@ -50,10 +56,8 @@
     "endingAdUrl": "http://aliuwmp3.changba.com/userdata/video/3B1DDE764577E0529C33DC5901307461.mp4" //片尾
 }
 ```
-
-
-
+### 问题反馈 
 
 下载或使用过程中遇到问题可以联系我：
-邮箱：beginisgood@163.com
-qq：1071854678
+* 邮箱：beginisgood@163.com
+* qq：1071854678
