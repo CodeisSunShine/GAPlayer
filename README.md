@@ -28,15 +28,28 @@
 
 ### 项目架构
 
+<div align="center">
+  <img src="https://github.com/CodeisSunShine/Image/raw/master/GAPlayer.png">
+</div>
 
+播放器的内核为IJKPlayer和AVPlayer，外层是由PlayerProtocol包裹
 
+### 数据解析
 
-
-
-
-
-
-
+#### 数据格式
+```json
+{
+    "hasVideoTitle": "前言", //视频名称
+    "scheme": "sd|cif|hd", //视频清晰度 sd：流畅  cif：标清 hd：高清
+    "video": { //播放地址
+        "cif": "https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_4x3/gear2/prog_index.m3u8",
+        "hd": "https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_4x3/gear3/prog_index.m3u8",
+        "sd": "https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_4x3/gear1/prog_index.m3u8"
+    },
+    "beginingAdUrl": "http://aliuwmp3.changba.com/userdata/video/45F6BD5E445E4C029C33DC5901307461.mp4", //片头
+    "endingAdUrl": "http://aliuwmp3.changba.com/userdata/video/3B1DDE764577E0529C33DC5901307461.mp4" //片尾
+}
+```
 
 
 
