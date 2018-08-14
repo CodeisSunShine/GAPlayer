@@ -56,6 +56,17 @@
     "endingAdUrl": "http://aliuwmp3.changba.com/userdata/video/3B1DDE764577E0529C33DC5901307461.mp4" //片尾
 }
 ```
+
+### 使用Tip
+
+#### 1.切换内核
+在 GAPlayerView 类中的 initializingPlayer 方法里 可通过已下方式切换播放器内核（🙂）
+```
+ self.player = [[GAIJKPlayer alloc] initWith:self.playerView];
+// self.player = [[GAAVPlayer alloc] initWith:self.playerView];
+
+```
+
 ### 问题反馈 
 
 下载或使用过程中遇到问题可以联系我：
