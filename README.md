@@ -115,6 +115,11 @@ dict[@"videoUrl"] = @"";//下载地址
     return 2;
 }
 ```
+##### 6.解除回调绑定
+改变GACacheManager 中 maxDonwloadingCount的值
+```
+[self.cacheManager removeDonwloadBlcokWithIdClass:@""];
+```
 
 ### 问题反馈 
 
