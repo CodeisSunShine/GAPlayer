@@ -81,8 +81,8 @@
                 self.lastModel.isSelect = NO;
             }
             self.lastModel = model;
+            break;
         }
-        break;
     }
 }
 

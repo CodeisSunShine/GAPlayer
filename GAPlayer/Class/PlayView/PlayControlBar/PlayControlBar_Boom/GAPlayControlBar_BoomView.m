@@ -214,6 +214,12 @@
     }
 }
 
+- (void)reset {
+    self.playTimeLbl.text = @"00:00/00:00";
+    self.playProgressSliderView.value = 0;
+    self.cacheProgressView.progress = 0;
+}
+
 - (void)reloadClearityBtnWith:(NSString *)clearity {
     [self.clearityBtn setTitle:clearity forState:UIControlStateNormal];
 }

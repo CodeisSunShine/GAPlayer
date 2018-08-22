@@ -25,6 +25,8 @@
 
 @property (nonatomic, strong) UIButton *playLocalButton;
 
+@property (nonatomic, strong) UIButton *playLineButton;
+
 @property (nonatomic, strong) GACacheModel *cacheModel;
 
 // 缓存数据库
@@ -41,7 +43,6 @@
     [self setupView];
     [self setupLayout];
     [self setupData];
-//    [self play];
     [self setupPlayerViewaAction];
     [self addDownloadCallBack];
     NSLog(@"home dir is %@",NSHomeDirectory());
@@ -49,23 +50,26 @@
 
 - (void)setupView {
     [self.view addSubview:self.playerView];
+    [self.view addSubview:self.playLineButton];
     [self.view addSubview:self.donwloadButton];
     [self.view addSubview:self.playLocalButton];
 }
 
 - (void)setupLayout {
-    self.playerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH / 16.0 * 9);
+    __weak __typeof(self) weakself= self;
+    self.playerView.frame = CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_WIDTH / 16.0 * 9);
     [self.playerView registerLandscapeCallBack:^(UIInterfaceOrientation deviceOrientation, UIInterfaceOrientation statusBarOrientation) {
         if (deviceOrientation == UIInterfaceOrientationPortrait) {
-            self.playerView.isFullScreen = NO;
-            self.playerView.frame = CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_WIDTH / 16*9);
+            weakself.playerView.isFullScreen = NO;
+            weakself.playerView.frame = CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_WIDTH / 16*9);
         } else {
-            self.playerView.isFullScreen = YES;
-            self.playerView.frame = CGRectMake(0, 0, SCREEN_WIDTH / 16.0*9, SCREEN_WIDTH);
+            weakself.playerView.isFullScreen = YES;
+            weakself.playerView.frame = CGRectMake(0, 0, SCREEN_WIDTH / 16.0*9, SCREEN_WIDTH);
         }
     }];
     self.donwloadButton.frame = CGRectMake(50, CGRectGetMaxY(self.playerView.frame) + 100, 120, 30);
     self.playLocalButton.frame = CGRectMake(SCREEN_WIDTH - 50 - 120, CGRectGetMaxY(self.playerView.frame) + 100, 120, 30);
+    self.playLineButton.frame = CGRectMake(SCREEN_WIDTH - 50 - 120, CGRectGetMaxY(self.playLocalButton.frame) + 50, 120, 30);
 }
 
 - (void)setupData {
@@ -126,10 +130,6 @@
     }
 }
 
-- (void)play {
-    [self.playerView thePlayerLoadsTheData:[self makeProgressLineDataDict]];
-}
-
 - (void)playLocalClick {
     if (self.cacheModel && self.cacheModel.downloadState == kDADownloadStateCompleted) {
         [self.playerView thePlayerLoadsTheData:[self makeProgressLocalDataDict]];
@@ -152,6 +152,10 @@
             NSLog(@"下载失败  %@",object);
         }
     }];
+}
+
+- (void)playLineClick {
+    [self.playerView thePlayerLoadsTheData:[self makeProgressLineDataDict]];
 }
 
 - (NSDictionary *)makeProgressLineDataDict {
@@ -230,6 +234,17 @@
     return _playLocalButton;
 }
 
+- (UIButton *)playLineButton {
+    if (!_playLineButton) {
+        _playLineButton = [[UIButton alloc] init];
+        [_playLineButton setTitle:@"播放在线视频" forState:UIControlStateNormal];
+        [_playLineButton addTarget:self action:@selector(playLineClick) forControlEvents:UIControlEventTouchUpInside];
+        _playLineButton.backgroundColor = [UIColor grayColor];
+        [_playLineButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }
+    return _playLineButton;
+}
+
 - (GACacheManager *)cacheManager {
     if (!_cacheManager) {
         _cacheManager = [[GACacheManager alloc] init];
@@ -242,6 +257,12 @@
         _dataBaseManager = [GADataBaseManager sharedInstance];
     }
     return _dataBaseManager;
+}
+
+- (void)dealloc {
+    [self.playerView deallocPlayerView];
+    [self.cacheManager removeDonwloadBlcokWithIdClass:@"GAPlayerDetailViewController"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

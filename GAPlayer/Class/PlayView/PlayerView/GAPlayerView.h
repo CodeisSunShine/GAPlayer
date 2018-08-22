@@ -83,4 +83,6 @@ typedef void(^PlayerViewActionBlock)(PlayerViewActionType controlBarType,NSStrin
  */
 - (void)changeThePlayerDownloadStatus:(NSString *)videoId downloadState:(NSInteger)downloadState;
 
+- (void)deallocPlayerView;
+
 @end

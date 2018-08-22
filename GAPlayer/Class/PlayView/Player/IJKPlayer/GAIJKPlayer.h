@@ -16,6 +16,6 @@
 
 @property (nonatomic, assign) PlayerState playerState;
 
-@property (nonatomic, strong) UIView *playView;
+@property (nonatomic, assign) UIView *playView;
 
 @end

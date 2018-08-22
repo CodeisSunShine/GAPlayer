@@ -120,9 +120,9 @@
 
 
 // 处理音量改变的数据
-- (CGFloat)makeProgressGestureVolumeChange:(CGFloat)moveValue {
+- (CGFloat)makeProgressGestureVolumeChange:(CGFloat)moveValue playHigh:(CGFloat)high {
     CGFloat volume = [MPMusicPlayerController applicationMusicPlayer].volume;
-    return volume - moveValue / 1000;
+    return volume - moveValue / high;
 }
 
 // 处理进度改变的数据

@@ -112,9 +112,7 @@
             [weakSelf.boomView reloadSpeedBtnWith:weakSelf.viewModel.curItemModel.currentSpeed];
             [weakSelf.loadingView stopAnimating];
             [weakSelf makeProgressViewWith:weakSelf.viewModel.curItemModel.playUrlType];
-            if (weakSelf.viewModel.curItemModel.playUrlType != kPlayUrlTypeBody) {
-                [weakSelf playButtonAction];
-            }
+            [weakSelf playButtonAction];
         } else {
             [weakSelf.loadingView startAnimating];
             NSLog(@"数据解析失败");
@@ -138,7 +136,7 @@
     [self.selectView outsideOption:selectName];
 }
 
-// 改变播放器清晰度
+// 改变播放器清晰度x
 - (void)changeThePlayerClearity:(GAPlayerSelectVIewModel *)selectModel {
     self.beforeChangeLocation = self.viewModel.curItemModel.currentInterval;
     self.isDraging = YES;
@@ -221,7 +219,7 @@
 
 // 音量发生改变
 - (void)volumeGestureChange:(CGFloat)moveValue {
-    CGFloat currentVolume = [self.viewModel makeProgressGestureVolumeChange:moveValue];
+    CGFloat currentVolume = [self.viewModel makeProgressGestureVolumeChange:moveValue playHigh:self.realHigh];
     [MPMusicPlayerController applicationMusicPlayer].volume = currentVolume;
 }
 
@@ -382,6 +380,7 @@
 //    [self initializingPlayer];
 //    [self.player play];
     [self forPlayerTheAssignment];
+    [self.boomView reset];
     [self makeProgressViewWith:self.viewModel.curItemModel.playUrlType];
     [self play];
 }
@@ -398,6 +397,9 @@
              currentPlaybackTime:(NSTimeInterval)currentPlaybackTime
                 playableDuration:(NSTimeInterval)playableDuration {
     if (self.viewModel.curItemModel.playUrlType == kPlayUrlTypeBeginAd) {
+        if (totalDuration > 0) {
+            self.adAlertView.hidden = NO;
+        }
         NSString *countdown = [self.viewModel processAdCountdown:totalDuration currentPlaybackTime:currentPlaybackTime];
         [self.adAlertView setTitle:countdown forState:UIControlStateNormal];
     }
@@ -427,6 +429,8 @@
 - (void)singleVideoIsDone {
     if ([self.viewModel judgeVideoNeedContinueToPlayed:self.viewModel.curItemModel]) {
         [self changeThePlayerPlaybackAddress];
+    } else {
+        [self playButtonAction];
     }
 }
 
@@ -442,7 +446,6 @@
 }
 
 #pragma mark - set get
-
 - (void)setIsPlay:(BOOL)isPlay {
     _isPlay = isPlay;
     self.boomView.isPlay = isPlay;
@@ -542,7 +545,7 @@
         _adAlertView.backgroundColor = [UIColor whiteColor];
         [_adAlertView setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_adAlertView addTarget:self action:@selector(adAlertClick) forControlEvents:UIControlEventTouchUpInside];
-        _adAlertView.hidden = NO;
+        _adAlertView.hidden = YES;
     }
     return _adAlertView;
 }
@@ -552,6 +555,15 @@
         _httpSeverManager = [GAHttpSeverManager sharedInstance];
     }
     return _httpSeverManager;
+}
+
+- (void)deallocPlayerView {
+    [self.player stop];
+    self.player = nil;
+}
+
+- (void)dealloc {
+    
 }
 
 @end

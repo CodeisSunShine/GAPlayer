@@ -22,6 +22,8 @@
 
 @property (nonatomic, strong) dispatch_source_t timer;
 
+@property (nonatomic, assign) BOOL timerRuning;
+
 @end
 
 @implementation GAIJKPlayer
@@ -221,14 +223,16 @@
 }
 
 - (void)startTimer {
-    if (self.timer) {
+    if (self.timer && !self.timerRuning) {
+        self.timerRuning = YES;
         dispatch_resume(self.timer);
     }
 }
 
 - (void)pauseTimer {
-    if (self.timer) {
+    if (self.timer && self.timerRuning) {
         dispatch_suspend(self.timer);
+        self.timerRuning = NO;
     }
 }
 
@@ -249,6 +253,13 @@
 
 // 状态改变
 - (void)makeProgressCallBackPlayerState:(PlayerState)playerState {
+    // 如果是正常播放完成 则强制将播放进度变为总进度
+    if (playerState == kPlayerStateFinish) {
+        if (self.callBackDelegate && [self.callBackDelegate respondsToSelector:@selector(playbackProgressCallback:currentPlaybackTime:playableDuration:)]) {
+            [self.callBackDelegate playbackProgressCallback:self.player.duration currentPlaybackTime:self.player.playableDuration playableDuration:self.player.playableDuration];
+        }
+    }
+    
     if (self.callBackDelegate && [self.callBackDelegate respondsToSelector:@selector(playbackStatusCallback:)]) {
         [self.callBackDelegate playbackStatusCallback:playerState];
     }

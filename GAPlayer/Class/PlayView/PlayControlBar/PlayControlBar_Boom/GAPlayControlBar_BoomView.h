@@ -100,4 +100,9 @@ typedef void (^ControlBar_BoomSilderBlock)(BoomControlBarSliderType sliderType,C
  */
 - (void)reloadDownloadStateWith:(NSInteger)downloadState;
 
+/**
+ * 重置
+ */
+- (void)reset;
+
 @end
