@@ -67,6 +67,54 @@
 // self.player = [[GAAVPlayer alloc] initWith:self.playerView];
 
 ```
+#### 2.下载功能使用
+##### 1.初始化缓存器
+```
+- (GACacheManager *)cacheManager {
+    if (!_cacheManager) {
+        _cacheManager = [[GACacheManager alloc] init];
+    }
+    return _cacheManager;
+}
+```
+##### 2.绑定回调
+```
+[self.cacheManager addProgressBlock:^(NSString *downloadId, NSString *progress, int64_t speed) {
+    NSLog(@"下载进度回调");
+} downloadStateBlock:^(NSString *downloadId, NSInteger downloadState) {
+    NSLog(@"下载状态回调");
+} finishBlock:^(NSString *downloadId, BOOL success, NSError *error) {
+    NSLog(@"下载完成/失败");
+} idClass:@"id"];
+```
+##### 3.开启下载
+```
+__weak __typeof(self) weakself= self;
+NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+dict[@"videoId"] = @"";//下载id
+dict[@"videoName"] = @"";//下载名称
+dict[@"videoUrl"] = @"";//下载地址
+[self.cacheManager addDownloadWith:[dict copy] callBlock:^(BOOL success, id object) {
+    if (success) {
+        NSLog(@"成功进入下载逻辑");
+    } else {
+        NSLog(@"下载失败  %@",object);
+    }
+}];
+```
+##### 4.下载操作
+```
+[self.cacheManager downloadIsControlledAccordingToVideoId:@"" callBlock:^(BOOL success, id object) {
+   
+}];
+```
+##### 5.下载任务并发数控制
+改变GACacheManager 中 maxDonwloadingCount的值
+```
+- (NSInteger)maxDonwloadingCount {
+    return 2;
+}
+```
 
 ### 问题反馈 
 
