@@ -31,7 +31,7 @@
         GAPlayerItemModel *playerItemModel = [[GAPlayerItemModel alloc] init];
         playerItemModel.claritList = [self makeProgressClaritListWith:dataDict];
         playerItemModel.isDrag = dataDict[@"isDrag"];
-        playerItemModel.isOnline = dataDict[@"isOnline"];
+        playerItemModel.isOnline = [dataDict[@"isOnline"] isEqualToString:@"1"];
         playerItemModel.hasVideoTitle = dataDict[@"hasVideoTitle"];
         playerItemModel.beginningAdUrl = dataDict[@"beginingAdUrl"];
         playerItemModel.endingAdUrl = dataDict[@"endingAdUrl"];

@@ -85,7 +85,7 @@ typedef NS_ENUM(NSUInteger, PlayerState) {
 - (void)switchingTimesSpeed:(CGFloat)speed;
 
 /**
- * 从此刻开始播放
+ * 跳转进度
  */
 - (void)playFromNowOnWithSchedule:(CGFloat)seekTime;
 

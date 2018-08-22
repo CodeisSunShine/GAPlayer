@@ -34,8 +34,20 @@ typedef NS_ENUM(NSUInteger, GsetureType) {
     kGsetureTypeEnd = 7
 };
 
+/**
+ * 手势类型
+ */
+typedef NS_ENUM(NSUInteger, PlayerViewActionType) {
+    /** 返回 */
+    kPVActionTypeBack = 0,
+    kPVActionTypePlay,
+    kPVActionTypeDownload,
+    kPVActionTypeNote,
+    kPVActionTypeChapter
+};
+
 typedef void(^GsetureViewGsetureBlock)(GsetureType gsetureType,CGFloat moveValue);
-typedef void(^PlayerViewActionBlock)(BoomControlBarType controlBarType,NSString *videoId);
+typedef void(^PlayerViewActionBlock)(PlayerViewActionType controlBarType,NSString *videoId);
 
 @interface GAPlayerView : UIView
 

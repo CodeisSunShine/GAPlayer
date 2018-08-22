@@ -16,6 +16,7 @@
 #import "CMPlayerBrightnessView.h"
 #import "CMPlayerTimeView.h"
 #import "GAPlayerTool.h"
+#import "GAHttpSeverManager.h"
 
 #define FastForwardTime 15
 
@@ -50,6 +51,8 @@
 @property (nonatomic, strong) UIActivityIndicatorView *loadingView;
 // 广告提示
 @property (nonatomic, strong) UIButton *adAlertView;
+// 本地Http服务器
+@property (nonatomic, strong) GAHttpSeverManager *httpSeverManager;
 
 @property (nonatomic, assign) CGFloat realWidth;
 @property (nonatomic, assign) CGFloat realHigh;
@@ -267,7 +270,7 @@
         if (weakSelf.isFullScreen) {
             [weakSelf scaleButtonAction];
         } else {
-            
+            [weakSelf playerViewActionClickWith:kPVActionTypeBack];
         }
     };
 }
@@ -277,9 +280,7 @@
     self.boomView.clickBlock = ^(BoomControlBarType barType) {
         if (barType == kBoomControlBarTypePlay) {
             [weakSelf playButtonAction];
-            if (weakSelf.viewActionBlock) {
-                weakSelf.viewActionBlock(barType, weakSelf.viewModel.curItemModel.videoId);
-            }
+            [weakSelf playerViewActionClickWith:kPVActionTypePlay];
         } else if (barType == kBoomControlBarTypeForword) {
             [weakSelf playerJumpsToTheSpecifiedTimeLocation:self.viewModel.curItemModel.currentInterval + FastForwardTime];
         } else if (barType == kBoomControlBarTypeClearity) {
@@ -289,10 +290,12 @@
         } else if (barType == kBoomControlBarTypeSpeed) {
             [weakSelf.viewModel makeProgressSpeedList:weakSelf.viewModel.curItemModel];
             [weakSelf showSelectViewWith:weakSelf.viewModel.curItemModel.speedList selectName:weakSelf.viewModel.curItemModel.currentSpeed];
-        } else if (barType == kBoomControlBarTypeDownload || barType == kBoomControlBarTypeNote || barType == kBoomControlBarTypeChapter) {
-            if (weakSelf.viewActionBlock) {
-                weakSelf.viewActionBlock(barType, weakSelf.viewModel.curItemModel.videoId);
-            }
+        } else if (barType == kBoomControlBarTypeDownload) {
+            [weakSelf playerViewActionClickWith:kPVActionTypeDownload];
+        } else if (barType == kBoomControlBarTypeNote) {
+            [weakSelf playerViewActionClickWith:kPVActionTypeNote];
+        } else if (barType == kBoomControlBarTypeChapter) {
+            [weakSelf playerViewActionClickWith:kPVActionTypeChapter];
         }
     };
     self.boomView.silderBlock = ^(BoomControlBarSliderType sliderType, CGFloat sliderValue) {
@@ -313,12 +316,28 @@
 // 继续播放播放/暂停
 - (void)playButtonAction {
     if (self.isPlay) {
-        [self.player pause];
+        [self pause];
     } else {
-        [self.player play];
-        [self.loadingView startAnimating];
+        [self play];
     }
     self.isPlay = !self.isPlay;
+}
+
+// 播放
+- (void)play {
+    if (!self.viewModel.curItemModel.isOnline) {
+        [self.httpSeverManager startServer];
+    }
+    [self.player play];
+    [self.loadingView startAnimating];
+}
+
+// 暂停
+- (void)pause {
+    if (!self.viewModel.curItemModel.isOnline) {
+        [self.httpSeverManager stopServer];
+    }
+    [self.player pause];
 }
 
 // 放大/缩小
@@ -352,7 +371,6 @@
 //    self.player = [[GAAVPlayer alloc] initWith:self.playerView];
     [self forPlayerTheAssignment];
     self.player.callBackDelegate = self;
-    [self.player makeProgressPlayerViewFrame:CGRectMake(0, 0, self.realWidth, self.realHigh)];
     
     [self.playerView bringSubviewToFront:self.loadingView];
     [self.playerView bringSubviewToFront:self.adAlertView];
@@ -365,12 +383,13 @@
 //    [self.player play];
     [self forPlayerTheAssignment];
     [self makeProgressViewWith:self.viewModel.curItemModel.playUrlType];
-    [self.player play];
+    [self play];
 }
 
 - (void)forPlayerTheAssignment {
     GAPlayerModel *playerModel = [self.viewModel makeProgressPlayerModelWith:self.viewModel.curItemModel];
     [self.player setThePlayerDataSource:playerModel];
+    [self.player makeProgressPlayerViewFrame:CGRectMake(0, 0, self.realWidth, self.realHigh)];
 }
 
 #pragma mark - PlayerCallBackDelegate
@@ -414,6 +433,12 @@
 - (void)adAlertClick {
     self.adAlertView.hidden = YES;
     [self singleVideoIsDone];
+}
+
+- (void)playerViewActionClickWith:(PlayerViewActionType)actionType {
+    if (self.viewActionBlock) {
+        self.viewActionBlock(actionType, self.viewModel.curItemModel.videoId);
+    }
 }
 
 #pragma mark - set get
@@ -520,6 +545,13 @@
         _adAlertView.hidden = NO;
     }
     return _adAlertView;
+}
+
+- (GAHttpSeverManager *)httpSeverManager {
+    if (!_httpSeverManager) {
+        _httpSeverManager = [GAHttpSeverManager sharedInstance];
+    }
+    return _httpSeverManager;
 }
 
 @end

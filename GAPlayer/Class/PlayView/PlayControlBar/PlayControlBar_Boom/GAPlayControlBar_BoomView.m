@@ -102,7 +102,6 @@
     CGFloat playBtnX = 0.f;
     CGFloat playBtnY = (height - playBtnH)/2;
     self.playBtn.frame = CGRectMake(playBtnX, playBtnY, playBtnW, playBtnH);
-    CGFloat deviationValue = 10.f;//设置两个像素的误差 防止重新赋值的时候出现省略号
     if (self.isFullScreen) {
         
             CGFloat forwordBtnLeftMargin = 1.f;
@@ -339,8 +338,7 @@
         [_playProgressSliderView setThumbImage:[UIImage imageNamed:@"player_ion_play_position"] forState:UIControlStateNormal];
         [_playProgressSliderView addTarget:self action:@selector(sliderTouchDidBeginAction:) forControlEvents:UIControlEventTouchDown];
         [_playProgressSliderView addTarget:self action:@selector(sliderTouchDidChanged:) forControlEvents:UIControlEventValueChanged];
-        [_playProgressSliderView addTarget:self action:@selector(sliderTouchDidEndAction:) forControlEvents:UIControlEventTouchDragOutside];
-        [_playProgressSliderView addTarget:self action:@selector(sliderTouchDidEndAction:) forControlEvents:UIControlEventTouchUpOutside];
+        [_playProgressSliderView addTarget:self action:@selector(sliderTouchDidEndAction:) forControlEvents:UIControlEventTouchUpInside];
         UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sliderJumpAction:)];
         gr.cancelsTouchesInView = NO;
         [_playProgressSliderView addGestureRecognizer:gr];

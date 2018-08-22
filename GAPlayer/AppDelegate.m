@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "GAHomeListViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc]init];
+    self.window.frame = [UIScreen mainScreen].bounds;
+    self.window.rootViewController = [[GAHomeListViewController alloc] init];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
