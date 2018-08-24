@@ -21,7 +21,7 @@
  * 根据传递的m3u8 string 数据初始化实例
  * @param m3u8String m3u8string
  */
-- (instancetype)initWithM3U8String:(NSString *)m3u8String;
+- (instancetype)initWithM3U8String:(NSString *)m3u8String rootUrl:(NSString *)rootUrl;
 
 
 

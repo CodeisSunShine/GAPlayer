@@ -79,10 +79,24 @@ typedef void(^PlayerViewActionBlock)(PlayerViewActionType controlBarType,NSStrin
 - (void)thePlayerLoadsTheData:(NSDictionary *)dataDict;
 
 /**
+ 播放器播放
+ */
+- (void)playPlayer;
+
+/**
+ 播放器暂停
+ */
+- (void)pausePlayer;
+
+
+/**
  改变播放器下载状态
  */
 - (void)changeThePlayerDownloadStatus:(NSString *)videoId downloadState:(NSInteger)downloadState;
 
-- (void)deallocPlayerView;
+/**
+ 销毁播放器
+ */
+- (void)stopPlayerView;
 
 @end

@@ -19,11 +19,14 @@
  
  @param downloadUrls 下载地址数组
  @param localFileUrl 本地储存地址数组
+ @param downloadId   下载任务 id
+ @param downloadName 下载任务 名称
  @param analysisURLBlock 是否成功 和 下载实例
  */
 - (void)downloadWithDownloadUrls:(NSArray *)downloadUrls
                      andLocalUrl:(NSString *)localFileUrl
                       downloadId:(NSString *)downloadId
+                    downloadName:(NSString *)downloadName
              andAnalysisURLBlock:(void(^)(BOOL success, id <DonwloadServiceProtocol> downloader, DownloadError *error))analysisURLBlock;
 
 /**

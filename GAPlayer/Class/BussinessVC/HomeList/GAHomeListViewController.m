@@ -39,7 +39,7 @@
 
 - (void)setupData {
     NSArray *urls = @[@"http://cache.utovr.com/201508270528174780.m3u8",@"https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_4x3/gear2/prog_index.m3u8",@"http://aliuwmp3.changba.com/userdata/video/3B1DDE764577E0529C33DC5901307461.mp4",@"http://lzaiuw.changba.com/userdata/video/940071102.mp4"];
-    NSArray *names = @[@"小太阳.m3u8",@"苹果demo.m3u8",@"你是爱我的.mp4",@"我真的受伤了.mp4"];
+    NSArray *names = @[@"SunShine.m3u8",@"AppleDemo.m3u8",@"Love.mp4",@"sad.mp4"];
     NSArray *ids = @[@"111",@"222",@"333",@"444"];
     NSMutableArray *dataSource = [[NSMutableArray alloc] init];
     for (NSInteger i = 0; i < urls.count; i++) {

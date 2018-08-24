@@ -101,7 +101,7 @@
     if (gsetureType == kGsetureTypeNone) {
         [self gsetureCallBlock:kGsetureTypeCancel movementValue:0];
     } else {
-        if (self.gsetureType == kGsetureTypeNone ) {
+        if (self.gsetureType == kGsetureTypeNone) {
             self.gsetureType = gsetureType;
             [self gsetureCallBlock:gsetureType movementValue:movementValue];
         } else {

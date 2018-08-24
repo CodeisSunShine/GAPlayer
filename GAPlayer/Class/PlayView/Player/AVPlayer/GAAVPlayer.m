@@ -64,7 +64,7 @@
 
 // 关闭播放器
 - (void)stop {
-    
+    [self releasePlayer];
 }
 
 // 切换倍速

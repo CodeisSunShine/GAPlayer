@@ -120,6 +120,9 @@
 		EC7DC1DE212D08F700730286 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7DC1B8212D08F700730286 /* GCDAsyncSocket.m */; };
 		EC7DC1DF212D08F700730286 /* About.txt in Resources */ = {isa = PBXBuildFile; fileRef = EC7DC1B9212D08F700730286 /* About.txt */; };
 		EC7DC1E7212D0C6900730286 /* GAHttpSeverManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7DC1E6212D0C6900730286 /* GAHttpSeverManager.m */; };
+		EC7DC1EF212D70E100730286 /* mute.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EC7DC1EA212D70E100730286 /* mute.mp3 */; };
+		EC7DC1F0212D70E100730286 /* 林俊杰 - 她说.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EC7DC1EB212D70E100730286 /* 林俊杰 - 她说.mp3 */; };
+		EC7DC1F1212D70E100730286 /* WCHBackgroundRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7DC1EE212D70E100730286 /* WCHBackgroundRunner.m */; };
 		ECCC22AB212A6239004200DE /* GAFMDBTool.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCC22AA212A6239004200DE /* GAFMDBTool.m */; };
 /* End PBXBuildFile section */
 
@@ -353,6 +356,10 @@
 		EC7DC1BA212D08F700730286 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		EC7DC1E5212D0C6900730286 /* GAHttpSeverManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAHttpSeverManager.h; sourceTree = "<group>"; };
 		EC7DC1E6212D0C6900730286 /* GAHttpSeverManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAHttpSeverManager.m; sourceTree = "<group>"; };
+		EC7DC1EA212D70E100730286 /* mute.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mute.mp3; sourceTree = "<group>"; };
+		EC7DC1EB212D70E100730286 /* 林俊杰 - 她说.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "林俊杰 - 她说.mp3"; sourceTree = "<group>"; };
+		EC7DC1ED212D70E100730286 /* WCHBackgroundRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCHBackgroundRunner.h; sourceTree = "<group>"; };
+		EC7DC1EE212D70E100730286 /* WCHBackgroundRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCHBackgroundRunner.m; sourceTree = "<group>"; };
 		ECCC22A9212A6239004200DE /* GAFMDBTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAFMDBTool.h; sourceTree = "<group>"; };
 		ECCC22AA212A6239004200DE /* GAFMDBTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAFMDBTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -964,6 +971,7 @@
 		EC7DC157212D08F700730286 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				EC7DC1E8212D70E100730286 /* BackgroundMusic */,
 				EC7DC159212D08F700730286 /* CocoaHTTPServer */,
 			);
 			path = Lib;
@@ -1299,6 +1307,33 @@
 			path = HttpSeverManager;
 			sourceTree = "<group>";
 		};
+		EC7DC1E8212D70E100730286 /* BackgroundMusic */ = {
+			isa = PBXGroup;
+			children = (
+				EC7DC1E9212D70E100730286 /* Resources */,
+				EC7DC1EC212D70E100730286 /* BackgroundRunner */,
+			);
+			path = BackgroundMusic;
+			sourceTree = "<group>";
+		};
+		EC7DC1E9212D70E100730286 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EC7DC1EA212D70E100730286 /* mute.mp3 */,
+				EC7DC1EB212D70E100730286 /* 林俊杰 - 她说.mp3 */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		EC7DC1EC212D70E100730286 /* BackgroundRunner */ = {
+			isa = PBXGroup;
+			children = (
+				EC7DC1ED212D70E100730286 /* WCHBackgroundRunner.h */,
+				EC7DC1EE212D70E100730286 /* WCHBackgroundRunner.m */,
+			);
+			path = BackgroundRunner;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1367,6 +1402,11 @@
 				TargetAttributes = {
 					EC6124A9212174E500D40C96 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					EC6124C1212174E600D40C96 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -1406,11 +1446,13 @@
 				EC7DC1DB212D08F700730286 /* About.txt in Resources */,
 				EC612507212176B500D40C96 /* Info.plist in Resources */,
 				EC6124BA212174E600D40C96 /* LaunchScreen.storyboard in Resources */,
+				EC7DC1EF212D70E100730286 /* mute.mp3 in Resources */,
 				EC7DC1D3212D08F700730286 /* README.markdown in Resources */,
 				EC7DC1DF212D08F700730286 /* About.txt in Resources */,
 				EC6124B7212174E600D40C96 /* Assets.xcassets in Resources */,
 				EC7DC1CE212D08F700730286 /* CocoaHTTPServer.podspec.json in Resources */,
 				EC6124B5212174E500D40C96 /* Main.storyboard in Resources */,
+				EC7DC1F0212D70E100730286 /* 林俊杰 - 她说.mp3 in Resources */,
 				EC7DC1D9212D08F700730286 /* README.txt in Resources */,
 				EC7DC1D4212D08F700730286 /* LICENSE.txt in Resources */,
 			);
@@ -1507,6 +1549,7 @@
 				EC7DC1C7212D08F700730286 /* MultipartFormDataParser.m in Sources */,
 				EC3B7E8021266DC200EB09AD /* GAHomeListViewController.m in Sources */,
 				EC7DC1CF212D08F700730286 /* DAVConnection.m in Sources */,
+				EC7DC1F1212D70E100730286 /* WCHBackgroundRunner.m in Sources */,
 				EC61255A212176D700D40C96 /* GAPlayerSelectView.m in Sources */,
 				EC6125852122CE9100D40C96 /* DADownloadModel.m in Sources */,
 				EC612554212176D700D40C96 /* UIView+SomehowTheScreen.m in Sources */,

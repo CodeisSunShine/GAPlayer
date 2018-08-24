@@ -28,12 +28,19 @@
 //}
 
 #pragma mark - set/get private method
-- (NSMutableArray *)tsMutableArray
+- (NSMutableArray *)tsUrlMutableArray
 {
-    if (_tsMutableArray == nil) {
-        _tsMutableArray = [[NSMutableArray alloc] initWithCapacity:0];
+    if (_tsUrlMutableArray == nil) {
+        _tsUrlMutableArray = [[NSMutableArray alloc] initWithCapacity:0];
     }
-    return _tsMutableArray;
+    return _tsUrlMutableArray;
+}
+
+- (NSMutableArray *)tsNameMutableArray {
+    if (_tsNameMutableArray == nil) {
+        _tsNameMutableArray = [[NSMutableArray alloc] initWithCapacity:0];
+    }
+    return _tsNameMutableArray;
 }
 
 /**
@@ -67,13 +74,13 @@
                 *stop = YES;
             }
         }];
-        if (errIndex < self.tsMutableArray.count && errIndex >= 0) {
-            return self.tsMutableArray[errIndex];
-        }
-        else
-        {
-            return kNotFoundErrorTS;
-        }
+//        if (errIndex < self.tsMutableArray.count && errIndex >= 0) {
+//            return self.tsMutableArray[errIndex];
+//        }
+//        else
+//        {
+//            return kNotFoundErrorTS;
+//        }
         
         
     }

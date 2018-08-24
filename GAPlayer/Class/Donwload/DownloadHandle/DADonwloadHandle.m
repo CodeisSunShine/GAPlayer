@@ -20,6 +20,7 @@
 - (void)downloadWithDownloadUrls:(NSArray *)downloadUrls
                      andLocalUrl:(NSString *)localFileUrl
                       downloadId:(NSString *)downloadId
+                    downloadName:(NSString *)downloadName
              andAnalysisURLBlock:(void(^)(BOOL success, id <DonwloadServiceProtocol> downloader, DownloadError *error))analysisURLBlock {
     
     //1. 判断本地地址是否错误
@@ -30,16 +31,17 @@
     }
     __weak typeof(self)weakSelf = self;
     //2.解析 下载地址
-    [DADownloadUrlResolver analysisDownloadUrls:downloadUrls localUrl:localFileUrl finishBlock:^(BOOL success, id object) {
+    [DADownloadUrlResolver analysisDownloadUrls:downloadUrls localUrl:localFileUrl downloadName:downloadName finishBlock:^(BOOL success, id object) {
         if (success) {
             NSArray *names = object[@"totalDownloadNames"];
             NSArray *downloadUrls = object[@"totalDownloadUrls"];
-
+            
             //2.1 组织downloadModel
             DADownloadModel *downloadModel = [weakSelf makeProgressWithDownloadUrls:downloadUrls andNames:names andLocalUrl:localFileUrl downloadId:downloadId];
             
             //2.2 生成相应的downloader
             id <DonwloadServiceProtocol> downloader = [self downloadWithDownloadModel:downloadModel];
+            downloader.downloadModel.downloadTitle = downloadName;
             analysisURLBlock(YES,downloader,nil);
             
         } else {

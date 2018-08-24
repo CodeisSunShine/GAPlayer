@@ -38,7 +38,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     self.view.backgroundColor = [UIColor whiteColor];
     [self setupView];
     [self setupLayout];
@@ -57,11 +57,11 @@
 
 - (void)setupLayout {
     __weak __typeof(self) weakself= self;
-    self.playerView.frame = CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_WIDTH / 16.0 * 9);
+    self.playerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH / 16.0 * 9);
     [self.playerView registerLandscapeCallBack:^(UIInterfaceOrientation deviceOrientation, UIInterfaceOrientation statusBarOrientation) {
         if (deviceOrientation == UIInterfaceOrientationPortrait) {
             weakself.playerView.isFullScreen = NO;
-            weakself.playerView.frame = CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_WIDTH / 16*9);
+            weakself.playerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH / 16*9);
         } else {
             weakself.playerView.isFullScreen = YES;
             weakself.playerView.frame = CGRectMake(0, 0, SCREEN_WIDTH / 16.0*9, SCREEN_WIDTH);
@@ -92,7 +92,6 @@
         }
     }];
 }
-
 
 - (void)setupPlayerViewaAction {
     __weak __typeof(self) weakself= self;
@@ -140,18 +139,24 @@
 
 - (void)downloadClick {
     __weak __typeof(self) weakself= self;
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    dict[@"videoId"] = self.listModel.videoId;
-    dict[@"videoName"] = self.listModel.videoName;
-    dict[@"videoUrl"] = self.listModel.videoUrl;
-    [self.cacheManager addDownloadWith:[dict copy] callBlock:^(BOOL success, id object) {
-        if (success) {
-            NSLog(@"成功进入下载逻辑");
-            weakself.cacheModel = object;
-        } else {
-            NSLog(@"下载失败  %@",object);
-        }
-    }];
+    if (self.cacheModel) {
+        [self.cacheManager downloadIsControlledAccordingToVideoId:self.cacheModel.videoId callBlock:^(BOOL success, id object) {
+            
+        }];
+    } else {
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+        dict[@"videoId"] = self.listModel.videoId;
+        dict[@"videoName"] = self.listModel.videoName;
+        dict[@"videoUrl"] = self.listModel.videoUrl;
+        [self.cacheManager addDownloadWith:[dict copy] callBlock:^(BOOL success, id object) {
+            if (success) {
+                NSLog(@"成功进入下载逻辑");
+                weakself.cacheModel = object;
+            } else {
+                NSLog(@"下载失败  %@",object);
+            }
+        }];
+    }
 }
 
 - (void)playLineClick {
@@ -194,7 +199,7 @@
     
     NSMutableDictionary *videoDict = [[NSMutableDictionary alloc] init];
     dataDict[@"scheme"] = @"sd"; // 清晰度标识
-    videoDict[@"sd"] = [NSString stringWithFormat:@"%@%@/%@",kLocalPlayURL,self.cacheModel.filePath,@"video.m3u8"];
+    videoDict[@"sd"] = [NSString stringWithFormat:@"%@%@/%@",kLocalPlayURL,self.cacheModel.filePath,self.listModel.videoName];
     dataDict[@"isOnline"] = @"0";// 本地播放
     // 播放地址数据
     dataDict[@"video"] = [videoDict copy];
@@ -260,7 +265,7 @@
 }
 
 - (void)dealloc {
-    [self.playerView deallocPlayerView];
+    [self.playerView stopPlayerView];
     [self.cacheManager removeDonwloadBlcokWithIdClass:@"GAPlayerDetailViewController"];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

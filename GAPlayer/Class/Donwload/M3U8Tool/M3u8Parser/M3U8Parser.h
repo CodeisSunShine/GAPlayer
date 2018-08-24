@@ -16,9 +16,14 @@
 @property (nonatomic, strong) NSString *originM3U8String;
 
 /**
- * ts 集合字段
+ * ts 名称集合字段
  */
-@property (nonatomic, strong) NSMutableArray *tsMutableArray;
+@property (nonatomic, strong) NSMutableArray *tsNameMutableArray;
+
+/**
+ * ts 下载集合字段
+ */
+@property (nonatomic, strong) NSMutableArray *tsUrlMutableArray;
 
 /**
  * ts 时间序列集合
@@ -40,11 +45,15 @@
  */
 @property (nonatomic, strong) NSString *vedioId;
 
-
 /**
  * 是否需要解密,如果m3u8 文件的uri 存在则需要解密，否则不需要解密
  */
 @property (nonatomic, assign) BOOL isCryption;
+
+/**
+ * 跟路径
+ */
+@property (nonatomic, copy) NSString *rootUrl;
 
 
 #pragma mark - 对应的app

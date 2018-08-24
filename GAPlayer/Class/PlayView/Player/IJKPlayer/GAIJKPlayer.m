@@ -90,6 +90,7 @@
     self.options = [IJKFFOptions optionsByDefault];
     self.player = [[IJKFFMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:playerModel.playURL] withOptions:self.options];
     self.player.scalingMode = IJKMPMovieScalingModeAspectFit;
+    [self.player setPauseInBackground:NO];
     // 是否自动播放
     self.player.shouldAutoplay = YES;
     [self.playView addSubview:self.player.view];

@@ -29,6 +29,7 @@
 
 + (void)analysisDownloadUrls:(NSArray *)downloadUrls
                     localUrl:(NSString *)localFileUrl
+                downloadName:(NSString *)downloadName
                  finishBlock:(void(^)(BOOL success, id object))finishBlock {
     __block NSMutableArray *totalDownloadUrls = [[NSMutableArray alloc] init];
     __block NSMutableArray *totalDownloadNames = [[NSMutableArray alloc] init];
@@ -43,7 +44,7 @@
         dispatch_group_async(dispatchGroup, dispatchQueue, ^(){
             // 此时使用信号量是防止处理时下载地址的时候采用异步的方式
             dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-            [self analysisURL:downloadUrl localUrl:localFileUrl finishBlock:^(BOOL success, NSArray *downloadUrls, NSArray *names) {
+            [self analysisURL:downloadUrl localUrl:localFileUrl downloadName:downloadName finishBlock:^(BOOL success, NSArray *downloadUrls, NSArray *names) {
                 if (success) {
                     // 1.1.1 successCount++
                     successCount ++;
@@ -85,42 +86,38 @@
 //统一 解析下载地址的形式
 + (void)analysisURL:(NSString *)downloadUrl
            localUrl:(NSString *)localFileUrl
+       downloadName:(NSString *)downloadName
         finishBlock:(void(^)(BOOL success, NSArray *downloadUrls, NSArray *names))finishBlock {
     // 1.判断下载类型
     NSURLComponents *urlParts = [NSURLComponents componentsWithURL:[NSURL URLWithString:downloadUrl] resolvingAgainstBaseURL:NO];
     NSString *extension = urlParts.URL.pathExtension;
     if ([extension isEqualToString:M3U8SuffixName]) {
         // 1.1 m3u8
-        [self analysisM3U8File:downloadUrl andFinish:finishBlock];
+        [self analysisM3U8File:downloadUrl downloadName:downloadName andFinish:finishBlock];
     } else if ([extension isEqualToString:htmlSuffixName]){
         // 1.2 html
-        [self analysisHTMLFile:downloadUrl localUrl:localFileUrl finishBlock:finishBlock];
+        [self analysisHTMLFile:downloadUrl localUrl:localFileUrl downloadName:downloadName finishBlock:finishBlock];
     } else {
         // 1.3 其他类型 暂时不做处理直接返回
-        finishBlock (YES,@[downloadUrl],@[[downloadUrl lastPathComponent]]);
+        finishBlock (YES,@[downloadUrl],@[downloadName]);
     }
 }
 
 //解析M3U8
-+ (void)analysisM3U8File:(NSString *)m3u8Url andFinish:(void(^)(BOOL success, NSArray *downloadUrls, NSArray *names))finishBlock {
++ (void)analysisM3U8File:(NSString *)m3u8Url downloadName:(NSString *)downloadName andFinish:(void(^)(BOOL success, NSArray *downloadUrls, NSArray *names))finishBlock {
     NSMutableURLRequest *m3u8Request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:m3u8Url]
                                                                    cachePolicy:NSURLRequestReloadIgnoringCacheData
                                                                timeoutInterval:10];
     NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:m3u8Request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (!error) {
             NSString *m3u8Str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            M3U8Parser *m3u8Parser = [[M3U8Parser alloc]initWithM3U8String:m3u8Str];
-            NSArray *tsArray = m3u8Parser.tsMutableArray;
             NSRange range = [m3u8Url rangeOfString:@"/" options:NSBackwardsSearch];
             NSString *rootUrl = [m3u8Url substringToIndex:range.location];
-            NSMutableArray *downloadUrlList = [[NSMutableArray alloc] init];
-            //ts文件转化成绝对路径
-            [tsArray enumerateObjectsUsingBlock:^(NSString *fileName, NSUInteger idx, BOOL *stop) {
-                [downloadUrlList addObject:[NSString stringWithFormat:@"%@/%@",rootUrl,fileName]];
-            }];
-            [m3u8Parser.tsMutableArray insertObject:@"video.m3u8" atIndex:0];
-            [downloadUrlList insertObject:m3u8Url atIndex:0];
-            finishBlock(YES,downloadUrlList,tsArray);
+            M3U8Parser *m3u8Parser = [[M3U8Parser alloc]initWithM3U8String:m3u8Str rootUrl:rootUrl];
+            [m3u8Parser.tsNameMutableArray insertObject:downloadName atIndex:0];
+            [m3u8Parser.tsUrlMutableArray insertObject:m3u8Url atIndex:0];
+            
+            finishBlock(YES,m3u8Parser.tsUrlMutableArray,m3u8Parser.tsNameMutableArray);
             NSLog(@"成功");
         } else {
             finishBlock(NO,nil,nil);
@@ -134,6 +131,7 @@
 //解析HTML文件
 + (void)analysisHTMLFile:(NSString *)htmlURL
                 localUrl:(NSString *)localFileUrl
+            downloadName:(NSString *)downloadName
              finishBlock:(void(^)(BOOL success, NSArray *downloadUrls, NSArray *names))finishBlock{
     if (htmlURL.length) {
         NSString *htmlStr = [NSString stringWithContentsOfURL:[NSURL URLWithString:htmlURL] encoding:NSUTF8StringEncoding error:nil];
@@ -160,7 +158,7 @@
         NSString *anAbsolutePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingFormat:@"/%@",localFileUrl];
         [self isExistPath:anAbsolutePath];
         //写文件到本地(leture.htm)
-        NSString *path = [anAbsolutePath stringByAppendingPathComponent:@"leture.htm"];
+        NSString *path = [anAbsolutePath stringByAppendingPathComponent:downloadName];
         //    [htmlStr writeToFile: path atomically: YES];
         NSError *error;
         [htmlStr writeToFile:path atomically:YES encoding:(NSUTF8StringEncoding) error:&error];

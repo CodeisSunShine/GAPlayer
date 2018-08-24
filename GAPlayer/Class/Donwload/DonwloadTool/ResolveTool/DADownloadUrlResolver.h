@@ -12,6 +12,7 @@
 
 + (void)analysisDownloadUrls:(NSArray *)downloadUrls
                     localUrl:(NSString *)localFileUrl
+                downloadName:(NSString *)downloadName
                  finishBlock:(void(^)(BOOL success, id object))finishBlock;
 
 @end

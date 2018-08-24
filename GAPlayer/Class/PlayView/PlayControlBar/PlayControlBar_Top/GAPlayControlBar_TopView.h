@@ -21,4 +21,6 @@ typedef void (^ControlBar_TopClickBlock)(void);
 
 @property (nonatomic, strong) ControlBar_TopClickBlock clickBlock;
 
+- (void)smallHiden:(BOOL)hid;
+
 @end

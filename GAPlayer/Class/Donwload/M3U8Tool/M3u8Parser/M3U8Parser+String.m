@@ -17,19 +17,20 @@
 - (instancetype)initWithM3U8Data:(NSData *)m3u8data
 {
     NSString *m3u8string = [[NSString alloc] initWithData:m3u8data encoding:NSUTF8StringEncoding];
-    return [self initWithM3U8String:m3u8string];
+    return [self initWithM3U8String:m3u8string rootUrl:@""];
 }
 
 /**
  * 根据传递的m3u8 string 数据初始化实例
  * @param: m3u8string
  */
-- (instancetype)initWithM3U8String:(NSString *)m3u8String
+- (instancetype)initWithM3U8String:(NSString *)m3u8String rootUrl:(NSString *)rootUrl
 {
     self = [super init];
     if (self) {
         self.originM3U8String = m3u8String;
         self.isCryption = NO;
+        self.rootUrl = rootUrl;
         [self parserM3u8Content];
     }
     return self;
@@ -44,7 +45,8 @@
     if (self.originM3U8String.length <= 0) {
         return;
     }
-    [self.tsMutableArray removeAllObjects];
+    [self.tsNameMutableArray removeAllObjects];
+    [self.tsUrlMutableArray removeAllObjects];
     [self.tsTimeArray removeAllObjects];
     //根据换行符，得到当前文本的集合
     NSArray *m3u8Arr = [self.originM3U8String componentsSeparatedByString:@"\n"];
@@ -54,7 +56,16 @@
             if ([obj rangeOfString:M3U8PrefixName].location == NSNotFound) {
                 //找到对应的ts字段集合
                 if ([obj rangeOfString:M3U8TSSuffixName].location != NSNotFound) {
-                    [self.tsMutableArray addObject:obj];
+                    if ([obj containsString:@"://"]) {
+                        NSArray *array = [obj componentsSeparatedByString:@"/"];
+                        if (array.count > 0) {
+                            [self.tsNameMutableArray addObject:array.lastObject];
+                        }
+                        [self.tsUrlMutableArray addObject:obj];
+                    } else {
+                        [self.tsNameMutableArray addObject:obj];
+                        [self.tsUrlMutableArray addObject:[NSString stringWithFormat:@"%@/%@",self.rootUrl,obj]];
+                    }
                 }
             }
             else //如果包含"EXT"前缀，则把对应的uri 路径提取出来
@@ -88,6 +99,7 @@
         }];
     }
 }
+
 
 
 

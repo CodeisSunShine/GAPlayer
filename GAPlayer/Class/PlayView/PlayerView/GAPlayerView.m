@@ -53,6 +53,10 @@
 @property (nonatomic, strong) UIButton *adAlertView;
 // 本地Http服务器
 @property (nonatomic, strong) GAHttpSeverManager *httpSeverManager;
+// 锁屏
+@property (nonatomic, strong) UIButton *lockScreen;
+// 是否锁屏
+@property (nonatomic, assign) BOOL isLock;
 
 @property (nonatomic, assign) CGFloat realWidth;
 @property (nonatomic, assign) CGFloat realHigh;
@@ -67,6 +71,7 @@
         self.beforeChangeLocation = 0;
         self.controlBarHidden = YES;
         [self registerForGestureEvent];
+        self.isLock = YES;
     }
     return self;
 }
@@ -76,6 +81,7 @@
     [self addSubview:self.topView];
     [self addSubview:self.boomView];
     [self addSubview:self.selectView];
+    [self addSubview:self.lockScreen];
     [self.playerView addSubview:self.adAlertView];
     [self.playerView addSubview:self.loadingView];
 }
@@ -97,6 +103,7 @@
     self.boomView.frame = CGRectMake(0, high - 44, width, 44);
     self.loadingView.frame = CGRectMake((width - 30) * 0.5, (high - 30) * 0.5, 30, 30);
     self.adAlertView.frame = CGRectMake(width - 80 - 30, 20, 80, 25);
+    self.lockScreen.frame = CGRectMake(20, (self.realHigh - 50) * 0.5, 50, 50);
     [self.player makeProgressPlayerViewFrame:CGRectMake(0, 0, width, high)];
 }
 
@@ -128,6 +135,22 @@
     [self.boomView reloadDownloadStateWith:downloadState];
 }
 
+// 播放器播放
+- (void)playPlayer {
+    [self play];
+}
+
+// 播放器暂停
+- (void)pausePlayer {
+    [self pause];
+}
+
+- (void)stopPlayerView {
+    [self.player stop];
+    self.player = nil;
+}
+
+
 #pragma mark - private
 // 展示选择视图
 - (void)showSelectViewWith:(NSArray *)selectData selectName:(NSString *)selectName{
@@ -136,7 +159,7 @@
     [self.selectView outsideOption:selectName];
 }
 
-// 改变播放器清晰度x
+// 改变播放器清晰度
 - (void)changeThePlayerClearity:(GAPlayerSelectVIewModel *)selectModel {
     self.beforeChangeLocation = self.viewModel.curItemModel.currentInterval;
     self.isDraging = YES;
@@ -156,13 +179,35 @@
 
 // 根据播放的性质 处理播放器视图
 - (void)makeProgressViewWith:(PlayUrlType)playUrlType {
-    self.topView.hidden = playUrlType != kPlayUrlTypeBody;
-    self.boomView.hidden = playUrlType != kPlayUrlTypeBody;
     if (playUrlType == kPlayUrlTypeBody) {
-        [self startForGestureEvents];
+        [self showControlViewAndGesture];
     } else {
-        [self cancelForGestureEvents];
+        [self hideControlViewAndGesture];
     }
+}
+
+// 锁屏按钮
+- (void)lockClick {
+    if (self.isLock) {
+        [self hideControlViewAndGesture];
+        [self.lockScreen setImage:[UIImage imageNamed:@"player_btn_fplay_unlock"] forState:UIControlStateNormal];
+    } else {
+        [self showControlViewAndGesture];
+        [self.lockScreen setImage:[UIImage imageNamed:@"player_btn_fplay_lock"] forState:UIControlStateNormal];
+    }
+    self.isLock = !self.isLock;
+}
+
+- (void)hideControlViewAndGesture {
+    [self cancelForGestureEvents];
+    self.topView.hidden = YES;
+    self.boomView.hidden = YES;
+}
+
+- (void)showControlViewAndGesture {
+    [self startForGestureEvents];
+    self.topView.hidden = NO;
+    self.boomView.hidden = NO;
 }
 
 #pragma mark - GestureEvent
@@ -238,15 +283,17 @@
     __weak typeof(self)weakSelf = self;
     [UIView animateWithDuration:0.3 animations:^{
         if (isHide) {
-            weakSelf.topView.transform = CGAffineTransformMakeTranslation(0, -50);
-            weakSelf.boomView.transform = CGAffineTransformMakeTranslation(0, 50);
-            weakSelf.topView.alpha = 0;
-            weakSelf.boomView.alpha = 0;
+            weakSelf.boomView.hidden = YES;
+            if (self.isFullScreen) {
+                weakSelf.topView.hidden = YES;
+            } else {
+                weakSelf.topView.hidden = NO;
+                [weakSelf.topView smallHiden:YES];
+            }
         } else {
-            weakSelf.topView.transform = CGAffineTransformIdentity;
-            weakSelf.boomView.transform = CGAffineTransformIdentity;
-            weakSelf.topView.alpha = 1;
-            weakSelf.boomView.alpha = 1;
+            weakSelf.boomView.hidden = NO;
+            weakSelf.topView.hidden = NO;
+            [weakSelf.topView smallHiden:NO];
         }
     }];
     self.controlBarHidden = !isHide;
@@ -318,11 +365,11 @@
     } else {
         [self play];
     }
-    self.isPlay = !self.isPlay;
 }
 
 // 播放
 - (void)play {
+    self.isPlay = YES;
     if (!self.viewModel.curItemModel.isOnline) {
         [self.httpSeverManager startServer];
     }
@@ -332,6 +379,7 @@
 
 // 暂停
 - (void)pause {
+    self.isPlay = NO;
     if (!self.viewModel.curItemModel.isOnline) {
         [self.httpSeverManager stopServer];
     }
@@ -344,6 +392,23 @@
         [self toOrientation:UIInterfaceOrientationPortrait];
     } else {
         [self toOrientation:UIInterfaceOrientationLandscapeRight];
+    }
+    [self scaleChangeStart];
+    [self performSelector:@selector(scaleChangeEnd) withObject:nil afterDelay:0.3];
+}
+
+- (void)scaleChangeStart {
+    [UIApplication sharedApplication].statusBarHidden = YES;
+    [self whetherToHideControlbar:YES];
+}
+
+- (void)scaleChangeEnd {
+    [UIApplication sharedApplication].statusBarHidden = NO;
+    if (self.isFullScreen) {
+        [self whetherToHideControlbar:NO];
+    } else {
+        self.topView.hidden = NO;
+        [self.topView smallHiden:YES];
     }
 }
 
@@ -451,6 +516,11 @@
     self.boomView.isPlay = isPlay;
 }
 
+- (void)setIsFullScreen:(BOOL)isFullScreen {
+    _isFullScreen = isFullScreen;
+    self.lockScreen.hidden = !isFullScreen;
+}
+
 - (GAPlayControlBar_TopView *)topView {
     if (!_topView) {
         _topView = [[GAPlayControlBar_TopView alloc] init];
@@ -529,6 +599,16 @@
     return _brightnessView;
 }
 
+- (UIButton *)lockScreen {
+    if (!_lockScreen) {
+        _lockScreen = [[UIButton alloc] init];
+        [_lockScreen addTarget:self action:@selector(lockClick) forControlEvents:UIControlEventTouchUpInside];
+        [_lockScreen setImage:[UIImage imageNamed:@"player_btn_fplay_lock"] forState:UIControlStateNormal];
+        _lockScreen.hidden = YES;
+    }
+    return _lockScreen;
+}
+
 - (CMPlayerTimeView *)timeView {
     if (!_timeView) {
         _timeView = [[CMPlayerTimeView alloc] init];
@@ -555,15 +635,6 @@
         _httpSeverManager = [GAHttpSeverManager sharedInstance];
     }
     return _httpSeverManager;
-}
-
-- (void)deallocPlayerView {
-    [self.player stop];
-    self.player = nil;
-}
-
-- (void)dealloc {
-    
 }
 
 @end

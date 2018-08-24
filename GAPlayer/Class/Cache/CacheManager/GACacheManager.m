@@ -120,12 +120,13 @@ static NSString *const kFinishCallbackKey = @"Finish";
     __block GACacheModel *currentCacheModel = [self getCacheModelWithFileId:videoId];
     if (currentCacheModel) {
         self.tmpDownloadDict = nil;
+        callBlock(YES,currentCacheModel);
         [self startDownloadWith:currentCacheModel];
     } else {
         NSDictionary *quaryDict = @{@"videoId":videoId};
         __weak __typeof(self) weakself= self;
         [self.dataBaseManager queryTaskData:quaryDict resultBlock:^(BOOL success, id object) {
-            if (success) {
+            if (success && object) {
                 [weakself makeProgressAddNewCacheModel:object callBlock:callBlock];
             } else {
                 [weakself makeProgressAddNewCacheModel:weakself.tmpDownloadDict callBlock:callBlock];
@@ -169,7 +170,10 @@ static NSString *const kFinishCallbackKey = @"Finish";
     dict[@"downloadId"] = cacheModel.videoId;
     dict[@"downloadName"] = cacheModel.videoName;
     NSMutableArray *downloadUrls = [[NSMutableArray alloc] init];
-    [downloadUrls addObject:cacheModel.videoUrl];
+    if (cacheModel.videoUrl.length > 0) {
+        [downloadUrls addObject:cacheModel.videoUrl];
+    }
+    
     dict[@"downloadUrls"] = [downloadUrls copy];
     dict[@"localUrl"] = cacheModel.filePath;
     return dict;
@@ -267,10 +271,10 @@ static NSString *const kFinishCallbackKey = @"Finish";
     [GACacheModelTool makeProgressCacheModelWith:dataDict callBlock:^(BOOL success, id object) {
         if (success) {
             GACacheModel *cacheModel = (GACacheModel *)object;
+            callBlock(YES,cacheModel);
             [weakself insertSingleDownloadTargeWithCacheModel:cacheModel];
             [weakself.donwloadCacheList addObject:cacheModel];
             [weakself startDownloadWith:cacheModel];
-            callBlock(YES,cacheModel);
         } else {
             callBlock(NO,nil);
         }

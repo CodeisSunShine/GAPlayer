@@ -79,6 +79,10 @@
     self.titleLbl.text = videoTitle;
 }
 
+- (void)smallHiden:(BOOL)hide {
+    self.titleLbl.hidden = hide;
+}
+
 #pragma mark - setter and getter
 - (UIImageView *)topBackImgView{
     

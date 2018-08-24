@@ -61,11 +61,10 @@
     NSString *downloadId = downloadDict[@"downloadId"];
     NSString *downloadName = downloadDict[@"downloadName"];
     DADonwloadHandle *handle = [[DADonwloadHandle alloc] init];
-    [handle downloadWithDownloadUrls:downloadDict[@"downloadUrls"] andLocalUrl:downloadDict[@"localUrl"] downloadId:downloadId andAnalysisURLBlock:^(BOOL success, id<DonwloadServiceProtocol> downloader, DownloadError *error) {
+    [handle downloadWithDownloadUrls:downloadDict[@"downloadUrls"] andLocalUrl:downloadDict[@"localUrl"] downloadId:downloadId downloadName:downloadName andAnalysisURLBlock:^(BOOL success, id<DonwloadServiceProtocol> downloader, DownloadError *error) {
         if (success) {
             downloader.sessionDelegate = self;
             //2. 加入内存
-            downloader.downloadModel.downloadTitle = downloadName;
             //4. 将downloader 加入下载字典中
             [weakSelf.downloaderDict setObject:downloader forKey:downloader.downloadModel.downloadId];
             [downloader start];
