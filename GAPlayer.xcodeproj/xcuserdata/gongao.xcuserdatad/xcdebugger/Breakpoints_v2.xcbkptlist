@@ -35,22 +35,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GAPlayer/Class/DataBase/GADataBaseManager.m"
-            timestampString = "556621059.74957"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "-makeProgressQueryUnfinishedSql"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "GAPlayer/Class/Cache/CacheManager/GACacheManager.m"
             timestampString = "556788477.908249"
             startingColumnNumber = "9223372036854775807"
@@ -163,22 +147,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GAPlayer/Class/PlayView/PlayerView/GAPlayerView.m"
-            timestampString = "556698955.079414"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "450"
-            endingLineNumber = "450"
-            landmarkName = "-changeThePlayerPlaybackAddress"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "GAPlayer/Class/Donwload/M3U8Tool/M3u8Parser/M3U8Parser+String.m"
             timestampString = "556788477.908516"
             startingColumnNumber = "9223372036854775807"
@@ -212,7 +180,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GAPlayer/Class/BussinessVC/PlayerDetail/GAPlayerDetailViewController.m"
-            timestampString = "556788477.908596"
+            timestampString = "560851463.335112"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "110"
@@ -260,7 +228,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GAPlayer/Class/BussinessVC/PlayerDetail/GAPlayerDetailViewController.m"
-            timestampString = "556788477.909061"
+            timestampString = "560851463.335225"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "203"

@@ -48,11 +48,11 @@ typedef NS_ENUM(NSUInteger, PlayerViewActionType) {
 
 typedef void(^GsetureViewGsetureBlock)(GsetureType gsetureType,CGFloat moveValue);
 typedef void(^PlayerViewActionBlock)(PlayerViewActionType controlBarType,NSString *videoId);
+typedef void(^PlayerViewGroundBlock)(BOOL isBackground);
 
 @interface GAPlayerView : UIView
 
 #pragma mark - 类别用到的属性 不能使用，只能使用 gsetureBlock 来判断手势
-
 // 点击的Point
 @property (nonatomic, assign) CGPoint beginPoint;
 // 手势类型
@@ -61,6 +61,12 @@ typedef void(^PlayerViewActionBlock)(PlayerViewActionType controlBarType,NSStrin
 @property (nonatomic, assign) BOOL needGseture;
 // 手势回调
 @property (nonatomic, strong) GsetureViewGsetureBlock gsetureBlock;
+
+#pragma mark - GAPlayerView+Background
+// 进入前后台回调
+@property (nonatomic, strong) PlayerViewGroundBlock groundBlock;
+// 是否需要前后台回调
+@property (nonatomic, assign) BOOL needGround;
 
 #pragma mark - publick
 /**
@@ -72,6 +78,11 @@ typedef void(^PlayerViewActionBlock)(PlayerViewActionType controlBarType,NSStrin
  播放器按钮回调
  */
 @property (nonatomic, strong) PlayerViewActionBlock viewActionBlock;
+
+/**
+ 同意后台播放
+ */
+@property (nonatomic, assign) BOOL allowBackground;
 
 /**
  加载播放器需要的数据

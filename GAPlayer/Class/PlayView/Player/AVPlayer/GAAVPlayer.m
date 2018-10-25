@@ -166,6 +166,9 @@
     [self.KVOController observe:self.currentItem keyPath:@"duration" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew block:^(GAAVPlayer *aVPlayer, AVPlayerItem *currentItem, NSDictionary<NSKeyValueChangeKey,id> * _Nonnull change) {
         weakSelf.totalTime = (CGFloat)CMTimeGetSeconds(weakSelf.currentItem.duration);
     }];
+    
+    // 添加视频播放结束通知
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(moviePlayDidEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:_currentItem];
 }
 
 - (void)removePlayerItemObserver {
@@ -176,6 +179,15 @@
         [self.KVOController unobserve:self.currentItem keyPath:@"playbackLikelyToKeepUp"];
         [self.KVOController unobserve:self.currentItem keyPath:@"duration"];
     }
+}
+
+#pragma mark
+#pragma mark--播放完成
+- (void)moviePlayDidEnd:(NSNotification *)notification {
+    self.playerState = kPlayerStateFinish;
+    [self makeProgressCallBackPlayerState:kPlayerStateFinish];
+    [self.player seekToTime:kCMTimeZero toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero completionHandler:^(BOOL finished) {
+    }];
 }
 
 #pragma mark - TimeObserver
