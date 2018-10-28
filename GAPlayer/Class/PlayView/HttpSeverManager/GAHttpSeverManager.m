@@ -61,7 +61,6 @@
 }
 
 - (void)stopServer {
-    
     [self.httpServer stop];
     self.httpServer = nil;
 }
@@ -74,7 +73,7 @@
     
     if (_httpServer == nil) {
         self.httpServer = [[HTTPServer alloc] init];
-        [_httpServer setName:@"dongao"];
+        [_httpServer setName:@"GAPlayer"];
         [_httpServer setPort:1025]; //注意此时的端口号要与 kLocalPlayURL 保持一致
         //设置成m3u8的下载地址
         NSString *rootPath = kDownloadRootPath;

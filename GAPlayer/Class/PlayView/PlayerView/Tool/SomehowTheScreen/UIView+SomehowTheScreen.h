@@ -11,8 +11,14 @@
 
 @interface UIView (SomehowTheScreen)
 
+/**
+ 注册横竖屏的回调
+ */
 - (void)registerLandscapeCallBack:(void(^)(UIInterfaceOrientation deviceOrientation,UIInterfaceOrientation statusBarOrientation))directionChangeBlcok;
 
+/**
+ 将屏幕转向指定方向
+ */
 - (void)toOrientation:(UIInterfaceOrientation)deviceOrientation;
 
 @end

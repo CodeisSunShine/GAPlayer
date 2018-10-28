@@ -58,6 +58,7 @@
 - (void)setupLayout {
     __weak __typeof(self) weakself= self;
     self.playerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH / 16.0 * 9);
+    //增加横竖屏回调
     [self.playerView registerLandscapeCallBack:^(UIInterfaceOrientation deviceOrientation, UIInterfaceOrientation statusBarOrientation) {
         if (deviceOrientation == UIInterfaceOrientationPortrait) {
             weakself.playerView.isFullScreen = NO;
@@ -67,6 +68,8 @@
             weakself.playerView.frame = CGRectMake(0, 0, SCREEN_WIDTH / 16.0*9, SCREEN_WIDTH);
         }
     }];
+    
+    
     self.donwloadButton.frame = CGRectMake(50, CGRectGetMaxY(self.playerView.frame) + 100, 120, 30);
     self.playLocalButton.frame = CGRectMake(SCREEN_WIDTH - 50 - 120, CGRectGetMaxY(self.playerView.frame) + 100, 120, 30);
     self.playLineButton.frame = CGRectMake(SCREEN_WIDTH - 50 - 120, CGRectGetMaxY(self.playLocalButton.frame) + 50, 120, 30);

@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@class GAPlayerItemModel;
 
 @interface GAHttpSeverManager : NSObject
 
+/**
+ * 初始化
+ */
 + (instancetype)sharedInstance;
 
 /**
@@ -21,11 +23,8 @@
 
 /**
  * 关闭httpserver
- * 1.退出播放器
- * 2.进入后台
  */
 - (void)stopServer;
 
-- (void)playResourcePreparation:(GAPlayerItemModel *)playerItemModel;
 
 @end

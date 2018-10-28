@@ -10,13 +10,19 @@
 
 @interface GAPlayerView (GestureAction)
 
-// 注册手势
+/**
+ 注册手势
+ */
 - (void)registerForGestureEvents:(void(^)(GsetureType gsetureType,CGFloat moveValue))gsetureBlock;
 
-// 开启手势
+/**
+ 开启/恢复 手势
+ */
 - (void)startForGestureEvents;
 
-// 取消手势
+/**
+ 取消手势
+ */
 - (void)cancelForGestureEvents;
 
 @end
