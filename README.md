@@ -111,7 +111,7 @@ self.playerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH / 16.0 * 9);
 ```
 
 #### 2.播放器代码解释
-#### 2.1 IJKPlayer和AVPlayer的不同
+##### 2.1 IJKPlayer和AVPlayer的不同
 1. IJKPlayer的播放状态是通过通知进行监听，而AVPlayer是通过KVO进行监听。
 2. IJKPlayer的时间单位为NSTimeInterval，而AVPlayer的时间单位为CMTime。
 ##### 2.2 横竖屏
