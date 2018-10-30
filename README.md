@@ -69,12 +69,12 @@
     return _playerView;
 }
 ```
-##### 1.2.设置播放器frame
+##### 1.2 设置播放器frame
 ```
 [self.view addSubview:self.playerView];
 self.playerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH / 16.0 * 9);
 ```
-##### 1.3.增加横竖屏回调
+##### 1.3 增加横竖屏回调
 ```
 [self.playerView registerLandscapeCallBack:^(UIInterfaceOrientation deviceOrientation, UIInterfaceOrientation statusBarOrientation) {
    if (deviceOrientation == UIInterfaceOrientationPortrait) {
@@ -86,7 +86,7 @@ self.playerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH / 16.0 * 9);
    }
 }];
 ```
-##### 1.4.组织播放器需要的数据源
+##### 1.4 组织播放器需要的数据源
 根据业务的不同，播放器需要的数据结构也不同，所以此时使用json格式的数据与播放器进行交互。scheme和video中的数据要对应起来。
 
 ```json
@@ -103,7 +103,7 @@ self.playerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH / 16.0 * 9);
     "endingAdUrl": "http://aliuwmp3.changba.com/userdata/video/3B1DDE764577E0529C33DC5901307461.mp4" //片尾
 }
 ```
-##### 1.5.切换内核
+##### 1.5 切换内核
 在 GAPlayerView 类中的 initializingPlayer 方法里 可通过下面的方式切换播放器内核（🙂）
 ```
  self.player = [[GAIJKPlayer alloc] initWith:self.playerView];
