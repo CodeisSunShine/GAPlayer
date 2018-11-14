@@ -12,9 +12,6 @@
 // 颜色
 #define kMyColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 
-#define SCREEN_WIDTH ([[UIScreen mainScreen]bounds].size.width)
-#define SCREEN_HEIGHT (([UIScreen mainScreen].bounds.size.height == 812)?([UIScreen mainScreen].bounds.size.height - 34):([UIScreen mainScreen].bounds.size.height))
-
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define ScreenScale [UIScreen mainScreen].scale

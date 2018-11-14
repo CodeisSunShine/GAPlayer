@@ -38,7 +38,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     self.view.backgroundColor = [UIColor whiteColor];
     [self setupView];
     [self setupLayout];
@@ -57,22 +57,25 @@
 
 - (void)setupLayout {
     __weak __typeof(self) weakself= self;
-    self.playerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH / 16.0 * 9);
+    self.playerView.frame = CGRectMake(0, StatusBarHeight, ScreenWidth, ScreenWidth / 16.0 * 9 + StatusBarHeight);
+    
     //增加横竖屏回调
     [self.playerView registerLandscapeCallBack:^(UIInterfaceOrientation deviceOrientation, UIInterfaceOrientation statusBarOrientation) {
         if (deviceOrientation == UIInterfaceOrientationPortrait) {
             weakself.playerView.isFullScreen = NO;
-            weakself.playerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH / 16*9);
+            weakself.playerView.frame =  CGRectMake(0, StatusBarHeight, ScreenWidth, ScreenWidth / 16.0 * 9 + StatusBarHeight);
         } else {
+            
             weakself.playerView.isFullScreen = YES;
-            weakself.playerView.frame = CGRectMake(0, 0, SCREEN_WIDTH / 16.0*9, SCREEN_WIDTH);
+            weakself.playerView.frame = CGRectMake(0, StatusBarHeight, ScreenHeight, ScreenWidth - StatusBarHeight * 2);
+            NSLog(@"StatusBarHeight%f",StatusBarHeight);
         }
     }];
     
     
     self.donwloadButton.frame = CGRectMake(50, CGRectGetMaxY(self.playerView.frame) + 100, 120, 30);
-    self.playLocalButton.frame = CGRectMake(SCREEN_WIDTH - 50 - 120, CGRectGetMaxY(self.playerView.frame) + 100, 120, 30);
-    self.playLineButton.frame = CGRectMake(SCREEN_WIDTH - 50 - 120, CGRectGetMaxY(self.playLocalButton.frame) + 50, 120, 30);
+    self.playLocalButton.frame = CGRectMake(ScreenWidth - 50 - 120, CGRectGetMaxY(self.playerView.frame) + 100, 120, 30);
+    self.playLineButton.frame = CGRectMake(ScreenWidth - 50 - 120, CGRectGetMaxY(self.playLocalButton.frame) + 50, 120, 30);
 }
 
 - (void)setupData {

@@ -31,7 +31,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 - (void)setupView {
@@ -39,7 +39,7 @@
 }
 
 - (void)setupLayout {
-    self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    self.tableView.frame = CGRectMake(0, StatusBarHeight, ScreenWidth, ScreenHeight - StatusBarHeight);
 }
 
 - (void)setupData {

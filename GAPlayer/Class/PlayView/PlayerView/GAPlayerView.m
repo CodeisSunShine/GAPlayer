@@ -100,15 +100,18 @@
 - (void)setupLayout {
     CGFloat width = self.realWidth;
     CGFloat high = self.realHigh;
+    self.boomView.isFullScreen = self.isFullScreen;
+    
+    CGFloat distance = self.isFullScreen ? BottomSafeAreaHeight : 0;
     
     self.playerView.frame = CGRectMake(0, 0, width, high);
     self.selectView.frame = CGRectMake(0, 0, width, high);
     self.topView.frame = CGRectMake(0, 0, width, 44);
-    self.boomView.isFullScreen = self.isFullScreen;
-    self.boomView.frame = CGRectMake(0, high - 44, width, 44);
+    
+    self.boomView.frame = CGRectMake(0, high - 44 - distance, width, 44);
     self.loadingView.frame = CGRectMake((width - 30) * 0.5, (high - 30) * 0.5, 30, 30);
     self.adAlertView.frame = CGRectMake(width - 80 - 30, 20, 80, 25);
-    self.lockScreen.frame = CGRectMake(20, (self.realHigh - 50) * 0.5, 50, 50);
+    self.lockScreen.frame = CGRectMake(20, (self.realHigh - 50 - 2 * distance) * 0.5, 50, 50);
     [self.player makeProgressPlayerViewFrame:CGRectMake(0, 0, width, high)];
 }
 
