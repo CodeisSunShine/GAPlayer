@@ -15,6 +15,22 @@
 #define SCREEN_WIDTH ([[UIScreen mainScreen]bounds].size.width)
 #define SCREEN_HEIGHT (([UIScreen mainScreen].bounds.size.height == 812)?([UIScreen mainScreen].bounds.size.height - 34):([UIScreen mainScreen].bounds.size.height))
 
+#define ScreenHeight [UIScreen mainScreen].bounds.size.height
+#define ScreenWidth [UIScreen mainScreen].bounds.size.width
+#define ScreenScale [UIScreen mainScreen].scale
+
+#define isIPhoneX_Xs (ScreenWidth == 375.0 && ScreenHeight == 812.0) || (ScreenWidth == 812.0 && ScreenHeight == 375.0)
+#define isIPhoneXR (((ScreenWidth == 414.0 && ScreenHeight == 896.0) && ScreenScale == 2.0) || ((ScreenWidth == 896.0 && ScreenHeight == 414.0) && ScreenScale == 2.0))
+#define isIPhoneXsMax (((ScreenWidth == 414.0 && ScreenHeight == 896.0) && ScreenScale == 3.0) || ((ScreenWidth == 896.0 && ScreenHeight == 414.0) && ScreenScale == 3.0))
+#define isIPhoneXAbove (isIPhoneX_Xs || isIPhoneXR || isIPhoneXsMax)
+
+#define StatusBarHeight ((isIPhoneX_Xs || isIPhoneXR || isIPhoneXsMax) ? 44.0 : 20.0)
+#define NavBarHeight  44.0
+#define StatusNavBarHeight (StatusBarHeight + NavBarHeight)
+#define TabBarHeight (isIPhoneXAbove ? 83.0 : 49.0)
+#define BottomSafeAreaHeight (isIPhoneXAbove? 34.0 : 0.0)
+
+
 #import "DonwloadServiceProtocol.h"
 
 #define kLocalPlayURL @"http://127.0.0.1:1025/"
