@@ -125,7 +125,7 @@
             [weakSelf makeProgressViewWith:weakSelf.viewModel.curItemModel.playUrlType];
             [weakSelf playButtonAction];
         } else {
-            [weakSelf.loadingView startAnimating];
+            [weakSelf.loadingView stopAnimating];
             NSLog(@"数据解析失败");
         }
     }];
@@ -478,15 +478,16 @@
 
 // 播放状态回调
 - (void)playbackStatusCallback:(PlayerState)playerState {
-    [self.loadingView stopAnimating];
+    
+    if (playerState != kPlayerStateCacheing) {
+        [self.loadingView stopAnimating];
+    }
+    
     if (playerState == kPlayerStateReady) {
         if (self.beforeChangeLocation && self.beforeChangeLocation > 0) {
             [self playerJumpsToTheSpecifiedTimeLocation:self.beforeChangeLocation];
             self.beforeChangeLocation = 0;
         }
-    } else if (playerState == kPlayerStateCacheing) {
-        [self.loadingView startAnimating];
-        NSLog(@"currentThread%@",[NSThread currentThread]);
     } else if (playerState == kPlayerStateFinish) {
         [self singleVideoIsDone];
     }

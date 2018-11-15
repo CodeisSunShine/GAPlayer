@@ -17,18 +17,20 @@
     //1.1 获取resumeData
     NSData *resumeData;
     BOOL exist = [[NSFileManager defaultManager] fileExistsAtPath:resumDataUrl];
+    NSString *dataString = @"";
     if (exist) {
         resumeData = [NSData dataWithContentsOfFile:resumDataUrl] == nil ? nil : [NSData dataWithContentsOfFile:resumDataUrl];
-        NSLog(@"dataString%@",[[NSString alloc] initWithData:resumeData encoding:NSUTF8StringEncoding]);
+        dataString = [[NSString alloc] initWithData:resumeData encoding:NSUTF8StringEncoding];
+        NSLog(@"dataString%@",dataString);
     }
     //1.2 沙盒中有 resumeData
-    if (resumeData) {
+    if (resumeData && dataString.length > 0) {
         _downloadTask = [session downloadTaskWithResumeData:resumeData];
     } else {
         //1.3不存在 resumeData
         NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:self.itemModel.downloadUrl]];
         _downloadTask = [session downloadTaskWithRequest:request];
     }
+    
 }
-
 @end

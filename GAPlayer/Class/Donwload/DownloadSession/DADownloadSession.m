@@ -51,8 +51,10 @@
 #pragma mark - public
 //开始下载
 - (void)start {
-    self.isPause = NO;
-    [self download];
+    @synchronized(self) {
+        self.isPause = NO;
+        [self download];
+    }
 }
 
 //暂停下载
@@ -126,7 +128,7 @@
     } else {
         self.progress.completedUnitCount += 1;
     }
-//
+    //
     self.downloadModel.progress = [NSString stringWithFormat:@"%f",self.progress.fractionCompleted];
 }
 
@@ -212,7 +214,7 @@
 // 根据 downloadTask 获取 DADownloadItem
 - (DADownloadItem *)getDonwloadItemWith:(NSURLSessionTask *)downloadTask {
     @synchronized(self) {
-        DADownloadItem *downloadItem = self.downloadTaskDict[downloadTask.originalRequest.URL.absoluteString];
+        DADownloadItem *downloadItem = self.downloadTaskDict[downloadTask.currentRequest.URL.absoluteString];
         if (!downloadItem) {
             [self downloadFailueWithFailCode:kDADownloadFinishCodeItemLose error:nil];
             NSLog(@"Item丢失 %@",downloadTask.currentRequest.URL.absoluteString);
@@ -322,6 +324,7 @@ didFinishDownloadingToURL:(nonnull NSURL *)location {
  * 这个key来取到resumeData（和上面的resumeData时一样的），在通过resumeData恢复下载
  */
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionDownloadTask *)task didCompleteWithError:(NSError *)error {
+    NSLog(@"didCompleteWithError");
     DADownloadItem *downloadItem = [self getDonwloadItemWith:task];
     if (downloadItem) {
         [self reduceDownloadingCount];
@@ -339,13 +342,13 @@ didFinishDownloadingToURL:(nonnull NSURL *)location {
             [self currentTaskSuccessWith:downloadItem];
         }
     }
-}//540125187012156733
+}
 
 - (NSURLSession *)getDownloadURLSession {
     NSURLSession *session = nil;
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:[NSString stringWithFormat:@"%@",self.downloadModel.downloadId]];
     sessionConfig.timeoutIntervalForRequest = 20;
-//    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    //    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     session = [NSURLSession sessionWithConfiguration:sessionConfig
                                             delegate:self
                                        delegateQueue:[NSOperationQueue mainQueue]];

@@ -162,7 +162,7 @@ static NSString *const kFinishCallbackKey = @"Finish";
     cacheModel.downloadState = kDADownloadStateDownloading;
     [self makeProgressDownloadState:cacheModel];
     NSDictionary *downloadDict = [self makeProgressDownloadDict:cacheModel];
-    [self.downloadManager startDownloadWithDownloadDict:downloadDict toResolve:YES];
+    [self.downloadManager startDownloadWithDownloadDict:downloadDict toResolve:NO];
 }
 
 - (NSDictionary *)makeProgressDownloadDict:(GACacheModel *)cacheModel {
