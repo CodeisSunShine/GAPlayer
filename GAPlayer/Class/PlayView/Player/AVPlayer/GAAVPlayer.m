@@ -12,6 +12,7 @@
 #import <UIKit/UIKit.h>
 #import "FBKVOController.h"
 #import "NSObject+FBKVOController.h"
+#import "NSObject+GABackgroundMonitoring.h"
 
 @interface GAAVPlayer ()
 
@@ -26,7 +27,10 @@
 //总时长
 @property (nonatomic, assign) CGFloat totalTime;
 //监听播放时间的监听者
-@property (nonatomic,strong) id playbackTimeObserver;
+@property (nonatomic, strong) id playbackTimeObserver;
+//同意后台播放
+@property (nonatomic, assign) BOOL allowBackPlay;
+@property (nonatomic, assign) BOOL isBackground;
 
 @end
 
@@ -38,6 +42,9 @@
 - (instancetype)initWith:(UIView *)playView {
     if (self = [super init]) {
         self.playView = playView;
+        [self registerGroundMonitoring];
+        [self createSession];
+        self.allowBackPlay = YES;
     }
     return self;
 }
@@ -82,7 +89,39 @@
     self.playerLayer.frame = frame;
 }
 
+- (void)setVideoPlayTheBackground:(BOOL)isBackPlay {
+    if (self.allowBackPlay == isBackPlay) return;
+    if (self.isBackground) return;
+    self.allowBackPlay = isBackPlay;
+}
+
+#pragma mark - 前/后台 播放器处理
+- (void)registerGroundMonitoring {
+    __weak typeof(self)weakSelf = self;
+    [self registergroundBlock:^(BOOL isBackground) {
+         weakSelf.isBackground = isBackground;
+        if (weakSelf.allowBackPlay) {
+            if (isBackground) { // 进入后台
+                weakSelf.playerLayer.player = nil;
+                [weakSelf.playerLayer setPlayer:nil];
+            } else { // 进入前台
+                weakSelf.playerLayer.player = weakSelf.player;
+            }
+        } else {
+            if (!isBackground && !weakSelf.isPause) {
+                [weakSelf play];
+            }
+        }
+    }];
+}
+
 #pragma mark - private
+- (void)createSession {
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setActive:YES error:nil];
+    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+}
+
 // 创建播放器
 - (void)createPlayerWith:(GAPlayerModel *)playerModel {
     [self createAVPlayerItemWith:playerModel];
@@ -100,6 +139,7 @@
     if (self.currentItem) {
         [self releasePlayerItem];
     }
+    
     AVURLAsset *urlAsset = [AVURLAsset assetWithURL:[NSURL URLWithString:playerModel.playURL]];
     self.currentItem = [AVPlayerItem playerItemWithAsset:urlAsset];
     [self addPlayerItemObserver];

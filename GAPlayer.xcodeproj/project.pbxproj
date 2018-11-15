@@ -85,7 +85,6 @@
 		EC6125A02122CF1C00D40C96 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = EC61259B2122CF1C00D40C96 /* XPathQuery.m */; };
 		EC6125A22122CF5D00D40C96 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EC6125A12122CF5D00D40C96 /* libxml2.2.tbd */; };
 		EC6A52B62133C1C1001AAEC4 /* GAPublicParamTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6A52B52133C1C1001AAEC4 /* GAPublicParamTool.m */; };
-		EC6A52B92133CE14001AAEC4 /* GAPlayerView+Background.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6A52B82133CE14001AAEC4 /* GAPlayerView+Background.m */; };
 		EC7DC1BD212D08F700730286 /* HTTPErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7DC162212D08F700730286 /* HTTPErrorResponse.m */; };
 		EC7DC1BE212D08F700730286 /* HTTPDataResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7DC163212D08F700730286 /* HTTPDataResponse.m */; };
 		EC7DC1BF212D08F700730286 /* HTTPDynamicFileResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7DC165212D08F700730286 /* HTTPDynamicFileResponse.m */; };
@@ -125,6 +124,7 @@
 		EC7DC1EF212D70E100730286 /* mute.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EC7DC1EA212D70E100730286 /* mute.mp3 */; };
 		EC7DC1F0212D70E100730286 /* 林俊杰 - 她说.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EC7DC1EB212D70E100730286 /* 林俊杰 - 她说.mp3 */; };
 		EC7DC1F1212D70E100730286 /* WCHBackgroundRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7DC1EE212D70E100730286 /* WCHBackgroundRunner.m */; };
+		ECA12D11219BEC1100C37B22 /* NSObject+GABackgroundMonitoring.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA12D0F219BEC1100C37B22 /* NSObject+GABackgroundMonitoring.m */; };
 		ECCC22AB212A6239004200DE /* GAFMDBTool.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCC22AA212A6239004200DE /* GAFMDBTool.m */; };
 /* End PBXBuildFile section */
 
@@ -292,8 +292,6 @@
 		EC6125A12122CF5D00D40C96 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		EC6A52B42133C1C1001AAEC4 /* GAPublicParamTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAPublicParamTool.h; sourceTree = "<group>"; };
 		EC6A52B52133C1C1001AAEC4 /* GAPublicParamTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAPublicParamTool.m; sourceTree = "<group>"; };
-		EC6A52B72133CE14001AAEC4 /* GAPlayerView+Background.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GAPlayerView+Background.h"; sourceTree = "<group>"; };
-		EC6A52B82133CE14001AAEC4 /* GAPlayerView+Background.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "GAPlayerView+Background.m"; sourceTree = "<group>"; };
 		EC7DC15B212D08F700730286 /* HTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPConnection.h; sourceTree = "<group>"; };
 		EC7DC15C212D08F700730286 /* HTTPLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPLogging.h; sourceTree = "<group>"; };
 		EC7DC15D212D08F700730286 /* HTTPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPMessage.h; sourceTree = "<group>"; };
@@ -366,6 +364,8 @@
 		EC7DC1EB212D70E100730286 /* 林俊杰 - 她说.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "林俊杰 - 她说.mp3"; sourceTree = "<group>"; };
 		EC7DC1ED212D70E100730286 /* WCHBackgroundRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCHBackgroundRunner.h; sourceTree = "<group>"; };
 		EC7DC1EE212D70E100730286 /* WCHBackgroundRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCHBackgroundRunner.m; sourceTree = "<group>"; };
+		ECA12D0F219BEC1100C37B22 /* NSObject+GABackgroundMonitoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+GABackgroundMonitoring.m"; sourceTree = "<group>"; };
+		ECA12D10219BEC1100C37B22 /* NSObject+GABackgroundMonitoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+GABackgroundMonitoring.h"; sourceTree = "<group>"; };
 		ECCC22A9212A6239004200DE /* GAFMDBTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAFMDBTool.h; sourceTree = "<group>"; };
 		ECCC22AA212A6239004200DE /* GAFMDBTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAFMDBTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -669,8 +669,6 @@
 				EC612517212176D700D40C96 /* GAPlayerView+GestureAction.m */,
 				EC612515212176D700D40C96 /* GAPlayerView.h */,
 				EC612519212176D700D40C96 /* GAPlayerView.m */,
-				EC6A52B72133CE14001AAEC4 /* GAPlayerView+Background.h */,
-				EC6A52B82133CE14001AAEC4 /* GAPlayerView+Background.m */,
 			);
 			path = PlayerView;
 			sourceTree = "<group>";
@@ -980,6 +978,8 @@
 		EC6A52AF2133C154001AAEC4 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				ECA12D10219BEC1100C37B22 /* NSObject+GABackgroundMonitoring.h */,
+				ECA12D0F219BEC1100C37B22 /* NSObject+GABackgroundMonitoring.m */,
 				EC6A52B32133C1AE001AAEC4 /* PublicParamTool */,
 			);
 			path = Tool;
@@ -1582,6 +1582,7 @@
 				EC612554212176D700D40C96 /* UIView+SomehowTheScreen.m in Sources */,
 				EC7DC1C3212D08F700730286 /* HTTPMessage.m in Sources */,
 				EC7DC1DD212D08F700730286 /* DDFileLogger.m in Sources */,
+				ECA12D11219BEC1100C37B22 /* NSObject+GABackgroundMonitoring.m in Sources */,
 				EC61259D2122CF1C00D40C96 /* M3U8Parser+String.m in Sources */,
 				EC612506212176B500D40C96 /* FBKVOController.m in Sources */,
 				EC6125892122CEA000D40C96 /* DownloadError.m in Sources */,
@@ -1592,7 +1593,6 @@
 				EC61255B212176D700D40C96 /* CBAutoScrollLabel.m in Sources */,
 				EC7DC1D1212D08F700730286 /* DAVResponse.m in Sources */,
 				EC612560212176D700D40C96 /* GAIJKPlayer.m in Sources */,
-				EC6A52B92133CE14001AAEC4 /* GAPlayerView+Background.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

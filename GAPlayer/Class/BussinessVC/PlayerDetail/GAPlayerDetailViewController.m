@@ -27,6 +27,10 @@
 
 @property (nonatomic, strong) UIButton *playLineButton;
 
+@property (nonatomic, strong) UIButton *allowBackgroundButton;
+
+@property (nonatomic, assign) BOOL allow;
+
 @property (nonatomic, strong) GACacheModel *cacheModel;
 
 // 缓存数据库
@@ -45,6 +49,7 @@
     [self setupData];
     [self setupPlayerViewaAction];
     [self addDownloadCallBack];
+    self.allow = YES;
     NSLog(@"home dir is %@",NSHomeDirectory());
 }
 
@@ -53,6 +58,7 @@
     [self.view addSubview:self.playLineButton];
     [self.view addSubview:self.donwloadButton];
     [self.view addSubview:self.playLocalButton];
+    [self.view addSubview:self.allowBackgroundButton];
 }
 
 - (void)setupLayout {
@@ -73,9 +79,11 @@
     }];
     
     
-    self.donwloadButton.frame = CGRectMake(50, CGRectGetMaxY(self.playerView.frame) + 100, 120, 30);
-    self.playLocalButton.frame = CGRectMake(ScreenWidth - 50 - 120, CGRectGetMaxY(self.playerView.frame) + 100, 120, 30);
-    self.playLineButton.frame = CGRectMake(ScreenWidth - 50 - 120, CGRectGetMaxY(self.playLocalButton.frame) + 50, 120, 30);
+    self.donwloadButton.frame = CGRectMake(40, CGRectGetMaxY(self.playerView.frame) + 100, 140, 30);
+    self.allowBackgroundButton.frame = CGRectMake(40, CGRectGetMaxY(self.donwloadButton.frame) + 50, 140, 30);
+    self.playLocalButton.frame = CGRectMake(ScreenWidth - 40 - 140, CGRectGetMaxY(self.playerView.frame) + 100, 140, 30);
+    self.playLineButton.frame = CGRectMake(ScreenWidth - 40 - 140, CGRectGetMaxY(self.playLocalButton.frame) + 50, 140, 30);
+    
 }
 
 - (void)setupData {
@@ -169,6 +177,16 @@
     [self.playerView thePlayerLoadsTheData:[self makeProgressLineDataDict]];
 }
 
+- (void)allowBackgroundClick {
+    self.allow = !self.allow;
+    if (self.allow) {
+        [self.allowBackgroundButton setTitle:@"不允许后台播放" forState:UIControlStateNormal];
+    } else {
+        [self.allowBackgroundButton setTitle:@"允许后台播放" forState:UIControlStateNormal];
+    }
+    [self.playerView setPlayerViewPlayBackground:self.allow];
+}
+
 - (NSDictionary *)makeProgressLineDataDict {
     NSMutableDictionary *dataDict = [[NSMutableDictionary alloc] init];
     dataDict[@"hasVideoTitle"] = self.listModel.videoName;
@@ -254,6 +272,17 @@
         [_playLineButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
     return _playLineButton;
+}
+
+- (UIButton *)allowBackgroundButton {
+    if (!_allowBackgroundButton) {
+        _allowBackgroundButton = [[UIButton alloc] init];
+        [_allowBackgroundButton setTitle:@"不允许后台播放" forState:UIControlStateNormal];
+        [_allowBackgroundButton addTarget:self action:@selector(allowBackgroundClick) forControlEvents:UIControlEventTouchUpInside];
+        _allowBackgroundButton.backgroundColor = [UIColor grayColor];
+        [_allowBackgroundButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }
+    return _allowBackgroundButton;
 }
 
 - (GACacheManager *)cacheManager {

@@ -94,4 +94,9 @@ typedef NS_ENUM(NSUInteger, PlayerState) {
  */
 - (void)makeProgressPlayerViewFrame:(CGRect)frame;
 
+/**
+ * 设置视频后台播放
+ */
+- (void)setVideoPlayTheBackground:(BOOL)isBackPlay;
+
 @end

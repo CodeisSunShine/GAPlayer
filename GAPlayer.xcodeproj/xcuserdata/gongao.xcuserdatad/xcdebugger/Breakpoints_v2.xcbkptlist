@@ -196,11 +196,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GAPlayer/Class/BussinessVC/PlayerDetail/GAPlayerDetailViewController.m"
-            timestampString = "563858533.037921"
+            timestampString = "563942295.900236"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
+            startingLineNumber = "224"
+            endingLineNumber = "224"
             landmarkName = "-makeProgressLocalDataDict"
             landmarkType = "7">
          </BreakpointContent>
@@ -218,6 +218,22 @@
             startingLineNumber = "86"
             endingLineNumber = "86"
             landmarkName = "-downloadStateCallBack:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GAPlayer/Class/PlayView/PlayerView/GAPlayerView+Background.m"
+            timestampString = "563869435.800127"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "-registergroundBlock:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

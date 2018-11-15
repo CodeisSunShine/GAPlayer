@@ -13,12 +13,10 @@
 #import "GAPlayerSelectView.h"
 #import "GAPlayerViewModel.h"
 #import "GAPlayerView+GestureAction.h"
-#import "GAPlayerView+Background.h"
 #import "CMPlayerBrightnessView.h"
 #import "CMPlayerTimeView.h"
 #import "GAPlayerTool.h"
 #import "GAHttpSeverManager.h"
-#import "WCHBackgroundRunner.h"
 
 #define FastForwardTime 15
 
@@ -59,8 +57,6 @@
 @property (nonatomic, strong) UIButton *lockScreen;
 // 是否锁屏
 @property (nonatomic, assign) BOOL isLock;
-// 后台MP3
-@property (nonatomic, strong) WCHBackgroundRunner *backGroundRunner;
 
 @property (nonatomic, assign) CGFloat realWidth;
 @property (nonatomic, assign) CGFloat realHigh;
@@ -75,7 +71,7 @@
         self.beforeChangeLocation = 0;
         self.controlBarHidden = YES;
         [self registerForGestureEvent];
-        [self setupBackground];
+//        [self setupBackground];
         self.isLock = YES;
     }
     return self;
@@ -155,6 +151,9 @@
     self.player = nil;
 }
 
+- (void)setPlayerViewPlayBackground:(BOOL)isBackPlay {
+    [self.player setVideoPlayTheBackground:isBackPlay];
+}
 
 #pragma mark - private
 // 展示选择视图
@@ -311,25 +310,6 @@
         weakSelf.timeView.hidden = YES;
         weakSelf.isGestureDraging = NO;
     });
-}
-
-#pragma mark - Background
-- (void)setupBackground {
-    __weak typeof(self)weakSelf = self;
-    [self registergroundBlock:^(BOOL isBackground) {
-        [weakSelf makeProgressBackground:isBackground];
-    }];
-}
-
-- (void)makeProgressBackground:(BOOL)isBackground {
-    if (!self.allowBackground) return;
-    if (self.player.playerState == kPlayerStatePlaying || self.player.playerState == kPlayerStateReady) {
-        if (isBackground) {
-            [self.backGroundRunner runnerDidEnterBackground];
-        } else {
-            [self.backGroundRunner runnerWillEnterForeground];
-        }
-    }
 }
 
 #pragma mark - viewAction
@@ -542,10 +522,6 @@
     self.lockScreen.hidden = !isFullScreen;
 }
 
-- (BOOL)allowBackground {
-    return YES;
-}
-
 - (GAPlayControlBar_TopView *)topView {
     if (!_topView) {
         _topView = [[GAPlayControlBar_TopView alloc] init];
@@ -660,13 +636,6 @@
         _httpSeverManager = [GAHttpSeverManager sharedInstance];
     }
     return _httpSeverManager;
-}
-
-- (WCHBackgroundRunner *)backGroundRunner {
-    if (!_backGroundRunner) {
-        _backGroundRunner = [[WCHBackgroundRunner alloc]init];
-    }
-    return _backGroundRunner;
 }
 
 @end

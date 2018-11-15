@@ -9,6 +9,7 @@
 #import "GAIJKPlayer.h"
 #import "NSObject+FBKVOController.h"
 #import <IJKMediaFramework/IJKMediaFramework.h>
+#import "NSObject+GABackgroundMonitoring.h"
 
 @interface GAIJKPlayer ()
 
@@ -23,6 +24,9 @@
 @property (nonatomic, strong) dispatch_source_t timer;
 
 @property (nonatomic, assign) BOOL timerRuning;
+//同意后台播放
+@property (nonatomic, assign) BOOL allowBackPlay;
+@property (nonatomic, assign) BOOL isBackground;
 
 @end
 
@@ -34,6 +38,8 @@
         self.playView = playView;
         [self initializeTheTimer];
         [self reloadPlayerDuration];
+        [self registerGroundMonitoring];
+        self.allowBackPlay = YES;
     }
     return self;
 }
@@ -57,9 +63,11 @@
 
 // 暂停
 - (void)pause {
-    self.isPause = YES;
-    [self.player pause];
-    [self pauseTimer];
+    if (!self.isPause) {
+        self.isPause = YES;
+        [self.player pause];
+        [self pauseTimer];
+    }
 }
 
 // 关闭
@@ -79,6 +87,31 @@
 
 - (void)makeProgressPlayerViewFrame:(CGRect)frame {
     self.player.view.frame = frame;
+}
+
+- (void)setVideoPlayTheBackground:(BOOL)isBackPlay {
+    if (self.allowBackPlay == isBackPlay) return;
+    if (self.isBackground) return;
+    self.allowBackPlay = isBackPlay;
+}
+
+#pragma mark - 前/后台 播放器处理
+- (void)registerGroundMonitoring {
+    __weak typeof(self)weakSelf = self;
+    [self registergroundBlock:^(BOOL isBackground) {
+        weakSelf.isBackground = isBackground;
+        if (!weakSelf.allowBackPlay) {
+            if (isBackground) {
+                if (!weakSelf.isPause) {
+                    [self.player pause];
+                }
+            } else {
+                if (!weakSelf.isPause) {
+                    [self.player play];
+                }
+            }
+        }
+    }];
 }
 
 #pragma mark - private

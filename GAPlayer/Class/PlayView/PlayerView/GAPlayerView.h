@@ -62,12 +62,6 @@ typedef void(^PlayerViewGroundBlock)(BOOL isBackground);
 // 手势回调
 @property (nonatomic, strong) GsetureViewGsetureBlock gsetureBlock;
 
-#pragma mark - GAPlayerView+Background
-// 进入前后台回调
-@property (nonatomic, strong) PlayerViewGroundBlock groundBlock;
-// 是否需要前后台回调
-@property (nonatomic, assign) BOOL needGround;
-
 #pragma mark - publick
 /**
  是否全屏
@@ -78,11 +72,6 @@ typedef void(^PlayerViewGroundBlock)(BOOL isBackground);
  播放器按钮回调
  */
 @property (nonatomic, strong) PlayerViewActionBlock viewActionBlock;
-
-/**
- 同意后台播放
- */
-@property (nonatomic, assign) BOOL allowBackground;
 
 /**
  加载播放器需要的数据
@@ -99,7 +88,6 @@ typedef void(^PlayerViewGroundBlock)(BOOL isBackground);
  */
 - (void)pausePlayer;
 
-
 /**
  改变播放器下载状态
  */
@@ -109,5 +97,10 @@ typedef void(^PlayerViewGroundBlock)(BOOL isBackground);
  销毁播放器
  */
 - (void)stopPlayerView;
+
+/**
+ 设置播放器是否后台播放视频
+ */
+- (void)setPlayerViewPlayBackground:(BOOL)isBackPlay;
 
 @end

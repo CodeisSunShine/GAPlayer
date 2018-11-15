@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "GAHomeListViewController.h"
-#import "WCHBackgroundRunner.h"
 
 @interface AppDelegate ()
 
