@@ -67,6 +67,7 @@
 
 - (NSString *)makeProgressQuerySql:(NSDictionary *)dict {
     return [NSString stringWithFormat:@"SELECT * FROM download where videoId = '%ld'",[dict[@"videoId"] integerValue]];
+//    return @"SELECT * FROM download";
 }
 
 - (NSString *)makeProgressQueryUnfinishedSql {
@@ -79,7 +80,7 @@
 }
 
 - (NSString *)makeProgressModifySql:(NSDictionary *)dict {
-    NSString *modifySql = [NSString stringWithFormat:@"UPDATE download SET downloadState = '%@' WHERE videoId = '%ld'",dict[@"downloadState"],[dict[@"videoId"] integerValue]];
+    NSString *modifySql = [NSString stringWithFormat:@"UPDATE download SET downloadState = '%@' , percent = '%@' WHERE videoId = '%ld'",dict[@"downloadState"],dict[@"percent"],[dict[@"videoId"] integerValue]];
     return modifySql;
 }
 

@@ -62,11 +62,13 @@ typedef void(^PlayerViewGroundBlock)(BOOL isBackground);
 // 手势回调
 @property (nonatomic, strong) GsetureViewGsetureBlock gsetureBlock;
 
-#pragma mark - publick
+#pragma mark - public
 /**
  是否全屏
  */
 @property (nonatomic, assign) BOOL isFullScreen;
+
+@property (nonatomic, assign, readonly) BOOL isPlay;
 
 /**
  播放器按钮回调

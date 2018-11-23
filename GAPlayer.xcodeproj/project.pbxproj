@@ -125,6 +125,15 @@
 		EC7DC1F0212D70E100730286 /* 林俊杰 - 她说.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EC7DC1EB212D70E100730286 /* 林俊杰 - 她说.mp3 */; };
 		EC7DC1F1212D70E100730286 /* WCHBackgroundRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7DC1EE212D70E100730286 /* WCHBackgroundRunner.m */; };
 		ECA12D11219BEC1100C37B22 /* NSObject+GABackgroundMonitoring.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA12D0F219BEC1100C37B22 /* NSObject+GABackgroundMonitoring.m */; };
+		ECA7834D21A4FC1900F42D0E /* GAHomeListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA7834C21A4FC1900F42D0E /* GAHomeListTableViewCell.m */; };
+		ECA7835421A507E700F42D0E /* GADownloadListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA7835321A507E700F42D0E /* GADownloadListViewController.m */; };
+		ECA7835721A507FE00F42D0E /* GADownloadListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA7835621A507FE00F42D0E /* GADownloadListModel.m */; };
+		ECA7835D21A546BB00F42D0E /* GAPlayerDetailTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA7835C21A546BB00F42D0E /* GAPlayerDetailTableView.m */; };
+		ECA7836021A546DE00F42D0E /* GAPlayerDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA7835F21A546DE00F42D0E /* GAPlayerDetailTableViewCell.m */; };
+		ECA7836321A549BF00F42D0E /* GAPlayerDetailCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA7836221A549BF00F42D0E /* GAPlayerDetailCellModel.m */; };
+		ECA7836621A54A6900F42D0E /* GAPlayerDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA7836521A54A6900F42D0E /* GAPlayerDetailModel.m */; };
+		ECA7836921A561B300F42D0E /* GAPlayerDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA7836821A561B300F42D0E /* GAPlayerDetailViewModel.m */; };
+		ECB6C8F221A81670007AD7F9 /* GAMemoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6C8F121A81670007AD7F9 /* GAMemoryView.m */; };
 		ECCC22AB212A6239004200DE /* GAFMDBTool.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCC22AA212A6239004200DE /* GAFMDBTool.m */; };
 /* End PBXBuildFile section */
 
@@ -366,6 +375,24 @@
 		EC7DC1EE212D70E100730286 /* WCHBackgroundRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCHBackgroundRunner.m; sourceTree = "<group>"; };
 		ECA12D0F219BEC1100C37B22 /* NSObject+GABackgroundMonitoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+GABackgroundMonitoring.m"; sourceTree = "<group>"; };
 		ECA12D10219BEC1100C37B22 /* NSObject+GABackgroundMonitoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+GABackgroundMonitoring.h"; sourceTree = "<group>"; };
+		ECA7834B21A4FC1900F42D0E /* GAHomeListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAHomeListTableViewCell.h; sourceTree = "<group>"; };
+		ECA7834C21A4FC1900F42D0E /* GAHomeListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAHomeListTableViewCell.m; sourceTree = "<group>"; };
+		ECA7835221A507E700F42D0E /* GADownloadListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GADownloadListViewController.h; sourceTree = "<group>"; };
+		ECA7835321A507E700F42D0E /* GADownloadListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GADownloadListViewController.m; sourceTree = "<group>"; };
+		ECA7835521A507FE00F42D0E /* GADownloadListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GADownloadListModel.h; sourceTree = "<group>"; };
+		ECA7835621A507FE00F42D0E /* GADownloadListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GADownloadListModel.m; sourceTree = "<group>"; };
+		ECA7835B21A546BB00F42D0E /* GAPlayerDetailTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAPlayerDetailTableView.h; sourceTree = "<group>"; };
+		ECA7835C21A546BB00F42D0E /* GAPlayerDetailTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAPlayerDetailTableView.m; sourceTree = "<group>"; };
+		ECA7835E21A546DE00F42D0E /* GAPlayerDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAPlayerDetailTableViewCell.h; sourceTree = "<group>"; };
+		ECA7835F21A546DE00F42D0E /* GAPlayerDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAPlayerDetailTableViewCell.m; sourceTree = "<group>"; };
+		ECA7836121A549BF00F42D0E /* GAPlayerDetailCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAPlayerDetailCellModel.h; sourceTree = "<group>"; };
+		ECA7836221A549BF00F42D0E /* GAPlayerDetailCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAPlayerDetailCellModel.m; sourceTree = "<group>"; };
+		ECA7836421A54A6900F42D0E /* GAPlayerDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAPlayerDetailModel.h; sourceTree = "<group>"; };
+		ECA7836521A54A6900F42D0E /* GAPlayerDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAPlayerDetailModel.m; sourceTree = "<group>"; };
+		ECA7836721A561B300F42D0E /* GAPlayerDetailViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAPlayerDetailViewModel.h; sourceTree = "<group>"; };
+		ECA7836821A561B300F42D0E /* GAPlayerDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAPlayerDetailViewModel.m; sourceTree = "<group>"; };
+		ECB6C8F021A81670007AD7F9 /* GAMemoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAMemoryView.h; sourceTree = "<group>"; };
+		ECB6C8F121A81670007AD7F9 /* GAMemoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAMemoryView.m; sourceTree = "<group>"; };
 		ECCC22A9212A6239004200DE /* GAFMDBTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAFMDBTool.h; sourceTree = "<group>"; };
 		ECCC22AA212A6239004200DE /* GAFMDBTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAFMDBTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -436,6 +463,9 @@
 		EC3B7E7B21266D9000EB09AD /* PlayerDetail */ = {
 			isa = PBXGroup;
 			children = (
+				ECA7835921A5469300F42D0E /* Model */,
+				ECA7835A21A5469300F42D0E /* View */,
+				ECA7835821A5469200F42D0E /* ViewModel */,
 				EC3B7E842126724200EB09AD /* GAPlayerDetailViewController.h */,
 				EC3B7E852126724200EB09AD /* GAPlayerDetailViewController.m */,
 			);
@@ -449,6 +479,8 @@
 				EC3B7E7F21266DC200EB09AD /* GAHomeListViewController.m */,
 				EC3B7E8121266F0700EB09AD /* GAHomeListModel.h */,
 				EC3B7E8221266F0700EB09AD /* GAHomeListModel.m */,
+				ECA7834B21A4FC1900F42D0E /* GAHomeListTableViewCell.h */,
+				ECA7834C21A4FC1900F42D0E /* GAHomeListTableViewCell.m */,
 			);
 			path = HomeList;
 			sourceTree = "<group>";
@@ -456,6 +488,10 @@
 		EC3B7E7D21266D9000EB09AD /* DownloadList */ = {
 			isa = PBXGroup;
 			children = (
+				ECA7835121A507CC00F42D0E /* Model */,
+				ECA7834E21A507CC00F42D0E /* View */,
+				ECA7834F21A507CC00F42D0E /* ViewController */,
+				ECA7835021A507CC00F42D0E /* ViewModel */,
 			);
 			path = DownloadList;
 			sourceTree = "<group>";
@@ -1360,6 +1396,71 @@
 			path = BackgroundRunner;
 			sourceTree = "<group>";
 		};
+		ECA7834E21A507CC00F42D0E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		ECA7834F21A507CC00F42D0E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				ECA7835221A507E700F42D0E /* GADownloadListViewController.h */,
+				ECA7835321A507E700F42D0E /* GADownloadListViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		ECA7835021A507CC00F42D0E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		ECA7835121A507CC00F42D0E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ECA7835521A507FE00F42D0E /* GADownloadListModel.h */,
+				ECA7835621A507FE00F42D0E /* GADownloadListModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		ECA7835821A5469200F42D0E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				ECA7836121A549BF00F42D0E /* GAPlayerDetailCellModel.h */,
+				ECA7836221A549BF00F42D0E /* GAPlayerDetailCellModel.m */,
+				ECA7836721A561B300F42D0E /* GAPlayerDetailViewModel.h */,
+				ECA7836821A561B300F42D0E /* GAPlayerDetailViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		ECA7835921A5469300F42D0E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ECA7836421A54A6900F42D0E /* GAPlayerDetailModel.h */,
+				ECA7836521A54A6900F42D0E /* GAPlayerDetailModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		ECA7835A21A5469300F42D0E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ECA7835B21A546BB00F42D0E /* GAPlayerDetailTableView.h */,
+				ECA7835C21A546BB00F42D0E /* GAPlayerDetailTableView.m */,
+				ECA7835E21A546DE00F42D0E /* GAPlayerDetailTableViewCell.h */,
+				ECA7835F21A546DE00F42D0E /* GAPlayerDetailTableViewCell.m */,
+				ECB6C8F021A81670007AD7F9 /* GAMemoryView.h */,
+				ECB6C8F121A81670007AD7F9 /* GAMemoryView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1508,6 +1609,7 @@
 				EC61255D212176D700D40C96 /* ASOTwoStateButton.m in Sources */,
 				EC3B7E9E21269EFE00EB09AD /* GADataBaseManager.m in Sources */,
 				EC61255E212176D700D40C96 /* GAPlayControlBar_BoomView.m in Sources */,
+				ECA7835D21A546BB00F42D0E /* GAPlayerDetailTableView.m in Sources */,
 				EC6125A02122CF1C00D40C96 /* XPathQuery.m in Sources */,
 				EC61259F2122CF1C00D40C96 /* TFHppleElement.m in Sources */,
 				EC3B7EB42126ABA600EB09AD /* DownloadMemory.m in Sources */,
@@ -1525,6 +1627,7 @@
 				EC3B7EB52126ABA600EB09AD /* MemoryModel.m in Sources */,
 				EC7DC1BD212D08F700730286 /* HTTPErrorResponse.m in Sources */,
 				EC7DC1C6212D08F700730286 /* MultipartMessageHeaderField.m in Sources */,
+				ECB6C8F221A81670007AD7F9 /* GAMemoryView.m in Sources */,
 				EC61256F2122CE1300D40C96 /* DADonwloadHandle.m in Sources */,
 				EC612505212176B500D40C96 /* NSObject+FBKVOController.m in Sources */,
 				EC7DC1C8212D08F700730286 /* MultipartMessageHeader.m in Sources */,
@@ -1544,14 +1647,17 @@
 				EC6125842122CE9100D40C96 /* DADownloadItemModel.m in Sources */,
 				EC6124BD212174E600D40C96 /* main.m in Sources */,
 				EC7DC1C0212D08F700730286 /* HTTPFileResponse.m in Sources */,
+				ECA7836921A561B300F42D0E /* GAPlayerDetailViewModel.m in Sources */,
 				EC7DC1DA212D08F700730286 /* DDLog.m in Sources */,
 				EC612551212176D700D40C96 /* GAPlayerView+GestureAction.m in Sources */,
 				EC61258D2122CECE00D40C96 /* DADownloadItem.m in Sources */,
 				EC6124AF212174E500D40C96 /* AppDelegate.m in Sources */,
+				ECA7836621A54A6900F42D0E /* GAPlayerDetailModel.m in Sources */,
 				EC612558212176D700D40C96 /* GAPlayerSelectVIewModel.m in Sources */,
 				EC61257C2122CE7800D40C96 /* DADownloadUrlResolver.m in Sources */,
 				EC7DC1CA212D08F700730286 /* DDNumber.m in Sources */,
 				EC7DC1BF212D08F700730286 /* HTTPDynamicFileResponse.m in Sources */,
+				ECA7834D21A4FC1900F42D0E /* GAHomeListTableViewCell.m in Sources */,
 				EC7DC1C9212D08F700730286 /* HTTPAuthenticationRequest.m in Sources */,
 				EC612550212176D700D40C96 /* GAPlayerViewModel.m in Sources */,
 				EC7DC1D5212D08F700730286 /* DDTTYLogger.m in Sources */,
@@ -1580,8 +1686,11 @@
 				EC61255A212176D700D40C96 /* GAPlayerSelectView.m in Sources */,
 				EC6125852122CE9100D40C96 /* DADownloadModel.m in Sources */,
 				EC612554212176D700D40C96 /* UIView+SomehowTheScreen.m in Sources */,
+				ECA7836321A549BF00F42D0E /* GAPlayerDetailCellModel.m in Sources */,
 				EC7DC1C3212D08F700730286 /* HTTPMessage.m in Sources */,
+				ECA7835721A507FE00F42D0E /* GADownloadListModel.m in Sources */,
 				EC7DC1DD212D08F700730286 /* DDFileLogger.m in Sources */,
+				ECA7835421A507E700F42D0E /* GADownloadListViewController.m in Sources */,
 				ECA12D11219BEC1100C37B22 /* NSObject+GABackgroundMonitoring.m in Sources */,
 				EC61259D2122CF1C00D40C96 /* M3U8Parser+String.m in Sources */,
 				EC612506212176B500D40C96 /* FBKVOController.m in Sources */,
@@ -1590,6 +1699,7 @@
 				EC7DC1DC212D08F700730286 /* DDAbstractDatabaseLogger.m in Sources */,
 				EC612555212176D700D40C96 /* GAPlayerItemModel.m in Sources */,
 				EC3B7E932126949700EB09AD /* FMDatabaseQueue.m in Sources */,
+				ECA7836021A546DE00F42D0E /* GAPlayerDetailTableViewCell.m in Sources */,
 				EC61255B212176D700D40C96 /* CBAutoScrollLabel.m in Sources */,
 				EC7DC1D1212D08F700730286 /* DAVResponse.m in Sources */,
 				EC612560212176D700D40C96 /* GAIJKPlayer.m in Sources */,

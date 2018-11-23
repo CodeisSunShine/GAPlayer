@@ -21,7 +21,7 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc]init];
     self.window.frame = [UIScreen mainScreen].bounds;
-    self.window.rootViewController = [[GAHomeListViewController alloc] init];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[GAHomeListViewController alloc] init]];
     [self.window makeKeyAndVisible];
     [UIApplication sharedApplication].statusBarHidden = NO;
     return YES;

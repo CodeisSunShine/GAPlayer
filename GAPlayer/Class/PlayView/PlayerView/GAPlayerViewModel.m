@@ -35,6 +35,7 @@
         playerItemModel.hasVideoTitle = dataDict[@"hasVideoTitle"];
         playerItemModel.beginningAdUrl = dataDict[@"beginingAdUrl"];
         playerItemModel.endingAdUrl = dataDict[@"endingAdUrl"];
+        playerItemModel.videoId = dataDict[@"lectureID"];
         if (playerItemModel.beginningAdUrl && playerItemModel.beginningAdUrl.length > 0) {
             playerItemModel.playUrlType = kPlayUrlTypeBeginAd;
         }
