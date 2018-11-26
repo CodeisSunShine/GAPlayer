@@ -63,10 +63,8 @@
     
     __weak typeof(self)weakSelf = self;
     cellModel.playOpertionBlock = ^(GAPlayerDetailCellModel * _Nonnull cellModel) {
+        cellModel.detailModel.isActive = YES;
         [weakSelf changLectureWith:cellModel.detailModel];
-        if (weakSelf.actionBlock) {
-            weakSelf.actionBlock(cellModel.detailModel, kPDActionTypePlay);
-        }
     };
     
     cellModel.downloadOptionBlock = ^(GAPlayerDetailCellModel * _Nonnull cellModel) {
@@ -78,15 +76,22 @@
 }
 
 // 切换视频 将UI进行处理
-- (void)changLectureWith:(GAPlayerDetailModel *)videoModel {
-    GAPlayerDetailCellModel *lectureCellVModel = [self getLectureCellVModelWith:videoModel];
+- (void)changLectureWith:(GAPlayerDetailModel *)detailModel {
+    GAPlayerDetailCellModel *lectureCellVModel = [self getLectureCellVModelWith:detailModel];
     if (!lectureCellVModel) return;
+    PlayerDetailActionType actionType;
     if (lectureCellVModel != self.currentCellVModel) {
         self.currentCellVModel.isCurrentSelect = NO;
         self.currentCellVModel = lectureCellVModel;
         self.currentCellVModel.isCurrentSelect = YES;
+        actionType = kPDActionTypeChangeSource;
     } else {
+        actionType = kPDActionTypeChangeState;
         self.currentCellVModel.isCurrentSelect = !self.currentCellVModel.isCurrentSelect;
+    }
+    
+    if (self.actionBlock) {
+        self.actionBlock(detailModel, actionType);
     }
 }
 
@@ -125,9 +130,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     GAPlayerDetailCellModel *cellModel = self.dataSource[indexPath.row];
-    if (self.actionBlock) {
-        self.actionBlock(cellModel.detailModel, kPDActionTypeSelect);
-    }
+    cellModel.detailModel.isActive = YES;
+    [self changLectureWith:cellModel.detailModel];
 }
 
 - (UITableView *)tableView {

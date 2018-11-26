@@ -28,6 +28,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (GAPlayerDetailModel *)getDetailModelWithVideoId:(NSString *)videoId;
 
+/**
+ * 获取播放视频需要的播放字典
+ */
+- (NSDictionary *)makeProgressPlayData:(GAPlayerDetailModel *)detailModel;
+
 @end
 
 NS_ASSUME_NONNULL_END

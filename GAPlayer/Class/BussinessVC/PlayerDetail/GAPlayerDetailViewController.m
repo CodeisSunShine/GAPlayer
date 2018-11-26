@@ -70,8 +70,9 @@
     [self.viewModel requestPlayerDetailData:nil successBlock:^(BOOL success, id  _Nonnull object) {
         [weakself.tableView setObject:object];
         GAPlayerDetailModel *detailModel = [weakself.viewModel getDetailModelWithVideoId:weakself.listModel.videoId];
+        NSDictionary *playDict = [weakself.viewModel makeProgressPlayData:detailModel];
         [weakself.tableView changLectureWith:detailModel];
-        [weakself.playerView thePlayerLoadsTheData:detailModel.playDict];
+        [weakself.playerView thePlayerLoadsTheData:playDict];
     }];
     
 }
@@ -81,9 +82,10 @@
 - (void)makeProgressTableViewBlock {
     __weak __typeof(self) weakself= self;
     self.tableView.actionBlock = ^(GAPlayerDetailModel *detailModel, PlayerDetailActionType actionType) {
-        if (actionType == kPDActionTypeSelect) {
-            
-        } else if (actionType == kPDActionTypePlay) {
+        if (actionType == kPDActionTypeChangeSource) {
+            NSDictionary *playDict = [weakself.viewModel makeProgressPlayData:detailModel];
+            [weakself.playerView thePlayerLoadsTheData:playDict];
+        } else if (actionType == kPDActionTypeChangeState) {
             if (weakself.playerView.isPlay) {
                 [weakself.playerView pausePlayer];
             } else {
@@ -104,24 +106,14 @@
             [weakself dismissViewControllerAnimated:YES completion:nil];
         } else if (controlBarType == kPVActionTypePlay) {
             GAPlayerDetailModel *playerModel = [weakself.viewModel getDetailModelWithVideoId:videoId];
-            [weakself.tableView changLectureWith:playerModel];
+            if (playerModel.isActive) {
+                playerModel.isActive = NO;
+            } else {
+                [weakself.tableView changLectureWith:playerModel];
+            }
         }
     };
 }
-
-//- (NSDictionary *)makeProgressLocalDataDict {
-//    NSMutableDictionary *dataDict = [[NSMutableDictionary alloc] init];
-//    dataDict[@"hasVideoTitle"] = self.listModel.videoName;
-//    dataDict[@"lectureID"] = self.listModel.videoId;
-//
-//    NSMutableDictionary *videoDict = [[NSMutableDictionary alloc] init];
-//    dataDict[@"scheme"] = @"sd"; // 清晰度标识
-//    videoDict[@"sd"] = [NSString stringWithFormat:@"%@%@/%@",kLocalPlayURL,self.cacheModel.filePath,self.listModel.videoName];
-//    dataDict[@"isOnline"] = @"0";// 本地播放
-//    // 播放地址数据
-//    dataDict[@"video"] = [videoDict copy];
-//    return [dataDict copy];
-//}
 
 - (BOOL)shouldAutorotate {
     return NO;

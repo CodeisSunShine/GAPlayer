@@ -67,7 +67,7 @@ typedef void(^PlayerDetailCellPlayOpertionBlock)(GAPlayerDetailCellModel *cellMo
 
 @property (nonatomic, assign) CGRect courseLabelF;
 @property (nonatomic, assign) CGRect studyTimeLabelF;
-@property (nonatomic, assign) CGRect progressLabelF;
+@property (nonatomic, assign) CGRect speedLabelF;
 @property (nonatomic, assign) CGRect stateLabelF;
 @property (nonatomic, assign) CGRect stateButtonF;
 @property (nonatomic, assign) CGRect downloadStateViewF;

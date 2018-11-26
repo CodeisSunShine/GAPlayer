@@ -48,6 +48,9 @@
     [self.tsNameMutableArray removeAllObjects];
     [self.tsUrlMutableArray removeAllObjects];
     [self.tsTimeArray removeAllObjects];
+    
+    self.lastM3U8String = [self.originM3U8String mutableCopy];
+    
     //根据换行符，得到当前文本的集合
     NSArray *m3u8Arr = [self.originM3U8String componentsSeparatedByString:@"\n"];
     if ([m3u8Arr count] > 0) {
@@ -60,6 +63,7 @@
                         NSArray *array = [obj componentsSeparatedByString:@"/"];
                         if (array.count > 0) {
                             [self.tsNameMutableArray addObject:array.lastObject];
+                            self.lastM3U8String = [self.lastM3U8String stringByReplacingOccurrencesOfString:obj withString:array.lastObject];
                         }
                         [self.tsUrlMutableArray addObject:obj];
                     } else {

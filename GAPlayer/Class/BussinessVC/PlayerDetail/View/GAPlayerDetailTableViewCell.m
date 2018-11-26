@@ -13,7 +13,7 @@
 // 课程
 @property (nonatomic, strong) UILabel *courseLabel;
 // 下载进度
-@property (nonatomic, strong) UILabel *progressLabel;
+@property (nonatomic, strong) UILabel *speedLabel;
 // 下载状态
 @property (nonatomic, strong) UILabel *stateLabel;
 // 下载状态
@@ -59,7 +59,7 @@ static NSString *cGAPlayerDetailTableViewCell = @"GAPlayerDetailTableViewCell";
     [self.contentView addSubview:self.stateButton];
     [self.contentView addSubview:self.bottomLineView];
     
-    [self.stateButton addSubview:self.progressLabel];
+    [self.stateButton addSubview:self.speedLabel];
     [self.stateButton addSubview:self.downloadStateView];
     [self.stateButton addSubview:self.stateLabel];
     [self.contentView addSubview:self.progressView];
@@ -69,7 +69,7 @@ static NSString *cGAPlayerDetailTableViewCell = @"GAPlayerDetailTableViewCell";
     self.playButton.frame = self.cellVModel.playButtonF;
     self.courseLabel.frame = self.cellVModel.courseLabelF;
     self.stateButton.frame = self.cellVModel.stateButtonF;
-    self.progressLabel.frame = self.cellVModel.progressLabelF;
+    self.speedLabel.frame = self.cellVModel.speedLabelF;
     self.downloadStateView.frame = self.cellVModel.downloadStateViewF;
     self.stateLabel.frame = self.cellVModel.stateLabelF;
     self.bottomLineView.frame = self.cellVModel.lineF;
@@ -87,6 +87,7 @@ static NSString *cGAPlayerDetailTableViewCell = @"GAPlayerDetailTableViewCell";
         
         self.cellVModel.downloadStateBlock = ^{
             [weakSelf setupData];
+            [weakSelf setupLayout];
         };
         
         self.cellVModel.downloadProgressBlock = ^{
@@ -96,6 +97,7 @@ static NSString *cGAPlayerDetailTableViewCell = @"GAPlayerDetailTableViewCell";
 
         self.cellVModel.downloadSpeedBlock = ^{
             [weakSelf setupData];
+            [weakSelf setupLayout];
         };
         
         [self setupLayout];
@@ -108,9 +110,9 @@ static NSString *cGAPlayerDetailTableViewCell = @"GAPlayerDetailTableViewCell";
     self.downloadStateView.image = [UIImage imageNamed:self.cellVModel.downloadImageNmae];
     self.stateLabel.text = self.cellVModel.stateName;
     self.stateLabel.textColor = self.cellVModel.stateColor;
-    self.progressLabel.text = self.cellVModel.speed;
+    self.speedLabel.text = self.cellVModel.speed;
     // 下载中的状态才显示下载进度
-    self.progressLabel.hidden = self.cellVModel.progressHide;
+    self.speedLabel.hidden = self.cellVModel.progressHide;
     self.progressView.progress = self.cellVModel.progress;
     [self.playButton setImage:[UIImage imageNamed:self.cellVModel.playImageName] forState:UIControlStateNormal];
 }
@@ -155,14 +157,14 @@ static NSString *cGAPlayerDetailTableViewCell = @"GAPlayerDetailTableViewCell";
     return _stateButton;
 }
 
-- (UILabel *)progressLabel {
-    if (!_progressLabel) {
-        _progressLabel = [[UILabel alloc]init];
-        _progressLabel.textColor = kMyColor(255, 98, 134);
-        _progressLabel.font = [UIFont systemFontOfSize:8];
-        _progressLabel.textAlignment = 1;
+- (UILabel *)speedLabel {
+    if (!_speedLabel) {
+        _speedLabel = [[UILabel alloc]init];
+        _speedLabel.textColor = kMyColor(255, 98, 134);
+        _speedLabel.font = [UIFont systemFontOfSize:8];
+        _speedLabel.textAlignment = 1;
     }
-    return _progressLabel;
+    return _speedLabel;
 }
 
 - (UILabel *)stateLabel {

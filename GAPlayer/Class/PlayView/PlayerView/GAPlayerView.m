@@ -123,6 +123,7 @@
             [weakSelf.boomView reloadSpeedBtnWith:weakSelf.viewModel.curItemModel.currentSpeed];
             [weakSelf.loadingView stopAnimating];
             [weakSelf makeProgressViewWith:weakSelf.viewModel.curItemModel.playUrlType];
+            weakSelf.isPlay = NO;
             [weakSelf playButtonAction];
         } else {
             [weakSelf.loadingView stopAnimating];

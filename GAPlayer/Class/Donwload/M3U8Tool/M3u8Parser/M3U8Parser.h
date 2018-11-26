@@ -13,7 +13,12 @@
 /**
  * 存储m3u8的临时文件字符串 　m3u8文件内部url
  */
-@property (nonatomic, strong) NSString *originM3U8String;
+@property (nonatomic, strong) NSMutableString *originM3U8String;
+
+/**
+ * 存储m3u8的最终文件字符串 　m3u8文件内部url
+ */
+@property (nonatomic, strong) NSString *lastM3U8String;
 
 /**
  * ts 名称集合字段

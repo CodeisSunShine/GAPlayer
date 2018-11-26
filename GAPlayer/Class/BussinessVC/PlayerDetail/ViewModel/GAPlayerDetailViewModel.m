@@ -59,13 +59,13 @@
         if ([dict[@"videoId"] isEqualToString:detailModel.videoId]) {
             if (dict[@"downloadState"]) {
                 detailModel.downloadState = [dict[@"downloadState"] integerValue];
-                if (detailModel.downloadState == kDADownloadStateCompleted) {
-                    detailModel.localUrl = dict[@"videoId"];
+                if (detailModel.downloadState != kDADownloadStateReady) {
+                    detailModel.filePath = dict[@"filePath"];
                 }
+                detailModel.percentage = [dict[@"downloadState"] floatValue];
             } else {
                 detailModel.downloadState = kDADownloadStateReady;
             }
-            
             *stop = YES;
         }
     }];
@@ -78,7 +78,7 @@
         GAPlayerDetailModel *detailModel = [weakself getPlayerDetailModelWith:downloadId];
         if (detailModel) {
             detailModel.percentage = [progress floatValue];
-            detailModel.speed = speed;
+            detailModel.speed = [NSString stringWithFormat:@"%@/s",[weakself convertSize:speed]];
         }
     } downloadStateBlock:^(NSString *downloadId, NSInteger downloadState) {
         GAPlayerDetailModel *detailModel = [weakself getPlayerDetailModelWith:downloadId];
@@ -139,6 +139,20 @@
     return currentDetailModel;
 }
 
+/**
+ * 计算缓存的占用存储大小
+ */
+- (NSString *)convertSize:(NSUInteger)length {
+    if(length<1024)
+        return [NSString stringWithFormat:@"%ldB",(NSUInteger)length];
+    else if(length>=1024&&length<1024*1024)
+        return [NSString stringWithFormat:@"%.0fK",(float)length/1024];
+    else if(length >=1024*1024&&length<1024*1024*1024)
+        return [NSString stringWithFormat:@"%.1fM",(float)length/(1024*1024)];
+    else
+        return [NSString stringWithFormat:@"%.1fG",(float)length/(1024*1024*1024)];
+}
+
 #pragma mark - 假数据赋值
 - (void)makeProgressData {
     NSArray *names = @[@"SunShine.m3u8",@"AppleDemo.m3u8",@"Love.mp4",@"sad.mp4"];
@@ -158,19 +172,24 @@
             NSDictionary *dict = (NSDictionary *)object;
             if (dict[@"downloadState"]) {
                 detailModel.downloadState = [dict[@"downloadState"] integerValue];
+                detailModel.filePath = dict[@"filePath"];
+                if (detailModel.downloadState == kDADownloadStateDownloading) {
+                    detailModel.downloadState = kDADownloadStateCancelled;
+                }
             } else {
                 detailModel.downloadState = kDADownloadStateReady;
             }
-            detailModel.localUrl = dict[@"filePath"];
             detailModel.percentage = [dict[@"percent"] floatValue];
         }];
-        
-        [self makeProgressPlayData:detailModel];
         [self.playerDetailList addObject:detailModel];
     }
 }
 
-- (void)makeProgressPlayData:(GAPlayerDetailModel *)detailModel {
+- (NSString *)makeProgressWith:(NSString *)filePath videoName:(NSString *)videoName {
+    return [NSString stringWithFormat:@"%@%@/%@",kLocalPlayURL,filePath,videoName];
+}
+
+- (NSDictionary *)makeProgressPlayData:(GAPlayerDetailModel *)detailModel {
     NSMutableDictionary *dataDict = [[NSMutableDictionary alloc] init];
     dataDict[@"hasVideoTitle"] = detailModel.videoName;
     dataDict[@"lectureID"] = detailModel.videoId;
@@ -196,13 +215,13 @@
     
     if (detailModel.downloadState == kDADownloadStateCompleted) {
         dataDict[@"scheme"] = @"sd"; // 清晰度标识
-        videoDict[@"sd"] = detailModel.localUrl;
+        videoDict[@"sd"] = [self makeProgressWith:detailModel.filePath videoName:detailModel.videoName];
         dataDict[@"isOnline"] = @"0";
     }
     
     // 播放地址数据
     dataDict[@"video"] = [videoDict copy];
-    detailModel.playDict = dataDict;
+    return dataDict;
 }
 
 - (GACacheManager *)cacheManager {

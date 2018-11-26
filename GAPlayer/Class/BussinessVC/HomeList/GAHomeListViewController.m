@@ -41,7 +41,6 @@
 
 - (void)setupView {
     [self.view addSubview:self.tableView];
-    [self.view addSubview:self.donwloadButton];
 }
 
 - (void)setupLayout {

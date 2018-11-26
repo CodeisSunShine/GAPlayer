@@ -93,7 +93,7 @@
     NSString *extension = urlParts.URL.pathExtension;
     if ([extension isEqualToString:M3U8SuffixName]) {
         // 1.1 m3u8
-        [self analysisM3U8File:downloadUrl downloadName:downloadName andFinish:finishBlock];
+        [self analysisM3U8File:downloadUrl downloadName:downloadName localUrl:localFileUrl andFinish:finishBlock];
     } else if ([extension isEqualToString:htmlSuffixName]){
         // 1.2 html
         [self analysisHTMLFile:downloadUrl localUrl:localFileUrl downloadName:downloadName finishBlock:finishBlock];
@@ -104,7 +104,10 @@
 }
 
 //解析M3U8
-+ (void)analysisM3U8File:(NSString *)m3u8Url downloadName:(NSString *)downloadName andFinish:(void(^)(BOOL success, NSArray *downloadUrls, NSArray *names))finishBlock {
++ (void)analysisM3U8File:(NSString *)m3u8Url
+            downloadName:(NSString *)downloadName
+                localUrl:(NSString *)localFileUrl
+               andFinish:(void(^)(BOOL success, NSArray *downloadUrls, NSArray *names))finishBlock {
     NSMutableURLRequest *m3u8Request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:m3u8Url]
                                                                    cachePolicy:NSURLRequestReloadIgnoringCacheData
                                                                timeoutInterval:10];
@@ -114,11 +117,15 @@
             NSRange range = [m3u8Url rangeOfString:@"/" options:NSBackwardsSearch];
             NSString *rootUrl = [m3u8Url substringToIndex:range.location];
             M3U8Parser *m3u8Parser = [[M3U8Parser alloc]initWithM3U8String:m3u8Str rootUrl:rootUrl];
-            [m3u8Parser.tsNameMutableArray insertObject:downloadName atIndex:0];
-            [m3u8Parser.tsUrlMutableArray insertObject:m3u8Url atIndex:0];
             
-            finishBlock(YES,m3u8Parser.tsUrlMutableArray,m3u8Parser.tsNameMutableArray);
-            NSLog(@"成功");
+            NSError *error = [self writeFileToLocalFileUrl:localFileUrl downloadName:downloadName contentStr:m3u8Parser.lastM3U8String];
+            if (error) {
+                NSLog(@"m3u8文件创建失败");
+                finishBlock(NO,nil,nil);
+            } else {
+                finishBlock(YES,m3u8Parser.tsUrlMutableArray,m3u8Parser.tsNameMutableArray);
+                NSLog(@"成功");
+            }
         } else {
             finishBlock(NO,nil,nil);
             NSLog(@"失败");
@@ -154,14 +161,8 @@
         //解析img
         NSArray *img = [xpathParser searchWithXPathQuery:@"//img"];
         htmlStr=[self parseHtmlArray:img returnStr:htmlStr rootPath:root attrName:SRC andNameList:nameList andArrayList:arrayList];
-        
-        NSString *anAbsolutePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingFormat:@"/%@",localFileUrl];
-        [self isExistPath:anAbsolutePath];
-        //写文件到本地(leture.htm)
-        NSString *path = [anAbsolutePath stringByAppendingPathComponent:downloadName];
-        //    [htmlStr writeToFile: path atomically: YES];
-        NSError *error;
-        [htmlStr writeToFile:path atomically:YES encoding:(NSUTF8StringEncoding) error:&error];
+    
+       NSError *error = [self writeFileToLocalFileUrl:localFileUrl downloadName:downloadName contentStr:htmlStr];
         
         if (!error) {
             if (nameList.count == arrayList.count) {
@@ -200,7 +201,7 @@
             continue;
         }
         //判断是相对路径/绝对路径
-        if (![attr hasPrefix:@"http://"]) {
+        if (!([attr hasPrefix:@"http://"] || [attr hasPrefix:@"https://"])) {
             attr = [NSString stringWithFormat:@"%@/%@",rootPath,attr];
         }
         
@@ -223,6 +224,19 @@
 + (NSString *)getFileName:(NSString*)url {
     NSRange range = [url rangeOfString:@"/" options:NSBackwardsSearch];
     return [url substringFromIndex:range.location + 1];
+}
+
++ (NSError *)writeFileToLocalFileUrl:(NSString *)localFileUrl
+                        downloadName:(NSString *)downloadName
+                          contentStr:(NSString *)contentStr {
+    NSString *anAbsolutePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingFormat:@"/%@",localFileUrl];
+    [self isExistPath:anAbsolutePath];
+    //写文件到本地(leture.htm)
+    NSString *path = [anAbsolutePath stringByAppendingPathComponent:downloadName];
+    //    [htmlStr writeToFile: path atomically: YES];
+    NSError *error;
+    [contentStr writeToFile:path atomically:YES encoding:(NSUTF8StringEncoding) error:&error];
+    return error;
 }
 
 /**

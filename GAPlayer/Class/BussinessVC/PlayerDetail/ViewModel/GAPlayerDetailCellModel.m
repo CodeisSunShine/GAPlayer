@@ -25,7 +25,7 @@
         [self makeProgressPlayImage];
         [self makeProgressCourseName];
         [self makeProgressDownloadState];
-        [self makeProgressPercentage];
+        [self makeProgressPercentage:self.detailModel.percentage];
         [self makeProgressFrame];
         [self makeProgressDownloadFrame];
     }
@@ -51,7 +51,6 @@
             self.downloadImageNmae = @"downloadLoading_state_normal";
             self.stateName = @"下载中";
             self.progressHide = NO;
-            [self makeProgressPercentage];
             self.stateColor = kMyColor(255, 98, 134);
             break;
         case kDADownloadStateCompleted:
@@ -82,15 +81,21 @@
     }
 }
 
-- (void)makeProgressPercentage {
-    NSString *percentStr;
-    if (self.detailModel.percentage > 0) {
-        percentStr = [NSString stringWithFormat:@"%.f%%",self.detailModel.percentage * 100.0];
-    } else {
-        percentStr = @"0%";
+- (void)makeProgressPercentage:(CGFloat)progress {
+//    if (self.detailModel.percentage > 0) {
+//        percentStr = [NSString stringWithFormat:@"%.f%%",self.detailModel.percentage * 100.0];
+//    } else {
+//        percentStr = @"0%";
+//    }
+//    self.percentStr = percentStr;
+//    [self makeProgressDownloadFrame];
+    if (self.progress <= progress) {
+        self.progress = progress;
+//        [self makeProgressPercentage];
+        if (self.downloadProgressBlock) {
+            self.downloadProgressBlock();
+        }
     }
-    self.percentStr = percentStr;
-    [self makeProgressDownloadFrame];
 }
 
 - (void)makeProgressFrame {
@@ -121,8 +126,8 @@
         self.downloadStateViewF = CGRectMake((downloadWidth - 20) * 0.5, (self.cellHigh - 5  - 20 - 6) * 0.5, 20, 18);
         self.stateLabelF = CGRectMake(0, CGRectGetMaxY(self.downloadStateViewF) + 5, downloadWidth, 20);
     } else {
-        self.progressLabelF = CGRectMake((downloadWidth - 20) * 0.5, (self.cellHigh - 5  - 20 - 6  - 5) * 0.5, 20, 10);
-        self.downloadStateViewF = CGRectMake((downloadWidth - 20) * 0.5, CGRectGetMaxY(self.progressLabelF) - 5, 20, 18);
+        self.speedLabelF = CGRectMake((downloadWidth - 30) * 0.5, (self.cellHigh - 5  - 20 - 6  - 5) * 0.5, 30, 10);
+        self.downloadStateViewF = CGRectMake((downloadWidth - 20) * 0.5, CGRectGetMaxY(self.speedLabelF) - 5, 20, 18);
         self.stateLabelF = CGRectMake(0, CGRectGetMaxY(self.downloadStateViewF) + 5, downloadWidth, 20);
     }
 }
@@ -133,6 +138,7 @@
     [self.KVOController observe:self.detailModel keyPath:@"downloadState" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew block:^(NSObject *observer, GAPlayerDetailModel *detailModel, NSDictionary<NSKeyValueChangeKey,id> * _Nonnull change) {
         weakself.downloadState = [change[NSKeyValueChangeNewKey] integerValue];
         [weakself makeProgressDownloadState];
+        [weakself makeProgressDownloadFrame];
         if (weakself.downloadStateBlock) {
             weakself.downloadStateBlock();
         }
@@ -143,19 +149,16 @@
         if (weakself.downloadState == kDADownloadStateCompleted) {
             return;
         }
-        if (weakself.progress <= progress) {
-            weakself.progress = progress;
-            [weakself makeProgressPercentage];
-            if (weakself.downloadProgressBlock) {
-                weakself.downloadProgressBlock();
-            }
-        }
+        [weakself makeProgressPercentage:progress];
     }];
     
     [self.KVOController observe:self.detailModel keyPath:@"speed" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew block:^(NSObject *observer, GAPlayerDetailModel *detailModel, NSDictionary<NSKeyValueChangeKey,id> * _Nonnull change) {
-        weakself.speed = [NSString stringWithFormat:@"%@",change[NSKeyValueChangeNewKey]];
-        if (weakself.downloadSpeedBlock) {
-            weakself.downloadSpeedBlock();
+        NSString *speed = change[NSKeyValueChangeNewKey];
+        if (speed != nil && ![speed isEqual:[NSNull null]]) {
+            weakself.speed = [NSString stringWithFormat:@"%@",change[NSKeyValueChangeNewKey]];
+            if (weakself.downloadSpeedBlock) {
+                weakself.downloadSpeedBlock();
+            }
         }
     }];
     

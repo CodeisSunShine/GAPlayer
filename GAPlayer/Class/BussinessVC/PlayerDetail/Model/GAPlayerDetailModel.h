@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *videoUrl;
 
-@property (nonatomic, copy) NSString *localUrl;
+@property (nonatomic, copy) NSString *filePath;
 
 @property (nonatomic, strong) NSDictionary *playDict;
 
@@ -33,7 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * 下载速度
  */
-@property (nonatomic, assign) CGFloat speed;
+@property (nonatomic, copy) NSString *speed;
+
+@property (nonatomic, assign) BOOL isActive;
 
 @end
 

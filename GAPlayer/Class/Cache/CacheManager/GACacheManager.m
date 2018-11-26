@@ -96,7 +96,8 @@ static NSString *const kFinishCallbackKey = @"Finish";
     __weak typeof(self)weakSelf = self;
     [self.callbackBlocks.allKeys enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         int64_t speed = 0;
-        [weakSelf.downloadMemory getSpeedWithFileId:cacheModel.videoId];
+        speed = [weakSelf.downloadMemory getSpeedWithFileId:cacheModel.videoId];
+        
         NSMutableDictionary *blockDict = weakSelf.callbackBlocks[obj];
         DAProgressCallBlock progressCallBlock = blockDict[kProgressCallbackKey];
         if (progressCallBlock) {
@@ -257,6 +258,7 @@ static NSString *const kFinishCallbackKey = @"Finish";
     if (currentdModel) {
         currentdModel.bytesWritten = downloadModel.bytesWritten;
         currentdModel.percent = downloadModel.progress;
+        currentdModel.downloadState = kDADownloadStateDownloading;
         [self saveDownloadBytesWritten:currentdModel];
         [self saveSingleDownloadTargeWithCacheModel:currentdModel];
         [self downloadProgressCallBack:currentdModel];

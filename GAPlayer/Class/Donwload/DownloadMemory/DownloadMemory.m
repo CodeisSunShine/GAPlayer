@@ -55,6 +55,7 @@
     MemoryModel *memoryModel = self.memoryDict[fielId];
     if (!memoryModel) {
         memoryModel = [[MemoryModel alloc] init];
+        memoryModel.bytesWritten = 0;
         [self.memoryDict setObject:memoryModel forKey:fielId];
     }
     return memoryModel;

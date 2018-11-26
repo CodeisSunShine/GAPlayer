@@ -14,10 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
  * TableView的控件选中类型
  */
 typedef NS_ENUM(NSUInteger, PlayerDetailActionType) {
-    /** 选中 */
-    kPDActionTypeSelect = 0,
-    /** 播放 */
-    kPDActionTypePlay,
+    /** 切换播放状态 */
+    kPDActionTypeChangeState = 0,
+    /** 切换播放源 */
+    kPDActionTypeChangeSource,
     /** 下载 */
     kPDActionTypeDonwload
 };

@@ -242,6 +242,7 @@
 // 下载进度回调
 - (void)downloadProgessCallBackWith:(int64_t)bytesWritten {
     self.downloadModel.progress = [NSString stringWithFormat:@"%f",self.progress.fractionCompleted];
+    NSLog(@"self.downloadModel.progress  ====  %@",self.downloadModel.progress);
     self.downloadModel.bytesWritten = bytesWritten;
     if (self.sessionDelegate && [self.sessionDelegate respondsToSelector:@selector(sessionDownloadProgressWithDownloadModel:)]) {
         [self.sessionDelegate sessionDownloadProgressWithDownloadModel:self.downloadModel];
@@ -299,7 +300,7 @@
 totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
     DADownloadItem *downloadItem = [self getDonwloadItemWith:downloadTask];
     if (downloadItem) {
-        [self makeProgessDownloadItemProgress:downloadItem totalBytesWritten:bytesWritten totalBytesExpectedToWrite:totalBytesExpectedToWrite];
+        [self makeProgessDownloadItemProgress:downloadItem totalBytesWritten:totalBytesWritten totalBytesExpectedToWrite:totalBytesExpectedToWrite];
         [self downloadProgessCallBackWith:bytesWritten];
     }
 }
