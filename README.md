@@ -3,6 +3,14 @@
 * 目标实现: 播放+视频加解密+边下边播 
 * 项目会一直维护，小伙伴们请放心使用
 
+## 效果：
+<div float="left">
+  <img src="https://github.com/CodeisSunShine/Image/blob/master/1.2018-11-26%2020_09_27.gif" width = "300">
+</div>
+<div float="right">
+  <img src="https://github.com/CodeisSunShine/Image/blob/master/2.2018-11-26 20_04_41.gif" width = "300">
+</div>
+
 ## 下载教程：
 
 因为 github允许上传的文件上限为100MB IJKMediaFramework 较大所以造成了下载不便请谅解（好事多磨！ 👍）
