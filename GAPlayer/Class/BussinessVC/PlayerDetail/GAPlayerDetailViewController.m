@@ -55,8 +55,9 @@
             weakself.playerView.isFullScreen = NO;
             weakself.playerView.frame =  CGRectMake(0, StatusBarHeight, ScreenWidth, ScreenWidth / 16.0 * 9 + StatusBarHeight);
         } else {
+            CGFloat ditance = isIPhoneXAbove ? StatusBarHeight : 0;
             weakself.playerView.isFullScreen = YES;
-            weakself.playerView.frame = CGRectMake(0, StatusBarHeight, ScreenHeight, ScreenWidth - StatusBarHeight * 2);
+            weakself.playerView.frame = CGRectMake(0, ditance, ScreenHeight, ScreenWidth - ditance * 2);
             NSLog(@"StatusBarHeight%f",StatusBarHeight);
         }
     }];
