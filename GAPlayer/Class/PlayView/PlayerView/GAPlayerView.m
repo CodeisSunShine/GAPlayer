@@ -17,6 +17,7 @@
 #import "CMPlayerTimeView.h"
 #import "GAPlayerTool.h"
 #import "GAHttpSeverManager.h"
+#import "GALoadingView.h"
 
 #define FastForwardTime 15
 
@@ -48,7 +49,7 @@
 // 更改清晰度时记录的播放进度
 @property (nonatomic, assign) CGFloat beforeChangeLocation;
 // 加载框
-@property (nonatomic, strong) UIActivityIndicatorView *loadingView;
+@property (nonatomic, strong) GALoadingView *loadingView;
 // 广告提示
 @property (nonatomic, strong) UIButton *adAlertView;
 // 本地Http服务器
@@ -105,7 +106,7 @@
     self.topView.frame = CGRectMake(0, 0, width, 44);
     
     self.boomView.frame = CGRectMake(0, high - 44 - distance, width, 44);
-    self.loadingView.frame = CGRectMake((width - 30) * 0.5, (high - 30) * 0.5, 30, 30);
+    self.loadingView.frame = CGRectMake((width - 70) * 0.5, (high - 50) * 0.5, 70, 50);
     self.adAlertView.frame = CGRectMake(width - 80 - 30, 20, 80, 25);
     self.lockScreen.frame = CGRectMake(20, (self.realHigh - 50 - 2 * distance) * 0.5, 50, 50);
     [self.player makeProgressPlayerViewFrame:CGRectMake(0, 0, width, high)];
@@ -114,6 +115,7 @@
 #pragma mark - public
 - (void)thePlayerLoadsTheData:(NSDictionary *)dataDict {
     __weak typeof(self)weakSelf = self;
+    [self initializeTheUI];
     [self.loadingView startAnimating];
     [self.viewModel thePlayerParsesTheData:dataDict successBlock:^(BOOL success, id object) {
         if (success) {
@@ -213,6 +215,10 @@
     [self startForGestureEvents];
     self.topView.hidden = NO;
     self.boomView.hidden = NO;
+}
+
+- (void)initializeTheUI {
+    self.adAlertView.hidden = YES;
 }
 
 #pragma mark - GestureEvent
@@ -482,6 +488,8 @@
     
     if (playerState != kPlayerStateCacheing) {
         [self.loadingView stopAnimating];
+    } else {
+        [self.loadingView startAnimating];
     }
     
     if (playerState == kPlayerStateReady) {
@@ -498,7 +506,9 @@
     if ([self.viewModel judgeVideoNeedContinueToPlayed:self.viewModel.curItemModel]) {
         [self changeThePlayerPlaybackAddress];
     } else {
-        [self playButtonAction];
+        if (self.playFinishBlock) {
+            self.playFinishBlock(self.viewModel.curItemModel.videoId);
+        }
     }
 }
 
@@ -571,9 +581,9 @@
     return _viewModel;
 }
 
-- (UIActivityIndicatorView *)loadingView {
+- (GALoadingView *)loadingView {
     if (!_loadingView) {
-        _loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        _loadingView = [[GALoadingView alloc] init];
     }
     return _loadingView;
 }

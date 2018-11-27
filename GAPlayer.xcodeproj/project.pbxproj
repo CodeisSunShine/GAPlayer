@@ -134,6 +134,7 @@
 		ECA7836621A54A6900F42D0E /* GAPlayerDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA7836521A54A6900F42D0E /* GAPlayerDetailModel.m */; };
 		ECA7836921A561B300F42D0E /* GAPlayerDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA7836821A561B300F42D0E /* GAPlayerDetailViewModel.m */; };
 		ECB6C8F221A81670007AD7F9 /* GAMemoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6C8F121A81670007AD7F9 /* GAMemoryView.m */; };
+		ECC2348921AD109B00F44B50 /* GALoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC2348821AD109B00F44B50 /* GALoadingView.m */; };
 		ECCC22AB212A6239004200DE /* GAFMDBTool.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCC22AA212A6239004200DE /* GAFMDBTool.m */; };
 /* End PBXBuildFile section */
 
@@ -393,6 +394,8 @@
 		ECA7836821A561B300F42D0E /* GAPlayerDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAPlayerDetailViewModel.m; sourceTree = "<group>"; };
 		ECB6C8F021A81670007AD7F9 /* GAMemoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAMemoryView.h; sourceTree = "<group>"; };
 		ECB6C8F121A81670007AD7F9 /* GAMemoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAMemoryView.m; sourceTree = "<group>"; };
+		ECC2348721AD109B00F44B50 /* GALoadingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GALoadingView.h; sourceTree = "<group>"; };
+		ECC2348821AD109B00F44B50 /* GALoadingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GALoadingView.m; sourceTree = "<group>"; };
 		ECCC22A9212A6239004200DE /* GAFMDBTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAFMDBTool.h; sourceTree = "<group>"; };
 		ECCC22AA212A6239004200DE /* GAFMDBTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAFMDBTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -718,6 +721,8 @@
 				EC612511212176D700D40C96 /* GAPlayerAdAlertView.h */,
 				EC612512212176D700D40C96 /* CMPlayerBrightnessView.h */,
 				EC612513212176D700D40C96 /* CMPlayerTimeView.m */,
+				ECC2348721AD109B00F44B50 /* GALoadingView.h */,
+				ECC2348821AD109B00F44B50 /* GALoadingView.m */,
 			);
 			path = CommonView;
 			sourceTree = "<group>";
@@ -1695,6 +1700,7 @@
 				EC61259D2122CF1C00D40C96 /* M3U8Parser+String.m in Sources */,
 				EC612506212176B500D40C96 /* FBKVOController.m in Sources */,
 				EC6125892122CEA000D40C96 /* DownloadError.m in Sources */,
+				ECC2348921AD109B00F44B50 /* GALoadingView.m in Sources */,
 				EC7DC1C4212D08F700730286 /* HTTPConnection.m in Sources */,
 				EC7DC1DC212D08F700730286 /* DDAbstractDatabaseLogger.m in Sources */,
 				EC612555212176D700D40C96 /* GAPlayerItemModel.m in Sources */,

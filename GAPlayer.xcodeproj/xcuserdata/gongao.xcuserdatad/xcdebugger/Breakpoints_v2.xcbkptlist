@@ -35,109 +35,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GAPlayer/Class/PlayView/PlayerView/GAPlayerView.m"
-            timestampString = "564906027.239295"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "331"
-            endingLineNumber = "331"
-            landmarkName = "-setupBoomViewAction"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GAPlayer/Class/Donwload/DownloadSession/DADownloadSession.m"
-            timestampString = "564917941.6592979"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
-            landmarkName = "-makeProgessDownloadItemProgress:totalBytesWritten:totalBytesExpectedToWrite:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GAPlayer/Class/Donwload/DownloadSession/DADownloadSession.m"
-            timestampString = "564917941.659943"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "-download"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "GAPlayer/Class/BussinessVC/PlayerDetail/ViewModel/GAPlayerDetailViewModel.m"
-            timestampString = "564922372.171015"
+            timestampString = "565000580.256178"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "-makeProgressDownloadDataWith:"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "-makeProgressPlayData:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[GAPlayerDetailViewModel makeProgressDownloadDataWith:]"
-                  moduleName = "GAPlayer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gongao/Desktop/Github/GAPlayer/GAPlayer/Class/BussinessVC/PlayerDetail/ViewModel/GAPlayerDetailViewModel.m"
-                  timestampString = "564917893.746382"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58"
-                  offsetFromSymbolStart = "43">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__56-[GAPlayerDetailViewModel makeProgressDownloadDataWith:]_block_invoke"
-                  moduleName = "GAPlayer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gongao/Desktop/Github/GAPlayer/GAPlayer/Class/BussinessVC/PlayerDetail/ViewModel/GAPlayerDetailViewModel.m"
-                  timestampString = "564917893.748087"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58"
-                  offsetFromSymbolStart = "19">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.43"
-                  moduleName = "GAPlayer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gongao/Desktop/Github/GAPlayer/GAPlayer/Class/BussinessVC/PlayerDetail/ViewModel/GAPlayerDetailViewModel.m"
-                  timestampString = "564917893.7497849"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58"
-                  offsetFromSymbolStart = "16">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

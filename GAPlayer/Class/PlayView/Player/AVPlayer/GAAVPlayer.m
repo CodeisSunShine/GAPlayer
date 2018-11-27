@@ -76,11 +76,13 @@
 
 // 切换倍速
 - (void)switchingTimesSpeed:(CGFloat)speed {
+    [self makeProgressCallBackPlayerState:kPlayerStateCacheing];
     self.player.rate = speed;
 }
 
 // 从此刻开始播放
 - (void)playFromNowOnWithSchedule:(CGFloat)seekTime {
+    [self makeProgressCallBackPlayerState:kPlayerStateCacheing];
     [self.player seekToTime:CMTimeMakeWithSeconds(seekTime, self.currentItem.currentTime.timescale)];
 }
 

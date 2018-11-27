@@ -48,7 +48,7 @@ typedef NS_ENUM(NSUInteger, PlayerViewActionType) {
 
 typedef void(^GsetureViewGsetureBlock)(GsetureType gsetureType,CGFloat moveValue);
 typedef void(^PlayerViewActionBlock)(PlayerViewActionType controlBarType,NSString *videoId);
-typedef void(^PlayerViewGroundBlock)(BOOL isBackground);
+typedef void(^PlayerViewPlayFinishBlock)(NSString *videoId);
 
 @interface GAPlayerView : UIView
 
@@ -74,6 +74,11 @@ typedef void(^PlayerViewGroundBlock)(BOOL isBackground);
  播放器按钮回调
  */
 @property (nonatomic, strong) PlayerViewActionBlock viewActionBlock;
+
+/**
+ 播放结束回调
+ */
+@property (nonatomic, strong) PlayerViewPlayFinishBlock playFinishBlock;
 
 /**
  加载播放器需要的数据

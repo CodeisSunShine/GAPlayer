@@ -18,12 +18,12 @@
 
 // 缓存器
 @property (nonatomic, strong) GACacheManager *cacheManager;
-
-@property (nonatomic, strong) GACacheModel *cacheModel;
 // 缓存数据库
 @property (nonatomic, strong) GADataBaseManager *dataBaseManager;
-
+// 数据源
 @property (nonatomic, strong) NSMutableArray *playerDetailList;
+// 数据源字典 方便查询DetailModel 不需循环遍历
+@property (nonatomic, strong) NSMutableDictionary *playerDetaidDict;
 
 @end
 
@@ -38,37 +38,7 @@
 
 - (void)requestPlayerDetailData:(NSDictionary *)dict successBlock:(void (^)(BOOL success, id object))successBlock {
     [self makeProgressData];
-    [self matchingDownloadState];
     successBlock(YES,self.playerDetailList);
-}
-
-- (void)matchingDownloadState {
-    __weak __typeof(self) weakself= self;
-    [self.dataBaseManager queryTaskData:nil resultBlock:^(BOOL success, id object) {
-        if (success) {
-            NSArray *databaseList = object;
-            for (NSInteger i = 0; i < databaseList.count; i++) {
-                [weakself makeProgressDownloadDataWith:databaseList[i]];
-            }
-        }
-    }];
-}
-
-- (void)makeProgressDownloadDataWith:(NSDictionary *)dict {
-    [self.playerDetailList enumerateObjectsUsingBlock:^(GAPlayerDetailModel *detailModel, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([dict[@"videoId"] isEqualToString:detailModel.videoId]) {
-            if (dict[@"downloadState"]) {
-                detailModel.downloadState = [dict[@"downloadState"] integerValue];
-                if (detailModel.downloadState != kDADownloadStateReady) {
-                    detailModel.filePath = dict[@"filePath"];
-                }
-                detailModel.percentage = [dict[@"downloadState"] floatValue];
-            } else {
-                detailModel.downloadState = kDADownloadStateReady;
-            }
-            *stop = YES;
-        }
-    }];
 }
 
 #pragma mark - 下载
@@ -117,26 +87,10 @@
 }
 
 - (GAPlayerDetailModel *)getPlayerDetailModelWith:(NSString *)videoId {
-    __block GAPlayerDetailModel *currentDetailModel;
     if (videoId && videoId.length > 0) {
-        [self.playerDetailList enumerateObjectsUsingBlock:^(GAPlayerDetailModel *detailModel, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([detailModel.videoId isEqualToString:videoId]) {
-                currentDetailModel = detailModel;
-            }
-        }];
+        return self.playerDetaidDict[videoId];
     }
-    return currentDetailModel;
-}
-
-- (GAPlayerDetailModel *)getDetailModelWithVideoId:(NSString *)videoId {
-    __block GAPlayerDetailModel *currentDetailModel;
-    [self.playerDetailList enumerateObjectsUsingBlock:^(GAPlayerDetailModel *detailModel, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([detailModel.videoId isEqualToString:videoId]) {
-            currentDetailModel = detailModel;
-            *stop = YES;
-        }
-    }];
-    return currentDetailModel;
+    return nil;
 }
 
 /**
@@ -159,30 +113,42 @@
     NSArray *ids = @[@"111",@"222",@"333",@"444"];
     NSArray *urls = @[@"http://cache.utovr.com/201508270528174780.m3u8",@"https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_4x3/gear2/prog_index.m3u8",@"http://aliuwmp3.changba.com/userdata/video/3B1DDE764577E0529C33DC5901307461.mp4",@"http://lzaiuw.changba.com/userdata/video/940071102.mp4"];
     self.playerDetailList = [[NSMutableArray alloc] init];
-    
+    self.playerDetaidDict = [[NSMutableDictionary alloc] init];
+    __weak __typeof(self) weakself= self;
     for (NSInteger i = 0; i < names.count; i++) {
         GAPlayerDetailModel *detailModel = [[GAPlayerDetailModel alloc] init];
         detailModel.videoName = names[i];
         detailModel.videoId = ids[i];
         detailModel.videoUrl = urls[i];
-        
-        NSMutableDictionary *parameter = [[NSMutableDictionary alloc] init];
-        parameter[@"videoId"] = detailModel.videoId;
-        [self.dataBaseManager queryTaskData:parameter resultBlock:^(BOOL success, id object) {
-            NSDictionary *dict = (NSDictionary *)object;
-            if (dict[@"downloadState"]) {
-                detailModel.downloadState = [dict[@"downloadState"] integerValue];
-                detailModel.filePath = dict[@"filePath"];
-                if (detailModel.downloadState == kDADownloadStateDownloading) {
-                    detailModel.downloadState = kDADownloadStateCancelled;
-                }
-            } else {
-                detailModel.downloadState = kDADownloadStateReady;
+        [self matchesTheDatabaseWith:detailModel finishBlock:^{
+            if (i > 0) {
+                GAPlayerDetailModel *lastDetailModel = self.playerDetailList[i - 1];
+                lastDetailModel.nextDetailModel = detailModel;
             }
-            detailModel.percentage = [dict[@"percent"] floatValue];
+            [weakself.playerDetailList addObject:detailModel];
+            weakself.playerDetaidDict[detailModel.videoId] = detailModel;
         }];
-        [self.playerDetailList addObject:detailModel];
     }
+}
+
+// 匹配数据库中的数据
+- (void)matchesTheDatabaseWith:(GAPlayerDetailModel *)detailModel finishBlock:(void (^)(void))finishBlock {
+    NSMutableDictionary *parameter = [[NSMutableDictionary alloc] init];
+    parameter[@"videoId"] = detailModel.videoId;
+    [self.dataBaseManager queryTaskData:parameter resultBlock:^(BOOL success, id object) {
+        NSDictionary *dict = (NSDictionary *)object;
+        if (dict[@"downloadState"]) {
+            detailModel.downloadState = [dict[@"downloadState"] integerValue];
+            detailModel.filePath = dict[@"filePath"];
+            if (detailModel.downloadState == kDADownloadStateDownloading) {
+                detailModel.downloadState = kDADownloadStateCancelled;
+            }
+        } else {
+            detailModel.downloadState = kDADownloadStateReady;
+        }
+        detailModel.percentage = [dict[@"percent"] floatValue];
+        finishBlock();
+    }];
 }
 
 - (NSString *)makeProgressWith:(NSString *)filePath videoName:(NSString *)videoName {
@@ -217,6 +183,8 @@
         dataDict[@"scheme"] = @"sd"; // 清晰度标识
         videoDict[@"sd"] = [self makeProgressWith:detailModel.filePath videoName:detailModel.videoName];
         dataDict[@"isOnline"] = @"0";
+        [dataDict removeObjectForKey:@"endingAdUrl"];
+        [dataDict removeObjectForKey:@"beginingAdUrl"];
     }
     
     // 播放地址数据

@@ -13,16 +13,34 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GAPlayerDetailModel : NSObject
 
+/**
+ * 单链表 指向下一个播放model
+ */
+@property (nonatomic, strong) GAPlayerDetailModel *nextDetailModel;
+
+/**
+ * 视频id
+ */
 @property (nonatomic, copy) NSString *videoId;
 
+/**
+ * 视频名称
+ */
 @property (nonatomic, copy) NSString *videoName;
 
+/**
+ * 在线视频播放地址
+ */
 @property (nonatomic, copy) NSString *videoUrl;
 
+/**
+ * 本地视频储存地址
+ */
 @property (nonatomic, copy) NSString *filePath;
 
-@property (nonatomic, strong) NSDictionary *playDict;
-
+/**
+ * 下载状态
+ */
 @property (nonatomic, assign) NSInteger downloadState;
 
 /**

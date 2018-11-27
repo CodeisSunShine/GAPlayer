@@ -70,7 +70,7 @@
     __weak __typeof(self) weakself= self;
     [self.viewModel requestPlayerDetailData:nil successBlock:^(BOOL success, id  _Nonnull object) {
         [weakself.tableView setObject:object];
-        GAPlayerDetailModel *detailModel = [weakself.viewModel getDetailModelWithVideoId:weakself.listModel.videoId];
+        GAPlayerDetailModel *detailModel = [weakself.viewModel getPlayerDetailModelWith:weakself.listModel.videoId];
         NSDictionary *playDict = [weakself.viewModel makeProgressPlayData:detailModel];
         [weakself.tableView changLectureWith:detailModel];
         [weakself.playerView thePlayerLoadsTheData:playDict];
@@ -106,13 +106,18 @@
         if (controlBarType == kPVActionTypeBack) {
             [weakself dismissViewControllerAnimated:YES completion:nil];
         } else if (controlBarType == kPVActionTypePlay) {
-            GAPlayerDetailModel *playerModel = [weakself.viewModel getDetailModelWithVideoId:videoId];
+            GAPlayerDetailModel *playerModel = [weakself.viewModel getPlayerDetailModelWith:videoId];
             if (playerModel.isActive) {
                 playerModel.isActive = NO;
             } else {
                 [weakself.tableView changLectureWith:playerModel];
             }
         }
+    };
+    
+    self.playerView.playFinishBlock = ^(NSString *videoId) {
+        GAPlayerDetailModel *playerModel = [weakself.viewModel getPlayerDetailModelWith:videoId];
+        [weakself.tableView changLectureWith:playerModel.nextDetailModel];
     };
 }
 
