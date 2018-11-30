@@ -26,27 +26,27 @@
  播放时间Lbl
  */
 @property (nonatomic,strong) UILabel * playTimeLbl;
-/**
- *  cache进度的view
+/*
+ cache进度的view
  */
 @property (nonatomic, strong) UIProgressView *cacheProgressView;
-/**
- *  清晰度按钮
+/*
+ 清晰度按钮
  */
 @property (nonatomic,strong) UIButton *clearityBtn;
-/**
+/*
  放大按钮
  */
 @property (nonatomic,strong) UIButton *scaleBtn;
-/**
+/*
  下载按钮
  */
 @property (nonatomic,strong) UIButton *downloadBtn;
-/**
+/*
  章节按钮
  */
 @property (nonatomic,strong) UIButton *chapterBtn;
-/**
+/*
  讲义按钮
  */
 @property (nonatomic,strong) UIButton *noteBtn;

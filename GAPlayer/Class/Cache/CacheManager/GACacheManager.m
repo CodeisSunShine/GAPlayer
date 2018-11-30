@@ -194,12 +194,12 @@ static NSString *const kFinishCallbackKey = @"Finish";
     }
 }
 
-- (void)queryAllDownloadedTasksSuccessBlock:(void (^)(BOOL success, NSArray *cacheList))successBlock {
-    [self.dataBaseManager queryTheUnfinishedDownloadData:nil resultBlock:^(BOOL success, id object) {
-//        [self addMultipleDownloadTasks:object];
-        successBlock(YES,object);
-    }];
-}
+//- (void)queryAllDownloadedTasksSuccessBlock:(void (^)(BOOL success, NSArray *cacheList))successBlock {
+//    [self.dataBaseManager queryTheUnfinishedDownloadData:nil resultBlock:^(BOOL success, id object) {
+////        [self addMultipleDownloadTasks:object];
+//        successBlock(YES,object);
+//    }];
+//}
 
 - (void)querySingleDownloadData:(NSDictionary *)dict {
 

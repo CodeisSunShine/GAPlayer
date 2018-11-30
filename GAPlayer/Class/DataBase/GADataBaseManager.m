@@ -39,8 +39,13 @@
 }
 
 // 查询未完成的下载的任务
-- (void)queryTheUnfinishedDownloadData:(NSDictionary *)dict resultBlock:(void (^)(BOOL success, id object))resultBlock {
-    [self.fmdbTool queryTaskDataWithString:[self makeProgressQueryUnfinishedSql]];
+- (NSArray *)queryTheUnfinishedDownloadData {
+    return [self.fmdbTool queryTaskDataWithString:[self makeProgressQueryUnfinishedSql]];
+}
+
+// 查询已完成的下载的任务
+- (NSArray *)queryTheFinishedDownloadData {
+    return [self.fmdbTool queryTaskDataWithString:[self makeProgressQueryFinishedSql]];
 }
 
 // 插入任务数据
@@ -72,6 +77,10 @@
 
 - (NSString *)makeProgressQueryUnfinishedSql {
     return @"SELECT * FROM download where downloadState != '3'";
+}
+
+- (NSString *)makeProgressQueryFinishedSql {
+    return @"SELECT * FROM download where downloadState == '3'";
 }
 
 - (NSString *)makeProgressInsertSql:(NSDictionary *)dict {

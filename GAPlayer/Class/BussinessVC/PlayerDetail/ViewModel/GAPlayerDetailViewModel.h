@@ -11,6 +11,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^PlayerDetailFinishCountBlock)(NSInteger finishCount, NSInteger unFinishCount);
+
 @interface GAPlayerDetailViewModel : NSObject
 
 /**
@@ -32,6 +34,11 @@ NS_ASSUME_NONNULL_BEGIN
  * 获取播放视频需要的播放字典
  */
 - (NSDictionary *)makeProgressPlayData:(GAPlayerDetailModel *)detailModel;
+
+/**
+ * 拉取下载和未下载的数据
+ */
+- (void)requestUnFinishAndFinishData:(NSDictionary *)dict successBlock:(PlayerDetailFinishCountBlock)successBlock;
 
 @end
 

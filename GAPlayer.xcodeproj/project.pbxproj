@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC30FB7F21B0D38300ADB8EC /* GAPlayerDetailBoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC30FB7E21B0D38300ADB8EC /* GAPlayerDetailBoomView.m */; };
 		EC3B7E8021266DC200EB09AD /* GAHomeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3B7E7F21266DC200EB09AD /* GAHomeListViewController.m */; };
 		EC3B7E8321266F0700EB09AD /* GAHomeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3B7E8221266F0700EB09AD /* GAHomeListModel.m */; };
 		EC3B7E862126724200EB09AD /* GAPlayerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3B7E852126724200EB09AD /* GAPlayerDetailViewController.m */; };
@@ -125,6 +126,16 @@
 		EC7DC1F0212D70E100730286 /* 林俊杰 - 她说.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EC7DC1EB212D70E100730286 /* 林俊杰 - 她说.mp3 */; };
 		EC7DC1F1212D70E100730286 /* WCHBackgroundRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7DC1EE212D70E100730286 /* WCHBackgroundRunner.m */; };
 		ECA12D11219BEC1100C37B22 /* NSObject+GABackgroundMonitoring.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA12D0F219BEC1100C37B22 /* NSObject+GABackgroundMonitoring.m */; };
+		ECA1A26B21AEA313009AD84C /* CENetMonitorManger.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA1A26921AEA313009AD84C /* CENetMonitorManger.m */; };
+		ECA1A28021AEA33C009AD84C /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA1A27421AEA33C009AD84C /* AFURLResponseSerialization.m */; };
+		ECA1A28121AEA33C009AD84C /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA1A27521AEA33C009AD84C /* AFHTTPSessionManager.m */; };
+		ECA1A28221AEA33C009AD84C /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA1A27621AEA33C009AD84C /* AFURLConnectionOperation.m */; };
+		ECA1A28321AEA33C009AD84C /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA1A27821AEA33C009AD84C /* AFURLSessionManager.m */; };
+		ECA1A28421AEA33C009AD84C /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA1A27921AEA33C009AD84C /* AFHTTPRequestOperationManager.m */; };
+		ECA1A28521AEA33C009AD84C /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA1A27A21AEA33C009AD84C /* AFURLRequestSerialization.m */; };
+		ECA1A28621AEA33C009AD84C /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA1A27B21AEA33C009AD84C /* AFHTTPRequestOperation.m */; };
+		ECA1A28721AEA33C009AD84C /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA1A27D21AEA33C009AD84C /* AFNetworkReachabilityManager.m */; };
+		ECA1A28821AEA33C009AD84C /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA1A27E21AEA33C009AD84C /* AFSecurityPolicy.m */; };
 		ECA7834D21A4FC1900F42D0E /* GAHomeListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA7834C21A4FC1900F42D0E /* GAHomeListTableViewCell.m */; };
 		ECA7835421A507E700F42D0E /* GADownloadListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA7835321A507E700F42D0E /* GADownloadListViewController.m */; };
 		ECA7835721A507FE00F42D0E /* GADownloadListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA7835621A507FE00F42D0E /* GADownloadListModel.m */; };
@@ -156,6 +167,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC30FB7D21B0D38300ADB8EC /* GAPlayerDetailBoomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAPlayerDetailBoomView.h; sourceTree = "<group>"; };
+		EC30FB7E21B0D38300ADB8EC /* GAPlayerDetailBoomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAPlayerDetailBoomView.m; sourceTree = "<group>"; };
 		EC3B7E7E21266DC200EB09AD /* GAHomeListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAHomeListViewController.h; sourceTree = "<group>"; };
 		EC3B7E7F21266DC200EB09AD /* GAHomeListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAHomeListViewController.m; sourceTree = "<group>"; };
 		EC3B7E8121266F0700EB09AD /* GAHomeListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAHomeListModel.h; sourceTree = "<group>"; };
@@ -376,6 +389,27 @@
 		EC7DC1EE212D70E100730286 /* WCHBackgroundRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCHBackgroundRunner.m; sourceTree = "<group>"; };
 		ECA12D0F219BEC1100C37B22 /* NSObject+GABackgroundMonitoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+GABackgroundMonitoring.m"; sourceTree = "<group>"; };
 		ECA12D10219BEC1100C37B22 /* NSObject+GABackgroundMonitoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+GABackgroundMonitoring.h"; sourceTree = "<group>"; };
+		ECA1A26921AEA313009AD84C /* CENetMonitorManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CENetMonitorManger.m; sourceTree = "<group>"; };
+		ECA1A26A21AEA313009AD84C /* CENetMonitorManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CENetMonitorManger.h; sourceTree = "<group>"; };
+		ECA1A26D21AEA33C009AD84C /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
+		ECA1A26E21AEA33C009AD84C /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		ECA1A26F21AEA33C009AD84C /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		ECA1A27021AEA33C009AD84C /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
+		ECA1A27121AEA33C009AD84C /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
+		ECA1A27221AEA33C009AD84C /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
+		ECA1A27321AEA33C009AD84C /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		ECA1A27421AEA33C009AD84C /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
+		ECA1A27521AEA33C009AD84C /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
+		ECA1A27621AEA33C009AD84C /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		ECA1A27721AEA33C009AD84C /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
+		ECA1A27821AEA33C009AD84C /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		ECA1A27921AEA33C009AD84C /* AFHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperationManager.m; sourceTree = "<group>"; };
+		ECA1A27A21AEA33C009AD84C /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
+		ECA1A27B21AEA33C009AD84C /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		ECA1A27C21AEA33C009AD84C /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		ECA1A27D21AEA33C009AD84C /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		ECA1A27E21AEA33C009AD84C /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
+		ECA1A27F21AEA33C009AD84C /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		ECA7834B21A4FC1900F42D0E /* GAHomeListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAHomeListTableViewCell.h; sourceTree = "<group>"; };
 		ECA7834C21A4FC1900F42D0E /* GAHomeListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAHomeListTableViewCell.m; sourceTree = "<group>"; };
 		ECA7835221A507E700F42D0E /* GADownloadListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GADownloadListViewController.h; sourceTree = "<group>"; };
@@ -650,6 +684,7 @@
 		EC6124FC2121769100D40C96 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				ECA1A26C21AEA33C009AD84C /* AFNetworking */,
 				EC3B7E872126949700EB09AD /* FMDB */,
 				EC612508212176C000D40C96 /* IJKMediaFramework.framework */,
 				EC6124FE212176B500D40C96 /* FBKVOController */,
@@ -769,12 +804,12 @@
 		EC612529212176D700D40C96 /* SelectView */ = {
 			isa = PBXGroup;
 			children = (
-				EC61252A212176D700D40C96 /* GAPlayerSelectTableViewCell.h */,
+				EC61252F212176D700D40C96 /* GAPlayerSelectVIewModel.h */,
 				EC61252B212176D700D40C96 /* GAPlayerSelectVIewModel.m */,
 				EC61252C212176D700D40C96 /* GAPlayerSelectView.h */,
-				EC61252D212176D700D40C96 /* GAPlayerSelectTableViewCell.m */,
 				EC61252E212176D700D40C96 /* GAPlayerSelectView.m */,
-				EC61252F212176D700D40C96 /* GAPlayerSelectVIewModel.h */,
+				EC61252A212176D700D40C96 /* GAPlayerSelectTableViewCell.h */,
+				EC61252D212176D700D40C96 /* GAPlayerSelectTableViewCell.m */,
 			);
 			path = SelectView;
 			sourceTree = "<group>";
@@ -1019,6 +1054,7 @@
 		EC6A52AF2133C154001AAEC4 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				ECA1A26821AEA313009AD84C /* NetworkMonitoring */,
 				ECA12D10219BEC1100C37B22 /* NSObject+GABackgroundMonitoring.h */,
 				ECA12D0F219BEC1100C37B22 /* NSObject+GABackgroundMonitoring.m */,
 				EC6A52B32133C1AE001AAEC4 /* PublicParamTool */,
@@ -1401,6 +1437,41 @@
 			path = BackgroundRunner;
 			sourceTree = "<group>";
 		};
+		ECA1A26821AEA313009AD84C /* NetworkMonitoring */ = {
+			isa = PBXGroup;
+			children = (
+				ECA1A26A21AEA313009AD84C /* CENetMonitorManger.h */,
+				ECA1A26921AEA313009AD84C /* CENetMonitorManger.m */,
+			);
+			path = NetworkMonitoring;
+			sourceTree = "<group>";
+		};
+		ECA1A26C21AEA33C009AD84C /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				ECA1A26D21AEA33C009AD84C /* AFSecurityPolicy.h */,
+				ECA1A26E21AEA33C009AD84C /* AFNetworkReachabilityManager.h */,
+				ECA1A26F21AEA33C009AD84C /* AFHTTPRequestOperation.h */,
+				ECA1A27021AEA33C009AD84C /* AFHTTPRequestOperationManager.h */,
+				ECA1A27121AEA33C009AD84C /* AFURLSessionManager.h */,
+				ECA1A27221AEA33C009AD84C /* AFURLRequestSerialization.h */,
+				ECA1A27321AEA33C009AD84C /* AFURLConnectionOperation.h */,
+				ECA1A27421AEA33C009AD84C /* AFURLResponseSerialization.m */,
+				ECA1A27521AEA33C009AD84C /* AFHTTPSessionManager.m */,
+				ECA1A27621AEA33C009AD84C /* AFURLConnectionOperation.m */,
+				ECA1A27721AEA33C009AD84C /* AFURLResponseSerialization.h */,
+				ECA1A27821AEA33C009AD84C /* AFURLSessionManager.m */,
+				ECA1A27921AEA33C009AD84C /* AFHTTPRequestOperationManager.m */,
+				ECA1A27A21AEA33C009AD84C /* AFURLRequestSerialization.m */,
+				ECA1A27B21AEA33C009AD84C /* AFHTTPRequestOperation.m */,
+				ECA1A27C21AEA33C009AD84C /* AFNetworking.h */,
+				ECA1A27D21AEA33C009AD84C /* AFNetworkReachabilityManager.m */,
+				ECA1A27E21AEA33C009AD84C /* AFSecurityPolicy.m */,
+				ECA1A27F21AEA33C009AD84C /* AFHTTPSessionManager.h */,
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
 		ECA7834E21A507CC00F42D0E /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1462,6 +1533,8 @@
 				ECA7835F21A546DE00F42D0E /* GAPlayerDetailTableViewCell.m */,
 				ECB6C8F021A81670007AD7F9 /* GAMemoryView.h */,
 				ECB6C8F121A81670007AD7F9 /* GAMemoryView.m */,
+				EC30FB7D21B0D38300ADB8EC /* GAPlayerDetailBoomView.h */,
+				EC30FB7E21B0D38300ADB8EC /* GAPlayerDetailBoomView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1617,14 +1690,17 @@
 				ECA7835D21A546BB00F42D0E /* GAPlayerDetailTableView.m in Sources */,
 				EC6125A02122CF1C00D40C96 /* XPathQuery.m in Sources */,
 				EC61259F2122CF1C00D40C96 /* TFHppleElement.m in Sources */,
+				ECA1A28721AEA33C009AD84C /* AFNetworkReachabilityManager.m in Sources */,
 				EC3B7EB42126ABA600EB09AD /* DownloadMemory.m in Sources */,
 				EC7DC1CB212D08F700730286 /* DDData.m in Sources */,
 				EC3B7EAB2126A96400EB09AD /* GACacheModel.m in Sources */,
 				EC612553212176D700D40C96 /* GAPlayerTool.m in Sources */,
 				EC7DC1BE212D08F700730286 /* HTTPDataResponse.m in Sources */,
 				EC3B7E972126949700EB09AD /* FMResultSet.m in Sources */,
+				ECA1A28521AEA33C009AD84C /* AFURLRequestSerialization.m in Sources */,
 				EC61257D2122CE7800D40C96 /* Reachability.m in Sources */,
 				EC7DC1D2212D08F700730286 /* PUTResponse.m in Sources */,
+				ECA1A28021AEA33C009AD84C /* AFURLResponseSerialization.m in Sources */,
 				EC612559212176D700D40C96 /* GAPlayerSelectTableViewCell.m in Sources */,
 				EC7DC1C2212D08F700730286 /* HTTPRedirectResponse.m in Sources */,
 				EC7DC1E7212D0C6900730286 /* GAHttpSeverManager.m in Sources */,
@@ -1651,11 +1727,13 @@
 				EC3B7E862126724200EB09AD /* GAPlayerDetailViewController.m in Sources */,
 				EC6125842122CE9100D40C96 /* DADownloadItemModel.m in Sources */,
 				EC6124BD212174E600D40C96 /* main.m in Sources */,
+				ECA1A28621AEA33C009AD84C /* AFHTTPRequestOperation.m in Sources */,
 				EC7DC1C0212D08F700730286 /* HTTPFileResponse.m in Sources */,
 				ECA7836921A561B300F42D0E /* GAPlayerDetailViewModel.m in Sources */,
 				EC7DC1DA212D08F700730286 /* DDLog.m in Sources */,
 				EC612551212176D700D40C96 /* GAPlayerView+GestureAction.m in Sources */,
 				EC61258D2122CECE00D40C96 /* DADownloadItem.m in Sources */,
+				ECA1A28421AEA33C009AD84C /* AFHTTPRequestOperationManager.m in Sources */,
 				EC6124AF212174E500D40C96 /* AppDelegate.m in Sources */,
 				ECA7836621A54A6900F42D0E /* GAPlayerDetailModel.m in Sources */,
 				EC612558212176D700D40C96 /* GAPlayerSelectVIewModel.m in Sources */,
@@ -1665,10 +1743,13 @@
 				ECA7834D21A4FC1900F42D0E /* GAHomeListTableViewCell.m in Sources */,
 				EC7DC1C9212D08F700730286 /* HTTPAuthenticationRequest.m in Sources */,
 				EC612550212176D700D40C96 /* GAPlayerViewModel.m in Sources */,
+				ECA1A28321AEA33C009AD84C /* AFURLSessionManager.m in Sources */,
 				EC7DC1D5212D08F700730286 /* DDTTYLogger.m in Sources */,
 				EC7DC1D6212D08F700730286 /* DDASLLogger.m in Sources */,
 				EC7DC1CD212D08F700730286 /* HTTPServer.m in Sources */,
+				EC30FB7F21B0D38300ADB8EC /* GAPlayerDetailBoomView.m in Sources */,
 				EC61255F212176D700D40C96 /* GAPlayControlBar_TopView.m in Sources */,
+				ECA1A28821AEA33C009AD84C /* AFSecurityPolicy.m in Sources */,
 				EC3B7EAE2126A9FA00EB09AD /* GACacheModelTool.m in Sources */,
 				EC612561212176D700D40C96 /* GAAVPlayer.m in Sources */,
 				EC3B7EA82126A8F700EB09AD /* GACacheManager.m in Sources */,
@@ -1678,6 +1759,7 @@
 				EC6A52B62133C1C1001AAEC4 /* GAPublicParamTool.m in Sources */,
 				EC7DC1C1212D08F700730286 /* HTTPAsyncFileResponse.m in Sources */,
 				EC61254F212176D700D40C96 /* CMPlayerTimeView.m in Sources */,
+				ECA1A26B21AEA313009AD84C /* CENetMonitorManger.m in Sources */,
 				EC61259C2122CF1C00D40C96 /* M3U8Parser.m in Sources */,
 				EC3B7E952126949700EB09AD /* FMDatabase.m in Sources */,
 				EC61254D212176D700D40C96 /* CMPlayerBrightnessView.m in Sources */,
@@ -1688,6 +1770,7 @@
 				EC3B7E8021266DC200EB09AD /* GAHomeListViewController.m in Sources */,
 				EC7DC1CF212D08F700730286 /* DAVConnection.m in Sources */,
 				EC7DC1F1212D70E100730286 /* WCHBackgroundRunner.m in Sources */,
+				ECA1A28121AEA33C009AD84C /* AFHTTPSessionManager.m in Sources */,
 				EC61255A212176D700D40C96 /* GAPlayerSelectView.m in Sources */,
 				EC6125852122CE9100D40C96 /* DADownloadModel.m in Sources */,
 				EC612554212176D700D40C96 /* UIView+SomehowTheScreen.m in Sources */,
@@ -1702,6 +1785,7 @@
 				EC6125892122CEA000D40C96 /* DownloadError.m in Sources */,
 				ECC2348921AD109B00F44B50 /* GALoadingView.m in Sources */,
 				EC7DC1C4212D08F700730286 /* HTTPConnection.m in Sources */,
+				ECA1A28221AEA33C009AD84C /* AFURLConnectionOperation.m in Sources */,
 				EC7DC1DC212D08F700730286 /* DDAbstractDatabaseLogger.m in Sources */,
 				EC612555212176D700D40C96 /* GAPlayerItemModel.m in Sources */,
 				EC3B7E932126949700EB09AD /* FMDatabaseQueue.m in Sources */,

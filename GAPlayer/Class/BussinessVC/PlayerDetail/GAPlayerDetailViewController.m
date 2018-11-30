@@ -15,6 +15,7 @@
 #import "GACacheModelTool.h"
 #import "GADataBaseManager.h"
 #import "GAPlayerDetailModel.h"
+#import "GAPlayerDetailBoomView.h"
 
 @interface GAPlayerDetailViewController ()
 // 播放器
@@ -23,6 +24,9 @@
 @property (nonatomic, strong) GAPlayerDetailViewModel *viewModel;
 // tableView
 @property (nonatomic, strong) GAPlayerDetailTableView *tableView;
+// tableView
+@property (nonatomic, strong) GAPlayerDetailBoomView *boomView;
+
 
 @end
 
@@ -37,12 +41,14 @@
     [self setupData];
     [self setupPlayerViewaAction];
     [self makeProgressTableViewBlock];
+    [self reloadUnFinishAndFinishCount];
     NSLog(@"home dir is %@",NSHomeDirectory());
 }
 
 - (void)setupView {
     [self.view addSubview:self.playerView];
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.boomView];
 }
 
 - (void)setupLayout {
@@ -62,7 +68,8 @@
         }
     }];
     
-    self.tableView.frame = CGRectMake(0, CGRectGetMaxY(self.playerView.frame), ScreenWidth, ScreenHeight - CGRectGetMaxY(self.playerView.frame) - BottomSafeAreaHeight);
+    self.tableView.frame = CGRectMake(0, CGRectGetMaxY(self.playerView.frame), ScreenWidth, ScreenHeight - CGRectGetMaxY(self.playerView.frame) - BottomSafeAreaHeight - 44);
+    self.boomView.frame = CGRectMake(0, CGRectGetMaxY(self.tableView.frame), ScreenWidth, 44);
     
 }
 
@@ -76,6 +83,14 @@
         [weakself.playerView thePlayerLoadsTheData:playDict];
     }];
     
+}
+
+- (void)reloadUnFinishAndFinishCount {
+    __weak __typeof(self) weakself= self;
+    [self.viewModel requestUnFinishAndFinishData:nil successBlock:^(NSInteger finishCount, NSInteger unFinishCount) {
+        weakself.boomView.finishCount = finishCount;
+        weakself.boomView.unFinishCount = unFinishCount;
+    }];
 }
 
 #pragma mark - tableview
@@ -144,6 +159,13 @@
         _tableView = [[GAPlayerDetailTableView alloc] init];
     }
     return _tableView;
+}
+
+- (GAPlayerDetailBoomView *)boomView {
+    if (!_boomView) {
+        _boomView = [[GAPlayerDetailBoomView alloc] init];
+    }
+    return _boomView;
 }
 
 - (void)dealloc {

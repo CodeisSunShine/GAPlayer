@@ -24,6 +24,8 @@
 @property (nonatomic, strong) NSMutableArray *playerDetailList;
 // 数据源字典 方便查询DetailModel 不需循环遍历
 @property (nonatomic, strong) NSMutableDictionary *playerDetaidDict;
+// 已下载/未下载 数量
+@property (nonatomic, strong) PlayerDetailFinishCountBlock countBlock;
 
 @end
 
@@ -55,6 +57,7 @@
         if (detailModel) {
             detailModel.downloadState = downloadState;
         }
+        [weakself reloadFinsihAndUnFinishCount];
     } finishBlock:^(NSString *downloadId, BOOL success, NSError *error) {
         GAPlayerDetailModel *detailModel = [weakself getPlayerDetailModelWith:downloadId];
         if (detailModel) {
@@ -94,7 +97,7 @@
 }
 
 /**
- * 计算缓存的占用存储大小
+ * 单位转化
  */
 - (NSString *)convertSize:(NSUInteger)length {
     if(length<1024)
@@ -190,6 +193,21 @@
     // 播放地址数据
     dataDict[@"video"] = [videoDict copy];
     return dataDict;
+}
+
+- (void)requestUnFinishAndFinishData:(NSDictionary *)dict successBlock:(PlayerDetailFinishCountBlock)countBlock {
+    self.countBlock = countBlock;
+    [self reloadFinsihAndUnFinishCount];
+}
+
+- (void)reloadFinsihAndUnFinishCount {
+    @autoreleasepool {
+        NSArray *finsihList = [self.dataBaseManager queryTheFinishedDownloadData];
+        NSArray *unFinsihList = [self.dataBaseManager queryTheUnfinishedDownloadData];
+        if (self.countBlock) {
+            self.countBlock(finsihList.count,unFinsihList.count);
+        }
+    }
 }
 
 - (GACacheManager *)cacheManager {
