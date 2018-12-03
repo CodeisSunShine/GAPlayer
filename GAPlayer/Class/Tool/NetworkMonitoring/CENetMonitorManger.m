@@ -50,35 +50,36 @@ typedef NSMutableDictionary<NSString *, id> NMCallbacksDictionary;
     //当网络状态改变的时候，就会调用
     __weak typeof(self)weakSelf = self;
     [mgr setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        [weakSelf theNetworkEnvironmentChanged:[self makeProgressMonitorTypeWith:status]];
+//        [weakSelf theNetworkEnvironmentChanged:[self makeProgressMonitorTypeWith:status]];
+        [weakSelf networkChangeCallBack:[self makeProgressMonitorTypeWith:status]];
     }];
     //开始监控
     [mgr startMonitoring];
 }
 
-// 网络发生变化处理
-- (void)theNetworkEnvironmentChanged:(NetworkMonitorType)networkType {
-    if (networkType == kNetMonTypeUnAble) {
-        if (self.currentNetworkType == kNetMonTypeWiFi) {
-            [self networkChangeCallBack:kNetChaTypeWiToUA];
-        } else if (self.currentNetworkType == kNetMonTypeWWAN) {
-            [self networkChangeCallBack:kNetChaTypeWWToUA];
-        }
-    } else if (networkType == kNetMonTypeWWAN) {
-        if (self.currentNetworkType == kNetMonTypeWiFi) {
-            [self networkChangeCallBack:kNetChaTypeWiToWW];
-        } else if (self.currentNetworkType == kNetMonTypeUnAble) {
-            [self networkChangeCallBack:kNetChaTypeUAToWW];
-        }
-    }
-    
-//    if (self.isFirstLauch) {
-//        self.isFirstLauch = NO;
-//        [[CECacheManager sharedInstance] queryingTheDatabaseUnfinishedDownloadTask];
+//// 网络发生变化处理
+//- (void)theNetworkEnvironmentChanged:(NetworkMonitorType)networkType {
+//    if (networkType == kNetMonTypeUnAble) {
+//        if (self.currentNetworkType == kNetMonTypeWiFi) {
+//            [self networkChangeCallBack:kNetChaTypeWiToUA];
+//        } else if (self.currentNetworkType == kNetMonTypeWWAN) {
+//            [self networkChangeCallBack:kNetChaTypeWWToUA];
+//        }
+//    } else if (networkType == kNetMonTypeWWAN) {
+//        if (self.currentNetworkType == kNetMonTypeWiFi) {
+//            [self networkChangeCallBack:kNetChaTypeWiToWW];
+//        } else if (self.currentNetworkType == kNetMonTypeUnAble) {
+//            [self networkChangeCallBack:kNetChaTypeUAToWW];
+//        }
 //    }
-    
-    self.currentNetworkType = networkType;
-}
+//
+////    if (self.isFirstLauch) {
+////        self.isFirstLauch = NO;
+////        [[CECacheManager sharedInstance] queryingTheDatabaseUnfinishedDownloadTask];
+////    }
+//
+//    self.currentNetworkType = networkType;
+//}
 
 // 添加网络变化回调
 - (void)addNetworkChangeBlock:(CENetMonNetworkChangeBlock)networkChangeBlock
@@ -102,12 +103,12 @@ typedef NSMutableDictionary<NSString *, id> NMCallbacksDictionary;
 }
 
 // 网络状态变化的回调
-- (void)networkChangeCallBack:(NetworkChangeType)changeType {
+- (void)networkChangeCallBack:(NetworkMonitorType)monitorType {
     [self.callbackBlocks.allKeys enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSMutableDictionary *blockDict = self.callbackBlocks[obj];
         CENetMonNetworkChangeBlock networkChangeBlock = blockDict[kNetworkChangeCallBackKey];
         if (networkChangeBlock) {
-            networkChangeBlock(changeType);
+            networkChangeBlock(monitorType);
         }
     }];
 }

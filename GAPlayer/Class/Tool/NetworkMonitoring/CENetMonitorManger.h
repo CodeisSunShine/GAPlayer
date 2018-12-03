@@ -34,7 +34,7 @@ typedef NS_ENUM(NSUInteger, NetworkChangeType) {
     kNetChaTypeUAToWW
 };
 
-typedef void(^CENetMonNetworkChangeBlock)(NetworkChangeType changeType);
+typedef void(^CENetMonNetworkChangeBlock)(NetworkMonitorType monitorType);
 
 @interface CENetMonitorManger : NSObject
 

@@ -77,7 +77,6 @@
 
 // 切换倍速
 - (void)switchingTimesSpeed:(CGFloat)speed {
-    [self makeProgressCallBackPlayerState:kPlayerStateCacheing];
     self.player.playbackRate = speed;
 }
 

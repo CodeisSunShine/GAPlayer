@@ -147,6 +147,7 @@
 		ECB6C8F221A81670007AD7F9 /* GAMemoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6C8F121A81670007AD7F9 /* GAMemoryView.m */; };
 		ECC2348921AD109B00F44B50 /* GALoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC2348821AD109B00F44B50 /* GALoadingView.m */; };
 		ECCC22AB212A6239004200DE /* GAFMDBTool.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCC22AA212A6239004200DE /* GAFMDBTool.m */; };
+		ECFF976521B1268500A88128 /* GAPlayerView+GANetworkProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFF976421B1268500A88128 /* GAPlayerView+GANetworkProcess.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -432,6 +433,8 @@
 		ECC2348821AD109B00F44B50 /* GALoadingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GALoadingView.m; sourceTree = "<group>"; };
 		ECCC22A9212A6239004200DE /* GAFMDBTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAFMDBTool.h; sourceTree = "<group>"; };
 		ECCC22AA212A6239004200DE /* GAFMDBTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAFMDBTool.m; sourceTree = "<group>"; };
+		ECFF976321B1268500A88128 /* GAPlayerView+GANetworkProcess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GAPlayerView+GANetworkProcess.h"; sourceTree = "<group>"; };
+		ECFF976421B1268500A88128 /* GAPlayerView+GANetworkProcess.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "GAPlayerView+GANetworkProcess.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -735,14 +738,16 @@
 			children = (
 				EC61251A212176D700D40C96 /* Tool */,
 				EC61250D212176D700D40C96 /* CommonView */,
+				EC612515212176D700D40C96 /* GAPlayerView.h */,
+				EC612519212176D700D40C96 /* GAPlayerView.m */,
 				EC612516212176D700D40C96 /* GAPlayerItemModel.h */,
 				EC612520212176D700D40C96 /* GAPlayerItemModel.m */,
 				EC612518212176D700D40C96 /* GAPlayerViewModel.h */,
 				EC612514212176D700D40C96 /* GAPlayerViewModel.m */,
 				EC61250C212176D700D40C96 /* GAPlayerView+GestureAction.h */,
 				EC612517212176D700D40C96 /* GAPlayerView+GestureAction.m */,
-				EC612515212176D700D40C96 /* GAPlayerView.h */,
-				EC612519212176D700D40C96 /* GAPlayerView.m */,
+				ECFF976321B1268500A88128 /* GAPlayerView+GANetworkProcess.h */,
+				ECFF976421B1268500A88128 /* GAPlayerView+GANetworkProcess.m */,
 			);
 			path = PlayerView;
 			sourceTree = "<group>";
@@ -1772,6 +1777,7 @@
 				EC7DC1F1212D70E100730286 /* WCHBackgroundRunner.m in Sources */,
 				ECA1A28121AEA33C009AD84C /* AFHTTPSessionManager.m in Sources */,
 				EC61255A212176D700D40C96 /* GAPlayerSelectView.m in Sources */,
+				ECFF976521B1268500A88128 /* GAPlayerView+GANetworkProcess.m in Sources */,
 				EC6125852122CE9100D40C96 /* DADownloadModel.m in Sources */,
 				EC612554212176D700D40C96 /* UIView+SomehowTheScreen.m in Sources */,
 				ECA7836321A549BF00F42D0E /* GAPlayerDetailCellModel.m in Sources */,
