@@ -11,17 +11,7 @@
 @implementation GACacheModelTool
 
 + (void)makeProgressCacheModelWith:(NSDictionary *)dict callBlock:(void (^)(BOOL success, id object))callBlock {
-    GACacheModel *cacheModel = [[GACacheModel alloc] init];
-    cacheModel.videoId = [NSString stringWithFormat:@"%ld",[dict[@"videoId"] integerValue]];
-    if (dict[@"downloadState"]) {
-        cacheModel.downloadState = [dict[@"downloadState"] integerValue];
-    } else {
-        cacheModel.downloadState = kDADownloadStateReady;
-    }
-    cacheModel.filePath = [self makeProgressFilePathWithVideoId:dict[@"videoId"]];
-    cacheModel.percent = @"0";
-    cacheModel.videoName = dict[@"videoName"];
-    cacheModel.videoUrl = dict[@"videoUrl"];
+    GACacheModel *cacheModel = [self getCacheModelWithDatabaseDict:dict];
     callBlock(YES,cacheModel);
 }
 
@@ -35,6 +25,29 @@
     dict[@"videoUrl"] = cacheModel.videoUrl;
     cacheModel.tmpDataBaseDict = [dict copy];
     return cacheModel.tmpDataBaseDict;
+}
+
++ (NSArray *)getCacheModelListWithDatabaseDictList:(NSArray *)dictList {
+    NSMutableArray *cacheModelList = [[NSMutableArray alloc] init];
+    [dictList enumerateObjectsUsingBlock:^(NSDictionary *databaseDict, NSUInteger idx, BOOL * _Nonnull stop) {
+        [cacheModelList addObject:[self getCacheModelWithDatabaseDict:databaseDict]];
+    }];
+    return cacheModelList;
+}
+
++ (GACacheModel *)getCacheModelWithDatabaseDict:(NSDictionary *)databaseDict {
+    GACacheModel *cacheModel = [[GACacheModel alloc] init];
+    cacheModel.videoId = [NSString stringWithFormat:@"%ld",[databaseDict[@"videoId"] integerValue]];
+    if (databaseDict[@"downloadState"]) {
+        cacheModel.downloadState = [databaseDict[@"downloadState"] integerValue];
+    } else {
+        cacheModel.downloadState = kDADownloadStateReady;
+    }
+    cacheModel.filePath = [self makeProgressFilePathWithVideoId:databaseDict[@"videoId"]];
+    cacheModel.percent = @"0";
+    cacheModel.videoName = databaseDict[@"videoName"];
+    cacheModel.videoUrl = databaseDict[@"videoUrl"];
+    return cacheModel;
 }
 
 /**

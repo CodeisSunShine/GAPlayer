@@ -20,7 +20,7 @@
 /**
  * 查询未完成的下载的任务
  */
-- (NSArray *)queryTheUnfinishedDownloadData;
+- (void)queryTheUnfinishedDownloadDataWithResultBlock:(void (^)(BOOL success, id object))resultBlock;
 
 /**
  * 查询已完成的下载的任务

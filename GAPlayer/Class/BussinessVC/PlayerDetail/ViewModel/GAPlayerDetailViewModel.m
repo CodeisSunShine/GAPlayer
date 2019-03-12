@@ -114,7 +114,7 @@
 - (void)makeProgressData {
     NSArray *names = @[@"SunShine.m3u8",@"AppleDemo.m3u8",@"Love.mp4",@"sad.mp4"];
     NSArray *ids = @[@"111",@"222",@"333",@"444"];
-    NSArray *urls = @[@"http://cache.utovr.com/201508270528174780.m3u8",@"https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_4x3/gear2/prog_index.m3u8",@"http://aliuwmp3.changba.com/userdata/video/3B1DDE764577E0529C33DC5901307461.mp4",@"http://lzaiuw.changba.com/userdata/video/940071102.mp4"];
+    NSArray *urls = @[@"https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_4x3/gear2/prog_index.m3u8",@"https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_4x3/gear2/prog_index.m3u8",@"http://aliuwmp3.changba.com/userdata/video/3B1DDE764577E0529C33DC5901307461.mp4",@"http://lzaiuw.changba.com/userdata/video/940071102.mp4"];
     self.playerDetailList = [[NSMutableArray alloc] init];
     self.playerDetaidDict = [[NSMutableDictionary alloc] init];
     __weak __typeof(self) weakself= self;
@@ -143,9 +143,6 @@
         if (dict[@"downloadState"]) {
             detailModel.downloadState = [dict[@"downloadState"] integerValue];
             detailModel.filePath = dict[@"filePath"];
-            if (detailModel.downloadState == kDADownloadStateDownloading) {
-                detailModel.downloadState = kDADownloadStateCancelled;
-            }
         } else {
             detailModel.downloadState = kDADownloadStateReady;
         }
@@ -201,18 +198,18 @@
 }
 
 - (void)reloadFinsihAndUnFinishCount {
-    @autoreleasepool {
-        NSArray *finsihList = [self.dataBaseManager queryTheFinishedDownloadData];
-        NSArray *unFinsihList = [self.dataBaseManager queryTheUnfinishedDownloadData];
-        if (self.countBlock) {
-            self.countBlock(finsihList.count,unFinsihList.count);
+    __weak __typeof(self) weakself= self;
+    NSArray *finsihList = [self.dataBaseManager queryTheFinishedDownloadData];
+    [self.dataBaseManager queryTheUnfinishedDownloadDataWithResultBlock:^(BOOL success, NSArray *unFinsihList) {
+        if (weakself.countBlock && success) {
+            weakself.countBlock(finsihList.count,unFinsihList.count);
         }
-    }
+    }];
 }
 
 - (GACacheManager *)cacheManager {
     if (!_cacheManager) {
-        _cacheManager = [[GACacheManager alloc] init];
+        _cacheManager = [GACacheManager sharedInstance];
     }
     return _cacheManager;
 }

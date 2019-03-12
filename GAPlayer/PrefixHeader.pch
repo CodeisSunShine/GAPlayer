@@ -12,8 +12,8 @@
 // 颜色
 #define kMyColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 
-#define ScreenHeight [UIScreen mainScreen].bounds.size.height
-#define ScreenWidth [UIScreen mainScreen].bounds.size.width
+#define ScreenHeight ([UIScreen mainScreen].bounds.size.height)
+#define ScreenWidth ([UIScreen mainScreen].bounds.size.width)
 #define ScreenScale [UIScreen mainScreen].scale
 
 #define isIPhoneX_Xs (ScreenWidth == 375.0 && ScreenHeight == 812.0) || (ScreenWidth == 812.0 && ScreenHeight == 375.0)

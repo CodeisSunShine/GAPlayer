@@ -59,6 +59,7 @@
 
 //暂停下载
 - (void)pauseDownload {
+    NSLog(@"pauseDownload    pauseDownload  pauseDownload");
     @synchronized(self) {
         self.isPause = YES;
         self.downloadingCount = 0;
@@ -128,7 +129,6 @@
     } else {
         self.progress.completedUnitCount += 1;
     }
-    //
     self.downloadModel.progress = [NSString stringWithFormat:@"%f",self.progress.fractionCompleted];
 }
 
@@ -242,7 +242,6 @@
 // 下载进度回调
 - (void)downloadProgessCallBackWith:(int64_t)bytesWritten {
     self.downloadModel.progress = [NSString stringWithFormat:@"%f",self.progress.fractionCompleted];
-    NSLog(@"self.downloadModel.progress  ====  %@",self.downloadModel.progress);
     self.downloadModel.bytesWritten = bytesWritten;
     if (self.sessionDelegate && [self.sessionDelegate respondsToSelector:@selector(sessionDownloadProgressWithDownloadModel:)]) {
         [self.sessionDelegate sessionDownloadProgressWithDownloadModel:self.downloadModel];
@@ -269,13 +268,33 @@
 
 - (void)moveLocationDataWithDownloadItem:(DADownloadItem *)downloadItem moveItemAtPath:(NSString *)locationString {
     NSString *localUrl = [self getLocationURLWith:downloadItem.itemModel.finishLocalName];
-    NSError *moveError = nil;
-    if (![[NSFileManager defaultManager] fileExistsAtPath:localUrl]) {
-        [[NSFileManager defaultManager] moveItemAtPath:locationString toPath:localUrl error:&moveError];
-        if (moveError) {
-            [self downloadFailueWithFailCode:kDADownloadFinishCodeMoveFail error:moveError];
+    NSError *onceError = [self downloadMoveItemAtPath:locationString toPath:localUrl];
+    if (onceError) {//第一次转移失败有可能是因为locationString记录的是上一个沙盒的地址(苹果bug)
+        NSString *newLocationString = [self getNewLocalUrlWith:locationString];
+        NSError *secondError = [self downloadMoveItemAtPath:newLocationString toPath:localUrl];
+        if (secondError) {
+            [self downloadFailueWithFailCode:kDADownloadFinishCodeMoveFail error:secondError];
         }
     }
+}
+
+- (NSString *)getNewLocalUrlWith:(NSString *)localUrl {
+    NSArray *paths = [localUrl componentsSeparatedByString:@"Caches"];
+    if (paths.count > 1) {
+        NSString *newLocalUrl = [self getCacheFileURLWith:paths.lastObject];
+        return newLocalUrl;
+    } else {
+        return localUrl;
+    }
+}
+
+// 将指定文件转移到指定文件
+- (NSError *)downloadMoveItemAtPath:(NSString *)locationString toPath:(NSString *)toPath {
+    NSError *moveError = nil;
+    if (![[NSFileManager defaultManager] fileExistsAtPath:toPath]) {
+        [[NSFileManager defaultManager] moveItemAtPath:locationString toPath:toPath error:&moveError];
+    }
+    return moveError;
 }
 
 // 下载中数量减一
@@ -292,6 +311,10 @@
     return [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingFormat:@"%@",savePath];
 }
 
+- (NSString *)getCacheFileURLWith:(NSString *)savePath {
+    return [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject stringByAppendingFormat:@"%@",savePath];
+}
+
 #pragma mark - NSURLSessionDownloadDelegate
 - (void)URLSession:(NSURLSession *)session
       downloadTask:(NSURLSessionTask *)downloadTask
@@ -300,7 +323,7 @@
 totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
     DADownloadItem *downloadItem = [self getDonwloadItemWith:downloadTask];
     if (downloadItem) {
-        [self makeProgessDownloadItemProgress:downloadItem totalBytesWritten:totalBytesWritten totalBytesExpectedToWrite:totalBytesExpectedToWrite];
+        [self makeProgessDownloadItemProgress:downloadItem totalBytesWritten:bytesWritten totalBytesExpectedToWrite:totalBytesExpectedToWrite];
         [self downloadProgessCallBackWith:bytesWritten];
     }
 }
@@ -349,7 +372,6 @@ didFinishDownloadingToURL:(nonnull NSURL *)location {
     NSURLSession *session = nil;
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:[NSString stringWithFormat:@"%@",self.downloadModel.downloadId]];
     sessionConfig.timeoutIntervalForRequest = 20;
-    //    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     session = [NSURLSession sessionWithConfiguration:sessionConfig
                                             delegate:self
                                        delegateQueue:[NSOperationQueue mainQueue]];

@@ -10,6 +10,7 @@
 #import "GAPlayerDetailViewController.h"
 #import "GAHomeListTableViewCell.h"
 #import "GAHomeListModel.h"
+#import "GACacheManager.h"
 
 @interface GAHomeListViewController () <UITableViewDataSource, UITableViewDelegate>
 

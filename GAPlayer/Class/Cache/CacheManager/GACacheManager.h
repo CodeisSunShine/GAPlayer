@@ -46,4 +46,19 @@ typedef void(^DAFinishCallBlock)(NSString *downloadId, BOOL success, NSError *er
  */
 - (void)downloadIsControlledAccordingToVideoId:(NSString *)videoId callBlock:(void (^)(BOOL success, id object))callBlock;
 
+/**
+ * 检测数据库是否有未完成的下载任务
+ */
+- (void)queryingTheDatabaseUnfinishedDownloadTaskCallBlock:(void (^)(BOOL success))callBlock;
+
+/**
+ * 全部暂停
+ */
+- (void)allSuspended;
+
+/**
+ * 全部下载 当前任务列表所有的任务
+ */
+- (void)allStart;
+
 @end

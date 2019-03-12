@@ -8,8 +8,9 @@
 
 #import "AppDelegate.h"
 #import "GAHomeListViewController.h"
+#import "GACacheManager.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <UIAlertViewDelegate>
 
 
 @end
@@ -22,9 +23,34 @@
     self.window = [[UIWindow alloc]init];
     self.window.frame = [UIScreen mainScreen].bounds;
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[GAHomeListViewController alloc] init]];
-    [self.window makeKeyAndVisible];
     [UIApplication sharedApplication].statusBarHidden = NO;
+    
+    [self download];
+    
+    [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)download {
+    __weak __typeof__(self) weakSelf = self;
+    [[GACacheManager sharedInstance] queryingTheDatabaseUnfinishedDownloadTaskCallBlock:^(BOOL success) {
+        if (success) {
+            [weakSelf showAlert];
+        }
+    }];
+}
+
+- (void)showAlert {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您有未未完成的任务，是否继续下载" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"下载", nil];
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        [[GACacheManager sharedInstance] allSuspended];
+    } else {
+        [[GACacheManager sharedInstance] allStart];
+    }
 }
 
 

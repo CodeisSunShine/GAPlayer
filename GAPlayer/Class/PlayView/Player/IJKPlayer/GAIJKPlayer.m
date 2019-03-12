@@ -205,7 +205,7 @@
             break;
         }
         case IJKMPMoviePlaybackStatePaused: {
-            [self makeProgressCallBackPlayerState:kPlayerStatePause];
+//            [self makeProgressCallBackPlayerState:kPlayerStatePause];
             NSLog(@"IJKMPMoviePlayBackStateDidChange %d: paused", (int)_player.playbackState);
             break;
         }
@@ -284,6 +284,12 @@
     if (self.callBackDelegate && [self.callBackDelegate respondsToSelector:@selector(playbackProgressCallback:currentPlaybackTime:playableDuration:)]) {
         [self.callBackDelegate playbackProgressCallback:self.player.duration currentPlaybackTime:self.player.currentPlaybackTime playableDuration:self.player.playableDuration];
     }
+    if (self.player.playableDuration > self.player.currentPlaybackTime) {
+        self.playerState = kPlayerStatePlaying;
+    } else {
+        self.playerState = kPlayerStateCacheing;
+    }
+    [self makeProgressCallBackPlayerState:self.playerState];
 }
 
 // 状态改变

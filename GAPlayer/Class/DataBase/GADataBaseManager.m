@@ -31,16 +31,22 @@
 // 查询任务数据
 - (void)queryTaskData:(NSDictionary *)dict resultBlock:(void (^)(BOOL success, id object))resultBlock {
     NSArray *results = [self.fmdbTool queryTaskDataWithString:[self makeProgressQuerySql:dict]];
-    if (results) {
-        resultBlock(YES,results.firstObject);
+    if (results && results.count > 0) {
+        resultBlock(YES, results.firstObject);
     } else {
-        resultBlock(NO,nil);
+        resultBlock(NO, nil);
     }
 }
 
 // 查询未完成的下载的任务
-- (NSArray *)queryTheUnfinishedDownloadData {
-    return [self.fmdbTool queryTaskDataWithString:[self makeProgressQueryUnfinishedSql]];
+- (void)queryTheUnfinishedDownloadDataWithResultBlock:(void (^)(BOOL success, id object))resultBlock {
+    NSArray *results = [self.fmdbTool queryTaskDataWithString:[self makeProgressQueryUnfinishedSql]];
+    
+    if (results && results.count > 0) {
+        resultBlock(YES, results);
+    } else {
+        resultBlock(NO, nil);
+    }
 }
 
 // 查询已完成的下载的任务
@@ -67,7 +73,7 @@
 
 #pragma mark - private
 - (NSString *)makeProgressCreateTableSql {
-    return @"CREATE TABLE IF NOT EXISTS download(videoId INTEGER PRIMARY KEY, percent TEXT NOT NULL, filePath TEXT NOT NULL, videoName TEXT NOT NULL, videoUrl TEXT NOT NULL, downloadState TEXT NOT NULL);";
+    return @"CREATE TABLE IF NOT EXISTS download(videoId TEXT PRIMARY KEY, percent TEXT NOT NULL, filePath TEXT NOT NULL, videoName TEXT NOT NULL, videoUrl TEXT NOT NULL, downloadState TEXT NOT NULL);";
 }
 
 - (NSString *)makeProgressQuerySql:(NSDictionary *)dict {

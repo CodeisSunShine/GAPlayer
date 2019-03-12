@@ -35,7 +35,7 @@ typedef void(^PlayerDetailTableViewActionBlock)(GAPlayerDetailModel *detailModel
 /**
  * 切换视频 将UI进行处理
  */
-- (void)changLectureWith:(GAPlayerDetailModel *)videoModel;
+- (void)changLectureWith:(GAPlayerDetailModel *)detailModel isPlay:(BOOL)isPlay;
 
 @end
 

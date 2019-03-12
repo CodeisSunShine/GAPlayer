@@ -44,7 +44,7 @@
         self.playView = playView;
         [self registerGroundMonitoring];
         [self createSession];
-        self.allowBackPlay = YES;
+        self.allowBackPlay = NO;
     }
     return self;
 }
@@ -194,7 +194,7 @@
         [weakSelf thePlayerStateHasChanged:status];
     }];
     [self.KVOController observe:self.currentItem keyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew block:^(GAAVPlayer *aVPlayer, AVPlayerItem *currentItem, NSDictionary<NSKeyValueChangeKey,id> * _Nonnull change) {
-        NSLog(@"监听值改变 ---------------------------  person loadedTimeRanges %@   NSKeyValueChangeNewKey == %@",self.currentItem,change[NSKeyValueChangeNewKey]);
+        NSLog(@"监听值改变 ---------------------------  person loadedTimeRanges %@   NSKeyValueChangeNewKey == %@",weakSelf.currentItem,change[NSKeyValueChangeNewKey]);
     }];
     [self.KVOController observe:self.currentItem keyPath:@"playbackBufferEmpty" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew block:^(GAAVPlayer *aVPlayer, AVPlayerItem *currentItem, NSDictionary<NSKeyValueChangeKey,id> * _Nonnull change) {
 //        if (self.playerState != kPlayerStatePause && self.playerState != kPlayerStateFinish) {
@@ -202,7 +202,9 @@
 //        }
     }];
     [self.KVOController observe:self.currentItem keyPath:@"playbackLikelyToKeepUp" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew block:^(GAAVPlayer *aVPlayer, AVPlayerItem *currentItem, NSDictionary<NSKeyValueChangeKey,id> * _Nonnull change) {
-        NSLog(@"监听值改变 ---------------------------  person playbackLikelyToKeepUp %@   NSKeyValueChangeNewKey == %@",self.currentItem,change[NSKeyValueChangeNewKey]);
+        NSLog(@"监听值改变 ---------------------------  person playbackLikelyToKeepUp %@   NSKeyValueChangeNewKey == %@",weakSelf.currentItem,change[NSKeyValueChangeNewKey]);
+//        weakSelf.playerState = kPlayerStatePlaying;
+//        [weakSelf makeProgressCallBackPlayerState:weakSelf.playerState];
     }];
     [self.KVOController observe:self.currentItem keyPath:@"duration" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew block:^(GAAVPlayer *aVPlayer, AVPlayerItem *currentItem, NSDictionary<NSKeyValueChangeKey,id> * _Nonnull change) {
         weakSelf.totalTime = (CGFloat)CMTimeGetSeconds(weakSelf.currentItem.duration);
@@ -243,6 +245,12 @@
     if (self.playerState == kPlayerStatePlaying || self.playerState == kPlayerStateReady || self.playerState == kPlayerStateCacheing) {
         long long currentTime = self.currentItem.currentTime.value / self.currentItem.currentTime.timescale;
         long long playableTime = [self makeProgressPlayableTime];
+        if (playableTime > currentTime) {
+            self.playerState = kPlayerStatePlaying;
+        } else {
+            self.playerState = kPlayerStateCacheing;
+        }
+        [self makeProgressCallBackPlayerState:self.playerState];
         [self playerDurationCallBackWith:currentTime totalTime:self.totalTime playableTime:playableTime];
     }
 }

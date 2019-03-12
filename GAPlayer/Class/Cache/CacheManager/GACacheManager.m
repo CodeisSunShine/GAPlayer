@@ -14,6 +14,7 @@
 #import "GACacheModel.h"
 #import "DADownloadModel.h"
 #import "GADataBaseManager.h"
+#import "GACacheModelTool.h"
 
 static NSString *const kProgressCallbackKey = @"Progress";
 static NSString *const kDownloadStateCallbackKey = @"downloadState";
@@ -194,12 +195,92 @@ static NSString *const kFinishCallbackKey = @"Finish";
     }
 }
 
-//- (void)queryAllDownloadedTasksSuccessBlock:(void (^)(BOOL success, NSArray *cacheList))successBlock {
-//    [self.dataBaseManager queryTheUnfinishedDownloadData:nil resultBlock:^(BOOL success, id object) {
-////        [self addMultipleDownloadTasks:object];
-//        successBlock(YES,object);
-//    }];
-//}
+// 全部暂停
+- (void)allSuspended {
+    NSArray *tasks = [self getAllTaskForDownloading];
+    [self allSuspendedWith:tasks];
+}
+
+// 全部暂停  指定任务列表的任务
+- (void)allSuspendedWith:(NSArray *)tasks {
+    __block NSMutableArray *taskList = [[NSMutableArray alloc] init];
+    __block NSMutableArray *downloadingList = [[NSMutableArray alloc] init];
+    [tasks enumerateObjectsUsingBlock:^(GACacheModel *cacheModel, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (cacheModel.downloadState == kDADownloadStateDownloading) {
+            [downloadingList addObject:cacheModel];
+        } else {
+            [taskList addObject:cacheModel];
+        }
+    }];
+    
+    if (taskList.count > 0) {
+        for (NSInteger i = 0; i < taskList.count; i++) {
+            GACacheModel *cacheModel = taskList[i];
+            cacheModel.downloadState = kDADownloadStateCancelled;
+            [self makeProgressDownloadState:cacheModel];
+        }
+    }
+    
+    if (downloadingList.count > 0) {
+        for (NSInteger i = 0; i < downloadingList.count; i++) {
+            GACacheModel *cacheModel = downloadingList[i];
+            cacheModel.downloadState = kDADownloadStateCancelled;
+            [self makeProgressDownloadState:cacheModel];
+            [self beginPauseDownload:cacheModel];
+        }
+    }
+}
+
+// 全部下载 当前任务列表所有的任务
+- (void)allStart {
+    NSArray *tasks = [self getAllTaskForUnDownload];
+    [self allStartWith:tasks];
+}
+
+// 全部下载 指定任务列表的任务
+- (void)allStartWith:(NSArray *)tasks {
+    __block NSMutableArray *taskList = [[NSMutableArray alloc] init];
+    __block NSMutableArray *downloadingList = [[NSMutableArray alloc] init];
+    [tasks enumerateObjectsUsingBlock:^(GACacheModel *cacheModel, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (cacheModel.downloadState == kDADownloadStateDownloading) {
+            [downloadingList addObject:cacheModel];
+        } else {
+            [taskList addObject:cacheModel];
+        }
+    }];
+    
+    if (downloadingList.count > 0) {
+        for (NSInteger i = 0; i < downloadingList.count; i++) {
+            GACacheModel *cacheModel = downloadingList[i];
+            [self beginStartDownload:cacheModel];
+        }
+    }
+    
+    if (taskList.count > 0) {
+        for (NSInteger i = 0; i < taskList.count; i++) {
+            GACacheModel *cacheModel = taskList[i];
+            cacheModel.downloadState = kDADownloadStateReady;
+            [self startDownloadWith:cacheModel];
+        }
+    }
+}
+
+/**
+ * 检测数据库是否有未完成的下载任务
+ */
+- (void)queryingTheDatabaseUnfinishedDownloadTaskCallBlock:(void (^)(BOOL success))callBlock {
+    __weak __typeof(self) weakself= self;
+    
+    [self.dataBaseManager queryTheUnfinishedDownloadDataWithResultBlock:^(BOOL success, id object) {
+        if (success) {
+            NSArray *cacheModelList = [GACacheModelTool getCacheModelListWithDatabaseDictList:object];
+            [weakself addMultipleDownloadTasks:cacheModelList];
+            callBlock(YES);
+        } else {
+            callBlock(NO);
+        }
+    }];
+}
 
 - (void)querySingleDownloadData:(NSDictionary *)dict {
 
@@ -325,6 +406,28 @@ static NSString *const kFinishCallbackKey = @"Finish";
         }];
     }
     return currentdModel;
+}
+
+// 获取所有下载中 等待中的 任务
+- (NSArray *)getAllTaskForDownloading {
+    NSMutableArray *tasks = [[NSMutableArray alloc] init];
+    [self.donwloadCacheList enumerateObjectsUsingBlock:^(GACacheModel *cacheModel, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (cacheModel.downloadState == kDADownloadStateWait || cacheModel.downloadState == kDADownloadStateDownloading) {
+            [tasks addObject:cacheModel];
+        }
+    }];
+    return tasks;
+}
+
+// 获取不是正在下载现在的任务
+- (NSArray *)getAllTaskForUnDownload {
+    NSMutableArray *tasks = [[NSMutableArray alloc] init];
+    [self.donwloadCacheList enumerateObjectsUsingBlock:^(GACacheModel *cacheModel, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (cacheModel.downloadState != kDADownloadStateCompleted) {
+            [tasks addObject:cacheModel];
+        }
+    }];
+    return tasks;
 }
 
 // 获取 downloadModel

@@ -17,4 +17,8 @@
 
 + (NSString *)makeProgressDownloadStateStringWith:(DADownloadState)downloadState;
 
++ (NSArray *)getCacheModelListWithDatabaseDictList:(NSArray *)dictList;
+
++ (GACacheModel *)getCacheModelWithDatabaseDict:(NSDictionary *)databaseDict;
+
 @end

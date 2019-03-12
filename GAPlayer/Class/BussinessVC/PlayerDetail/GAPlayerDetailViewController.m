@@ -52,19 +52,20 @@
 }
 
 - (void)setupLayout {
-    __weak __typeof(self) weakself= self;
+    __weak __typeof__(self) weakSelf = self;
     self.playerView.frame = CGRectMake(0, StatusBarHeight, ScreenWidth, ScreenWidth / 16.0 * 9 + StatusBarHeight);
     
     //增加横竖屏回调
     [self.playerView registerLandscapeCallBack:^(UIInterfaceOrientation deviceOrientation, UIInterfaceOrientation statusBarOrientation) {
+        __strong __typeof(self) strongSelf = weakSelf;
         if (deviceOrientation == UIInterfaceOrientationPortrait) {
-            weakself.playerView.isFullScreen = NO;
-            weakself.playerView.frame =  CGRectMake(0, StatusBarHeight, ScreenWidth, ScreenWidth / 16.0 * 9 + StatusBarHeight);
+            strongSelf.playerView.isFullScreen = NO;
+            strongSelf.playerView.frame =  CGRectMake(0, StatusBarHeight, ScreenWidth, ScreenWidth / 16.0 * 9 + StatusBarHeight);
         } else {
             CGFloat ditance = isIPhoneXAbove ? StatusBarHeight : 0;
-            weakself.playerView.isFullScreen = YES;
-            weakself.playerView.frame = CGRectMake(0, ditance, ScreenHeight, ScreenWidth - ditance * 2);
-            NSLog(@"StatusBarHeight%f",StatusBarHeight);
+            strongSelf.playerView.isFullScreen = YES;
+            strongSelf.playerView.frame = CGRectMake(0, ditance, ScreenHeight, ScreenWidth - ditance * 2);
+            NSLog(@"StatusBarHeight%f width = %f  high = %f",StatusBarHeight,ScreenHeight,ScreenWidth - ditance * 2);
         }
     }];
     
@@ -79,7 +80,7 @@
         [weakself.tableView setObject:object];
         GAPlayerDetailModel *detailModel = [weakself.viewModel getPlayerDetailModelWith:weakself.listModel.videoId];
         NSDictionary *playDict = [weakself.viewModel makeProgressPlayData:detailModel];
-        [weakself.tableView changLectureWith:detailModel];
+        [weakself.tableView changLectureWith:detailModel isPlay:NO];
         [weakself.playerView thePlayerLoadsTheData:playDict];
     }];
     
@@ -122,17 +123,13 @@
             [weakself dismissViewControllerAnimated:YES completion:nil];
         } else if (controlBarType == kPVActionTypePlay) {
             GAPlayerDetailModel *playerModel = [weakself.viewModel getPlayerDetailModelWith:videoId];
-            if (playerModel.isActive) {
-                playerModel.isActive = NO;
-            } else {
-                [weakself.tableView changLectureWith:playerModel];
-            }
+            [weakself.tableView changLectureWith:playerModel isPlay:YES];
         }
     };
     
     self.playerView.playFinishBlock = ^(NSString *videoId) {
         GAPlayerDetailModel *playerModel = [weakself.viewModel getPlayerDetailModelWith:videoId];
-        [weakself.tableView changLectureWith:playerModel.nextDetailModel];
+        [weakself.tableView changLectureWith:playerModel.nextDetailModel isPlay:NO];
     };
 }
 

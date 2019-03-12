@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC2BA2E822329CD70031FD85 /* GADataBaseManager+GACacheModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2BA2E722329CD70031FD85 /* GADataBaseManager+GACacheModel.m */; };
 		EC30FB7F21B0D38300ADB8EC /* GAPlayerDetailBoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC30FB7E21B0D38300ADB8EC /* GAPlayerDetailBoomView.m */; };
 		EC3B7E8021266DC200EB09AD /* GAHomeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3B7E7F21266DC200EB09AD /* GAHomeListViewController.m */; };
 		EC3B7E8321266F0700EB09AD /* GAHomeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3B7E8221266F0700EB09AD /* GAHomeListModel.m */; };
@@ -168,6 +169,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC2BA2E622329CD70031FD85 /* GADataBaseManager+GACacheModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GADataBaseManager+GACacheModel.h"; sourceTree = "<group>"; };
+		EC2BA2E722329CD70031FD85 /* GADataBaseManager+GACacheModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "GADataBaseManager+GACacheModel.m"; sourceTree = "<group>"; };
 		EC30FB7D21B0D38300ADB8EC /* GAPlayerDetailBoomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAPlayerDetailBoomView.h; sourceTree = "<group>"; };
 		EC30FB7E21B0D38300ADB8EC /* GAPlayerDetailBoomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAPlayerDetailBoomView.m; sourceTree = "<group>"; };
 		EC3B7E7E21266DC200EB09AD /* GAHomeListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAHomeListViewController.h; sourceTree = "<group>"; };
@@ -486,6 +489,8 @@
 				EC3B7E9D21269EFE00EB09AD /* GADataBaseManager.m */,
 				ECCC22A9212A6239004200DE /* GAFMDBTool.h */,
 				ECCC22AA212A6239004200DE /* GAFMDBTool.m */,
+				EC2BA2E622329CD70031FD85 /* GADataBaseManager+GACacheModel.h */,
+				EC2BA2E722329CD70031FD85 /* GADataBaseManager+GACacheModel.m */,
 			);
 			path = DataBase;
 			sourceTree = "<group>";
@@ -1736,6 +1741,7 @@
 				EC7DC1C0212D08F700730286 /* HTTPFileResponse.m in Sources */,
 				ECA7836921A561B300F42D0E /* GAPlayerDetailViewModel.m in Sources */,
 				EC7DC1DA212D08F700730286 /* DDLog.m in Sources */,
+				EC2BA2E822329CD70031FD85 /* GADataBaseManager+GACacheModel.m in Sources */,
 				EC612551212176D700D40C96 /* GAPlayerView+GestureAction.m in Sources */,
 				EC61258D2122CECE00D40C96 /* DADownloadItem.m in Sources */,
 				ECA1A28421AEA33C009AD84C /* AFHTTPRequestOperationManager.m in Sources */,

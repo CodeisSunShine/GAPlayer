@@ -18,7 +18,7 @@ typedef void(^DirectionChangeBlock)(UIInterfaceOrientation deviceOrientation,UII
 
 @property (nonatomic, strong) UIView *superViews;
 
-@property (nonatomic, strong) DirectionChangeBlock directionChangeBlcok;
+@property (nonatomic, copy) DirectionChangeBlock directionChangeBlcok;
 
 @end
 
