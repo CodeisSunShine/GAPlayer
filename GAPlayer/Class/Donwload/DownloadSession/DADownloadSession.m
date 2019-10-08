@@ -323,7 +323,7 @@
 totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
     DADownloadItem *downloadItem = [self getDonwloadItemWith:downloadTask];
     if (downloadItem) {
-        [self makeProgessDownloadItemProgress:downloadItem totalBytesWritten:bytesWritten totalBytesExpectedToWrite:totalBytesExpectedToWrite];
+        [self makeProgessDownloadItemProgress:downloadItem totalBytesWritten:totalBytesWritten totalBytesExpectedToWrite:totalBytesExpectedToWrite];
         [self downloadProgessCallBackWith:bytesWritten];
     }
 }
