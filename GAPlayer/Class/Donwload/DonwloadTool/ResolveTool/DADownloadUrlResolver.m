@@ -103,36 +103,71 @@
     }
 }
 
+#pragma mark - 解析m3u8文件
 //解析M3U8
 + (void)analysisM3U8File:(NSString *)m3u8Url
             downloadName:(NSString *)downloadName
                 localUrl:(NSString *)localFileUrl
                andFinish:(void(^)(BOOL success, NSArray *downloadUrls, NSArray *names))finishBlock {
-    NSMutableURLRequest *m3u8Request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:m3u8Url]
-                                                                   cachePolicy:NSURLRequestReloadIgnoringCacheData
-                                                               timeoutInterval:10];
-    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:m3u8Request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (!error) {
-            NSString *m3u8Str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [self requestNetFileWithUrl:m3u8Url finish:^(BOOL success, id object) {
+        if (success) {
+            NSString *m3u8Str = [[NSString alloc] initWithData:object encoding:NSUTF8StringEncoding];
             NSRange range = [m3u8Url rangeOfString:@"/" options:NSBackwardsSearch];
             NSString *rootUrl = [m3u8Url substringToIndex:range.location];
             M3U8Parser *m3u8Parser = [[M3U8Parser alloc]initWithM3U8String:m3u8Str rootUrl:rootUrl];
-            
-            NSError *error = [self writeFileToLocalFileUrl:localFileUrl downloadName:downloadName contentStr:m3u8Parser.lastM3U8String];
+            NSString *contentStr = m3u8Parser.lastM3U8String;
+            NSLog(@"123%@123",m3u8Parser.m3u8URI);
+            if (m3u8Parser.m3u8URI && m3u8Parser.m3u8URI.length > 0) {
+                if ([contentStr containsString:m3u8Parser.m3u8URI]) {
+                    NSArray *array = [contentStr componentsSeparatedByString:m3u8Parser.m3u8URI];
+                    if (array.count >= 2) {
+                        contentStr = [NSString stringWithFormat:@"%@URI.key%@",array[0],array[1]];
+                    }
+                }
+            }
+            NSError *error = [self writeFileToLocalFileUrl:localFileUrl downloadName:downloadName contentStr:contentStr];
             if (error) {
                 NSLog(@"m3u8文件创建失败");
                 finishBlock(NO,nil,nil);
             } else {
-                finishBlock(YES,m3u8Parser.tsUrlMutableArray,m3u8Parser.tsNameMutableArray);
                 NSLog(@"成功");
+                // 如果存在URI则为加密视频 则需要将URI请求并存在本地
+                if (m3u8Parser.m3u8URI && m3u8Parser.m3u8URI.length > 0) {
+                    [self analysisURIWithURIurl:m3u8Parser.m3u8URI downloadName:downloadName localUrl:localFileUrl finish:^(BOOL success) {
+                        if (success) {
+                            finishBlock(YES,m3u8Parser.tsUrlMutableArray,m3u8Parser.tsNameMutableArray);
+                        } else {
+                            finishBlock(NO,nil,nil);
+                        }
+                    }];
+                } else {
+                    finishBlock(YES,m3u8Parser.tsUrlMutableArray,m3u8Parser.tsNameMutableArray);
+                }
             }
-        } else {
-            finishBlock(NO,nil,nil);
-            NSLog(@"失败");
         }
     }];
-    [task resume];
-    
+}
+
+//解析URI
++ (void)analysisURIWithURIurl:(NSString *)URIurl
+                 downloadName:(NSString *)downloadName
+                     localUrl:(NSString *)localFileUrl
+                       finish:(void(^)(BOOL success))finish {
+    [self requestNetFileWithUrl:URIurl finish:^(BOOL success, id object) {
+        if (success) {
+            NSData *data = object;
+            NSString *anAbsolutePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingFormat:@"/%@",localFileUrl];
+            [self isExistPath:anAbsolutePath];
+            NSString *path = [anAbsolutePath stringByAppendingPathComponent:@"URI.key"];
+            if ([data writeToFile:path atomically:YES]) {
+                finish(YES);
+            } else {
+                finish(NO);
+            }
+        } else {
+            finish(NO);
+        }
+    }];
 }
 
 //解析HTML文件
@@ -251,6 +286,28 @@
     if ( !(isDir == YES && existed == YES) ) {
         [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
     }
+}
+
++ (void)requestNetFileWithUrl:(NSString *)url finish:(void(^)(BOOL success, id object))finishBlock {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:url]
+                                                               cachePolicy:NSURLRequestReloadIgnoringCacheData
+                                                           timeoutInterval:10];
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (!error) {
+            finishBlock(YES, data);
+            NSLog(@"成功");
+        } else {
+            finishBlock(NO, nil);
+            NSLog(@"失败");
+        }
+    }];
+    [task resume];
+}
+
++ (NSString *)removeSpaceAndNewline:(NSString *)str {
+    NSString *temp = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *text = [temp stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet ]];
+    return text;
 }
 
 @end

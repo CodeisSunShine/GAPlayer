@@ -112,9 +112,11 @@
 
 #pragma mark - 假数据赋值
 - (void)makeProgressData {
-    NSArray *names = @[@"SunShine.m3u8",@"AppleDemo.m3u8",@"Love.mp4",@"sad.mp4"];
+    NSArray *names = @[@"SunShine.m3u8",@"AppleDemo.m3u8",@"Love.mp4",@"sad.m3u8"];
     NSArray *ids = @[@"111",@"222",@"333",@"444"];
-    NSArray *urls = @[@"https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_4x3/gear2/prog_index.m3u8",@"https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_4x3/gear2/prog_index.m3u8",@"http://aliuwmp3.changba.com/userdata/video/3B1DDE764577E0529C33DC5901307461.mp4",@"http://lzaiuw.changba.com/userdata/video/940071102.mp4"];
+    NSArray *urls = @[@"https://magicao-videotest.oss-cn-beijing.aliyuncs.com/m3u8/sad/sad.m3u8",@"https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_4x3/gear2/prog_index.m3u8",@"https://magicao-videotest.oss-cn-beijing.aliyuncs.com/m3u8/sad-encrypt/enc.key",@"https://magicao-videotest.oss-cn-beijing.aliyuncs.com/m3u8/sad-encrypt2/sad.m3u8"];
+    //下载
+    // http://lzaiuw.changba.com/userdata/video/940071102.mp4
     self.playerDetailList = [[NSMutableArray alloc] init];
     self.playerDetaidDict = [[NSMutableDictionary alloc] init];
     __weak __typeof(self) weakself= self;

@@ -53,7 +53,7 @@
     NSArray *names = @[@"SunShine.m3u8",@"AppleDemo.m3u8",@"Love.mp4",@"sad.mp4"];
     NSArray *ids = @[@"111",@"222",@"333",@"444"];
     NSArray *images = @[@"Sunshine",@"Apple",@"Love",@"Sad"];
-    NSArray *describes = @[@"单独的m3u8视频",@"片头+m3u8视频+片尾",@"mp4视频",@"mp4视频"];
+    NSArray *describes = @[@"单独的m3u8视频",@"片头+m3u8视频+片尾",@"mp4视频",@"加密的m3u8视频"];
     NSMutableArray *dataSource = [[NSMutableArray alloc] init];
     for (NSInteger i = 0; i < names.count; i++) {
         GAHomeListModel *listModel = [[GAHomeListModel alloc] init];
