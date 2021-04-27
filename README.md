@@ -37,7 +37,7 @@
 ### 项目架构
 
 <div align="center">
-  <img src="https://github.com/CodeisSunShine/Image/raw/master/GAPlayer.png">
+  <img src="https://github.com/CodeisSunShine/Image/blob/master/GAPlayerFramewok.png">
 </div>
 
 * GAPlayerView：最外层播放视图，里面包含播放器的业务逻辑和视图逻辑。
